@@ -1,10 +1,10 @@
 <?php 
 
 $domain ='http://localhost/crypto/';
-$sitename ='Crypto';
-$siteemail = 'Crypto';
+$sitename ='Fussion Assets';
+$siteemail = 'support@fussionassets';
 $sitenumber = '+123 8989 444';
-$siteaddress ='Crypto';
+$siteaddress ='Arizone USA ';
 
 
 

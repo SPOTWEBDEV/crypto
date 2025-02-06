@@ -90,7 +90,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="inner-contact-img">
-                            <img src="<?php echo $domain ?>assets/images/Photo J.jpg" alt="">
+                            <img src="https://i.pinimg.com/736x/20/ff/da/20ffdabcf6acc704684588e2c2c03b3e.jpg" alt="">
                         </div>
                     </div>
                     <div class="col-lg-6">

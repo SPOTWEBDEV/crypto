@@ -1,3 +1,5 @@
+
+
 <header class="transparent-header">
         <div class="heder-top-wrap heder-top-wrap-two">
             <div class="container custom-container-four">
@@ -36,10 +38,10 @@
                         <div class="menu-wrap">
                             <nav class="menu-nav">
                                 <div class="logo">
-                                    <a href="index.html"><img src="assets/img/logo/w_logo.png" alt="Logo"></a>
+                                    <a href="#"><img src="assets/img/logo/w_logo.png" alt="Logo"></a>
                                 </div>
                                 <div class="logo d-none">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt="Logo"></a>
+                                    <a href="#"><img src="assets/img/logo/logo.png" alt="Logo"></a>
                                 </div>
                                 <div class="navbar-wrap main-menu d-none d-lg-flex">
                                     <ul class="navigation">

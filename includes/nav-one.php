@@ -51,7 +51,7 @@
                                                       <nav class="menu-nav">
 
                                                                <img style="height:80px !important; width:200px;"
-                                                                        src="<?php echo $domain ?>logo.png" alt="Logo">
+                                                                        src="../assets/img/logo/logo.png" alt="Logo">
 
 
                                                                <div class="navbar-wrap main-menu d-none d-lg-flex">

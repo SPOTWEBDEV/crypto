@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="<?php echo $domain ?>assets/css/aos.css">
     <link rel="stylesheet" href="<?php echo $domain ?>assets/css/default.css">
     <link rel="stylesheet" href="<?php echo $domain ?>assets/css/style.css">
-    <link rel="stylesheet" href="<?php echo $domain ?>assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 </head>

@@ -68,9 +68,8 @@
                                                                         <ul class="list-wrap">
                                                                                  <!-- <li class="header-search"><a href="#"><i class="fas fa-search"></i></a></li> Changed to Font Awesome -->
                                                                                  <li class="header-btn"><a
-                                                                                                   href="<?php echo $domain ?>book-me/"
-                                                                                                   class="btn btn-two">Request/Apply
-                                                                                                   Now</a></li>
+                                                                                                   href="<?php echo $domain ?>app/login.php"
+                                                                                                   class="btn btn-two">Login</a></li>
                                                                         </ul>
                                                                </div>
                                                       </nav>

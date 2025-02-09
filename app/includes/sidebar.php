@@ -19,18 +19,16 @@
             </div>
             <ul class="main-menu">
                 <!-- Start::slide__category -->
-                <li class="slide__category">
-                    <span class="category-name">Main</span>
-                </li>
+               
                 <!-- End::slide__category -->
                 <!-- Start::slide -->
-                <li class="slide has-sub">
-                    <a href="javascript:void(0);" class="side-menu__item">
+                <!-- <li class="slide has-sub">
+                    <a href="index.php" class="side-menu__item">
                         <i class="bx bx-home side-menu__icon"></i>
-                        <span class="side-menu__label">Home<span class="badge bg-warning-transparent ms-2">1</span></span>
+                        <span class="side-menu__label">Dashboard<span class="badge bg-warning-transparent ms-2">1</span></span>
                         <i class="fe fe-chevron-right side-menu__angle"></i>
                     </a>
-                    <ul class="slide-menu child1">
+                    <ul class="slide-menu child1 d-none">
                         <li class="slide side-menu__label1">
                             <a href="javascript:void(0)">Dashboards</a>
                         </li>
@@ -39,17 +37,19 @@
                         </li>
 
                     </ul>
+                </li> -->
+
+                <li class="slide mt-2">
+                
+                    <a href="index.php" class="side-menu__item"><i class="bx bx-home side-menu__icon"></i>Dashboard</a>
                 </li>
 
-                <li class="slide__category">
-                    <span class="category-name">General</span>
-                </li>
                 <!-- End::slide -->
                 <!-- Start::slide -->
-                <li class="slide has-sub">
+                <li class="slide has-sub mt-2">
                     <a href="javascript:void(0);" class="side-menu__item">
                         <i class="bx bx-fingerprint side-menu__icon"></i>
-                        <span class="side-menu__label">Action</span>
+                        <span class="side-menu__label">Request</span>
                         <i class="fe fe-chevron-right side-menu__angle"></i>
                     </a>
                     <ul class="slide-menu child1">
@@ -67,17 +67,20 @@
                         </li>
                     </ul>
                 </li>
-                <li class="slide__category">
-                    <a href="referral.php" class="side-menu__item text-white">Referral</a>
-                </li>
-                <li class="slide__category">
-                    <a href="history.php" class="side-menu__item text-white">Transaction</a>
+
+                <li class="slide mt-2">
+                    <a href="referral.php" class="side-menu__item"><i class='bx bx-group side-menu__icon'></i>
+                    Referral</a>
                 </li>
 
-                <li class="slide__category">
-                    <span class="category-name">Records</span>
-                </li>
+                <!-- <li class="slide mt-2">
+                    <a href="history.php" class="side-menu__item"><i class='bx bx-wallet side-menu__icon'></i>
+                    Transaction</a>
+                </li> -->
+            
+              
 
+            
 
                 <!-- End::slide -->
                 <!-- Start::slide -->
@@ -99,11 +102,16 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="slide mt-2">
+                    <a href="profile.php" class="side-menu__item"><i class='bx bx-id-card side-menu__icon'></i>
+                    Profile</a>
+                </li>
                 <!-- End::slide -->
 
                 <!-- Start::slide -->
 
-                <li class="slide__category">
+                <!-- <li class="slide__category">
                     <span class="category-name">Security</span>
                 </li>
 
@@ -121,7 +129,7 @@
                             <a href="application.php" class="side-menu__item">Kyc</a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
                 <!-- End::slide -->
             </ul>

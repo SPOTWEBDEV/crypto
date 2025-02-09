@@ -105,13 +105,10 @@
             <span>ACCOUNT BALANCE</span>
             <span><b>Balance:</b> $<?php echo $userDetails['wallet'] ?></span>
         </div>
+        
         <div class="option" onclick="checkToSetActive(2)" key="2">
-            <span>EARNING BALANCE</span>
-            <span><b>Balance:</b> $<?php echo $userDetails['gain_wallet'] ?></span>
-        </div>
-        <div class="option" onclick="checkToSetActive(3)" key="3">
             <span>REFERRAL BALANCE</span>
-            <span><b>Balance:</b> $<?php echo $userDetails['ref_wallet'] ?></span>
+            <span><b>Balance:</b> $<?php echo $userDetails['referral_balance'] ?></span>
         </div>
         <button class="popin-btn" onclick="sendToPage()">
             PROCEED
@@ -153,16 +150,13 @@
         let pickedValue = picked.getAttribute('key');
         switch (pickedValue) {
             case '1':
-                openPage('./withOne.php');
-                break;
-            case '2': 
                 openPage('./withTwo.php');
                 break;
-            case '3': 
+            case '2': 
                 openPage('./withThree.php');
                 break;
             default:
-                alert('Please select an option.');
+            openPage('./withTwo.php');
         }
     }
 </script>

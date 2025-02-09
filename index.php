@@ -70,7 +70,7 @@
                                     <span class="sub-title" data-animation="fadeInUp" data-delay=".2s">Smart & Secure Trading</span>
                                     <h2 class="title" data-animation="fadeInUp" data-delay=".4s">Trade Crypto & Forex with Confidence</h2>
                                     <p data-animation="fadeInUp" data-delay=".6s">Join our platform to experience expert account management, copy trading, and self-trading for maximum profitability.</p>
-                                    <a href="services.html" class="btn btn-three" data-animation="fadeInUp" data-delay=".8s">Start Trading Today</a>
+                                    <a href="<?php echo $domain ?>app/login.php" class="btn btn-three" data-animation="fadeInUp" data-delay=".8s">Get started</a>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                                     <span class="sub-title" data-animation="fadeInUp" data-delay=".2s">Maximize Your Profits</span>
                                     <h2 class="title" data-animation="fadeInUp" data-delay=".4s">Automate & Grow Your Investments</h2>
                                     <p data-animation="fadeInUp" data-delay=".6s">Leverage cutting-edge AI-driven copy trading and expert strategies to optimize your forex and crypto trading success.</p>
-                                    <a href="services.html" class="btn btn-three" data-animation="fadeInUp" data-delay=".8s">Explore Our Services</a>
+                                    <a href="<?php echo $domain ?>app/login.php" class="btn btn-three" data-animation="fadeInUp" data-delay=".8s">Explore Our Services</a>
                                 </div>
                             </div>
                         </div>

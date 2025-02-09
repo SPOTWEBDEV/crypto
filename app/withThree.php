@@ -1,12 +1,11 @@
 <?php
-;
+
 include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
 include('controllers/userDetails.php');
-include('controllers/withCTR.php');
-//  FOR INVESTMENT MATURITY
-include('controllers/invMTR_CTR.php');
+// include('');
+
 // Log out the mother force;
 include('controllers/logOut.php');
 ?>
@@ -87,14 +86,14 @@ include('controllers/logOut.php');
                                         <!-- some emtpy word or text can be here -->
                                         <span class="fs-10 badge bg-success-transparent text-success p-1 ms-2">
                                             <i class="ri-arrow-up-s-line align-middle me-1"></i>
-                                            $<?php echo number_format($userDetails['ref_wallet']) ?>
+                                            $<?php echo number_format($userDetails['referral_balance']) ?>
                                         </span>
                                     </div>
                                     <!-- <div class="fs-20 fw-semibold">$132,12933.000</div>
                                             <small class="text-muted fw-semibold">12 BTC</small> -->
                                 </div>
                             </div>
-                            <form method="POST" class="card-body">
+                            <form action="controllers/withCTR.php" method="POST" class="card-body">
 
                                 <select class="form-control py-3 mb-3" name="channel">
                                     <option value="BNB" selected="">BNB</option>

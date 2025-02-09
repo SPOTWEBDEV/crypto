@@ -61,7 +61,7 @@
                                                     <span></span>
                                                 </a>
                                         </li>
-                                        <li class="header-btn header-btn-two"><a href="contact.html" class="btn btn-two"><i class="far fa-calendar"></i>Get a Quote</a></li>
+                                        <li class="header-btn header-btn-two"><a href="<?php echo $domain ?>app/login.php" class="btn btn-two"></i>Login</a></li>
                                     </ul>
                                 </div>
                             </nav>
@@ -72,7 +72,7 @@
                             <nav class="menu-box">
                                 <div class="close-btn"><i class="fas fa-times"></i></div>
                                 <div class="nav-logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt="Logo"></a>
+                                    <a href="#"><img src="assets/img/logo/logo.png" alt="Logo"></a>
                                 </div>
                                 <div class="mobile-search">
                                     <form action="#">

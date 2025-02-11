@@ -31,6 +31,7 @@ include('../../mailer/index.php');
 
         if ($pass !== $rp_pass) {
             echo "<script>Swal.fire('Password Mismatch','Passwords do not match','error')</script>";
+            echo "<script>setTimeout( ()=> { window.location.href = '../register.php' }, 1000)</script>";
             exit;
         }
 
@@ -49,6 +50,7 @@ include('../../mailer/index.php');
 
                     if (!mysqli_num_rows($check)) {
                         echo "<script>Swal.fire('referral Error', 'The referral link you provided is incorrect. Please check and try again.', 'error');</script>";
+                        echo "<script>setTimeout( ()=> { window.location.href = '../register.php' }, 1000)</script>";
                         return;
                     }
 

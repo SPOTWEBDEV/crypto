@@ -44,6 +44,11 @@
                     <a href="index.php" class="side-menu__item"><i class="bx bx-home side-menu__icon"></i>Dashboard</a>
                 </li>
 
+                <li class="slide mt-2">
+                
+                    <a href="market.php" class="side-menu__item"><i class="bx bx-store side-menu__icon"></i>Market</a>
+                </li>
+
                 <!-- End::slide -->
                 <!-- Start::slide -->
                 <li class="slide has-sub mt-2">

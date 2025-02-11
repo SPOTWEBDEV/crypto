@@ -153,7 +153,7 @@
                             if (strlen($userDetails['profile_image']) > 3) {
 
                             ?>
-                                <img src="./profiles/<?php echo $userDetails['profile_image'] ?>" alt="img" width="32" height="32" style="object-fit: cover;" class="rounded-circle" />
+                                <img src="<?php echo  $domain . 'uploads/profile/' . $userDetails['profile_image'] ?>" alt="img" width="32" height="32" style="object-fit: cover;" class="rounded-circle" />
                             <?php
 
                             } else {

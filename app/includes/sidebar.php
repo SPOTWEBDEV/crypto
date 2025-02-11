@@ -74,6 +74,11 @@
                 </li>
 
                 <li class="slide mt-2">
+                
+                    <a href="#" onclick="return alert('You could not access the Copy Trade page because your balance is low or you don’t have money in your account. Please deposit funds to continue.')" class="side-menu__item"><i class="bx bx-copy side-menu__icon"></i>Copy Trade</a>
+                </li>
+
+                <li class="slide mt-2">
                     <a href="referral.php" class="side-menu__item"><i class='bx bx-group side-menu__icon'></i>
                     Referral</a>
                 </li>

@@ -17,7 +17,7 @@
                                              <div class="header-top-right">
                                                       <div class="header-contact">
                                                                <a href="tel:0123456789"><i
-                                                                                 class="fas fa-phone-alt"></i><?php echo $sitenumber ?></a>
+                                                                                 class="fas fa-phone-alt"></i><?php echo $sitephone ?></a>
                                                                <!-- Changed to Font Awesome -->
                                                       </div>
                                                       <div class="header-social">
@@ -61,6 +61,9 @@
                                                                                  <li><a href="<?php echo $domain ?>about/">About</a>
                                                                                 
                                                                                  <li><a href="<?php echo $domain ?>contact/">contacts</a>
+                                                                                 </li>
+
+                                                                                 <li class="d-flex d-lg-none"><a href="<?php echo $domain ?>app/login.php">Login</a>
                                                                                  </li>
                                                                         </ul>
                                                                </div>
@@ -114,6 +117,7 @@
                                                                                  </li>
                                                                         </ul>
                                                                </div>
+                                                               
                                                       </nav>
                                              </div>
                                              <div class="menu-backdrop"></div>

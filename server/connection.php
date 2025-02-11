@@ -57,6 +57,7 @@ $siteemail = "support@fusionsassets.com";
 $emailpassword  = "support@fusionsassets.com";
 $host = 'mail.fusionsassets.com';
 $sitephone  = "+234704576523";
+$siteaddress  = "weston newyork";
 
 
 session_start();

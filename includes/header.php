@@ -51,6 +51,8 @@
                                         <li><a href="<?php echo $domain ?>contact/">contacts</a></li>
                                         <li class="d-flex d-lg-none"><a href="<?php echo $domain ?>app/login.php">Login</a>
                                         </li>
+                                        <li class="d-flex d-lg-none"><a href="<?php echo $domain ?>app/register.php">Register</a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="header-action header-action-two d-none d-md-block">

@@ -57,7 +57,7 @@
     <?php include('./includes/header.php') ?>
 
     <!-- main-area -->
-    <main class="fix">
+    <main class="fix">v
 
         <!-- slider-area -->
         <section class="slider-area-two">

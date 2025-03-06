@@ -90,19 +90,31 @@
                 </li> -->
             </ul>
         </li>
-       
+
+
 
         <li class="menu-item">
-            <a href="add-payment.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Add Payment Method</div>
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <div data-i18n="Layouts">Payment</div>
             </a>
-        </li>
-        <li class="menu-item">
-            <a href="payment-method.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Payment Method</div>
-            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="add-payment.php" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                        <div data-i18n="Analytics">Add Payment Method</div>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="payment-method.php" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                        <div data-i18n="Analytics">Payment Method List</div>
+                    </a>
+                </li>
+
+            </ul>
         </li>
 
         <li class="menu-item">

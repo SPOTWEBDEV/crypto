@@ -218,10 +218,10 @@ $mail = new PHPMailer(true);
                           
                           <td><?php echo $details['expert_name'] ?></td>
                           <td><?php echo $details['expert_image'] ?></td>
-                          <td><?php echo $details['return'] ?></td>
-                          <td><?php echo $details['amount'] ?></td>
+                          <td><?php echo number_format($details['return'],2) ?> USD</td>
+                          <td><?php echo number_format($details['amount'],2) ?> USD</td>
                           <td><?php echo $details['max_drawdown'] ?></td>
-                          <td><?php echo $details['win_rates'] ?></td>
+                          <td  style="color: <?php echo ($details['win_rates'] >= 50)? 'green':'red'  ?>"  ><?php echo $details['win_rates'] ?>%</td>
                           <td><?php echo $details['trades'] ?></td>
                           <td><?php echo $details['ratio'] ?></td>
                           

@@ -1,5 +1,4 @@
 <?php
-;
 include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
@@ -10,12 +9,13 @@ include('controllers/invMTR_CTR.php');
 include('controllers/logOut.php');
 
 
-function formatNumber($number, $decimals = 2) {
+function formatNumber($number, $decimals = 2)
+{
     // Check if the input is empty or not numeric
     if (empty($number) || !is_numeric($number)) {
         $number = 0;
     }
-    
+
     // Use number_format to format the number
     return number_format((float)$number, $decimals, '.', ',');
 }
@@ -76,13 +76,13 @@ function formatNumber($number, $decimals = 2) {
             <div class="container-fluid">
                 <!-- Page Header -->
                 <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-                    <h1 class="page-title fw-semibold fs-18 mb-0">TRADE</h1>
+                    <h1 class="page-title fw-semibold fs-18 mb-0">Experts</h1>
                     <div class="ms-md-1 ms-0">
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Copy Trade
+                                    Expert Traders
                                 </li>
                             </ol>
                         </nav>
@@ -98,69 +98,55 @@ function formatNumber($number, $decimals = 2) {
                                     <th scope="col">S/N</th>
                                     <th scope="col">EXPERT ACCOUNT</th>
                                     <th scope="col">RETURN</th>
-                                    <th scope="col">P/L AMOUNT</th> 
+                                    <th scope="col">P/L AMOUNT</th>
                                     <th scope="col">MAX. DRAWDOWN</th>
                                     <th scope="col">WIN RATE</th>
                                     <th scope="col">TRADES</th>
                                     <th scope="col">P/L RATIO</th>
-                                
+
                                 </tr>
                             </thead>
                             <tbody>
-                                
-                                        <tr style="">
+
+                                <?php
+
+                                $statment = "SELECT * FROM `expert`";
+
+                                $query = mysqli_query($connection, $statment);
+
+                                if (mysqli_num_rows($query)) {
+                                    while ($details = mysqli_fetch_assoc($query)) { ?>
+
+                                        <tr>
                                             <td>1</td>
                                             <td>
-                                                <span class="online" STYLE="color:black; object-position:fit-content">
-                                                    <img style="width:100px;height:100px;border-radius:10px; object-fit:cover;object-position:center"src="<?php  echo $domain ?>uploads/expert/2.jpg" alt="img">
-                                                    FIRSTCLASS
+                                                <span class="online" style="color:black; display:flex; align-items:center; gap:10px">
+                                                    <img style="width:100px;height:100px;border-radius:10px; object-fit:cover;object-position:center;border-radius:50%" src="<?php echo $domain ?>uploads/expert/2.jpg" alt="img">
+                                                    <p style="font-size:17px"><?php echo $details['expert_name'] ?></p>
                                                 </span>
                                             </td>
-                                            <td>10000.00%</td>
-                                            <td>+2.45b USD</td> 
-                                            <td> 0.14%</td>
-                                            <td>97.08% </td>
-                                            <td> 46251</td>
-                                            <td> 53.20</td>
-                                        
-                                            
+                                            <td><?php echo number_format($details['return'],2) ?> USD</td>
+                                            <td   style="color: <?php echo ($details['amount'] >= 50)? 'blue':'red'  ?>"  ><?php echo number_format($details['amount'],2) ?> USD</td>
+                                            <td><?php echo $details['max_drawdown'] ?>%</td>
+                                            <td  style="color: <?php echo ($details['win_rates'] >= 50)? 'green':'red'  ?>"  ><?php echo $details['win_rates'] ?>%</td>
+                                            <td><?php echo $details['trades'] ?></td>
+                                            <td><?php echo $details['ratio'] ?></td>
+
+
                                         </tr>
-                                        <tr style="">
-                                            <td>1</td>
-                                            <td>
-                                                <span class="online" STYLE="color:black; object-position:fit-content">
-                                                    <img style="width:100px;height:100px;border-radius:10px; object-fit:cover;object-position:center"src="<?php  echo $domain ?>uploads/expert/2.jpg" alt="img">
-                                                    FIRSTCLASS
-                                                </span>
-                                            </td>
-                                            <td>10000.00%</td>
-                                            <td>+2.45b USD</td> 
-                                            <td> 0.14%</td>
-                                            <td>97.08% </td>
-                                            <td> 46251</td>
-                                            <td> 53.20</td>
-                                        
-                                            
-                                        </tr>
-                                        <tr style="">
-                                            <td>1</td>
-                                            <td>
-                                                <span class="online" STYLE="color:black; object-position:fit-content">
-                                                    <img style="width:100px;height:100px;border-radius:10px; object-fit:cover;object-position:center"src="<?php  echo $domain ?>uploads/expert/1.jpg" alt="img">
-                                                    FIRSTCLASS
-                                                </span>
-                                            </td>
-                                            <td>10000.00%</td>
-                                            <td>+2.45b USD</td> 
-                                            <td> 0.14%</td>
-                                            <td>97.08% </td>
-                                            <td> 46251</td>
-                                            <td> 53.20</td>
-                                        
-                                            
-                                        </tr>
-                              
-                            
+
+                                <?php }
+                                }
+
+
+                                ?>
+
+
+
+
+
+
+
                             </tbody>
                         </table>
                     </div>

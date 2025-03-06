@@ -132,6 +132,8 @@ function formatNumber($number, $decimals = 2)
                                             <td><?php echo $details['trades'] ?></td>
                                             <td><?php echo $details['ratio'] ?></td>
 
+                                            <td><span class="btn btn-sm text-white bg-primary ms-2 px-4 py-2">Join</span></td>
+
 
                                         </tr>
 

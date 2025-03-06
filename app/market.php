@@ -79,31 +79,17 @@ while ($row = mysqli_fetch_array($sql)) {
         <!-- Start::app-content -->
         <div class="main-content app-content">
             <div class="container-fluid">
-                <!-- Page Header -->
-                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-                    <h1 class="page-title fw-semibold fs-18 mb-0">MARKET</h1>
-                    <div class="ms-md-1 ms-0">
-                        <nav>
-                            <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item"><a href="#">Market</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">
-                                    Home
-                                </li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-                <!-- Page Header Close -->
+                
                 <!-- Start::row-1 -->
                 <?php if ($userDetails['account_warning'] == 'yes') { ?>
                     <div class="alert alert-danger text-center"><span class="spinner-grow text-danger spinner-grow-sm"></span> Account warning, please contact support</div>
                 <?php } ?>
                 <div class="row">
-                    <div class="col-xxl-9" style="height:500px">
+                    <div class="col-12" style="height:650px">
                         <!-- TradingView Widget BEGIN -->
                         <div class="tradingview-widget-container" style="height:100%;width:100%">
                             <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-                            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+                            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text"></span></a></div>
                             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
                                 {
                                     "autosize": true,
@@ -138,7 +124,7 @@ while ($row = mysqli_fetch_array($sql)) {
             <!-- End::app-content -->
 
             <?php
-            include('./includes/hoverfooter.php')
+            // include('./includes/hoverfooter.php')
             ?>
             <!-- Footer Start -->
             <!-- <footer class="footer mt-auto py-3 bg-white text-center">

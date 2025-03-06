@@ -92,65 +92,82 @@ function formatNumber($number, $decimals = 2)
                 <!-- Start::row-1 -->
                 <div class="row">
                     <div class="table-responsive">
-                        <table class="table text-nowrap table-borderless">
-                            <thead>
-                                <tr>
-                                    <th scope="col">S/N</th>
-                                    <th scope="col">EXPERT ACCOUNT</th>
-                                    <th scope="col">RETURN</th>
-                                    <th scope="col">P/L AMOUNT</th>
-                                    <th scope="col">MAX. DRAWDOWN</th>
-                                    <th scope="col">WIN RATE</th>
-                                    <th scope="col">TRADES</th>
-                                    <th scope="col">P/L RATIO</th>
+                    <table class="table text-nowrap table-borderless">
+    <thead>
+        <tr>
+            <th scope="col">S/N</th>
+            <th scope="col">EXPERT ACCOUNT</th>
+            <th scope="col">TOTAL RETURN</th>
+            <th scope="col">TOTAL AMOUNT</th>
+            <th scope="col">MAX. DRAWDOWN</th>
+            <th scope="col">WIN RATE PER TRADE</th>
+            <th scope="col">TOTAL TRADES</th>
+            <th scope="col">AVERAGE RISE TO REWARD</th>
+        </tr>
+    </thead>
+    <tbody>
 
-                                </tr>
-                            </thead>
-                            <tbody>
+        <?php
 
-                                <?php
+        $statment = "SELECT * FROM `expert`";
+        $query = mysqli_query($connection, $statment);
 
-                                $statment = "SELECT * FROM `expert`";
+        if (mysqli_num_rows($query)) {
+            while ($details = mysqli_fetch_assoc($query)) {
 
-                                $query = mysqli_query($connection, $statment);
+                // Fetching values from the database
+                $win_rate = floatval($details['win_rates']); // Win rate in percentage
+                $trades = intval($details['trades']); // Total number of trades
+                $total_amount = floatval($details['amount']); // Total capital
+                $ratio_str = $details['ratio']; // Risk-reward ratio as a string (e.g., "1:3")
 
-                                if (mysqli_num_rows($query)) {
-                                    while ($details = mysqli_fetch_assoc($query)) { ?>
+                // Extract the first (risk percentage) and second (gain multiplier) parts of the ratio
+                $ratio_parts = explode(":", $ratio_str);
+                $risk_percentage = isset($ratio_parts[0]) ? floatval($ratio_parts[0]) : 1; // Default risk 1%
+                $gain_multiplier = isset($ratio_parts[1]) ? floatval($ratio_parts[1]) : 2; // Default gain 2x
 
-                                        <tr>
-                                            <td>1</td>
-                                            <td>
-                                                <span class="online" style="color:black; display:flex; align-items:center; gap:10px">
-                                                    <img style="width:100px;height:100px;border-radius:10px; object-fit:cover;object-position:center;border-radius:50%" src="<?php echo $domain ?>uploads/expert/2.jpg" alt="img">
-                                                    <p style="font-size:17px"><?php echo $details['expert_name'] ?></p>
-                                                </span>
-                                            </td>
-                                            <td><?php echo number_format($details['return'],2) ?> USD</td>
-                                            <td   style="color: <?php echo ($details['amount'] >= 50)? 'blue':'red'  ?>"  ><?php echo number_format($details['amount'],2) ?> USD</td>
-                                            <td><?php echo $details['max_drawdown'] ?>%</td>
-                                            <td  style="color: <?php echo ($details['win_rates'] >= 50)? 'green':'red'  ?>"  ><?php echo $details['win_rates'] ?>%</td>
-                                            <td><?php echo $details['trades'] ?></td>
-                                            <td><?php echo $details['ratio'] ?></td>
+                // Calculate amount risked per trade (risk percentage of total amount)
+                $amount_per_trade = ($risk_percentage / 100) * $total_amount;
 
-                                            <td><span class="btn btn-sm text-white bg-primary ms-2 px-4 py-2">Join</span></td>
+                // Calculate total return using the formula
+                $total_return = (($win_rate / 100 * $gain_multiplier) - ((1 - $win_rate / 100))) * $trades * $amount_per_trade;
 
+        ?>
 
-                                        </tr>
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <span class="online" style="color:black; display:flex; align-items:center; gap:10px">
+                            <img style="width:100px;height:100px;border-radius:10px; object-fit:cover;object-position:center;border-radius:50%" src="<?php echo $domain ?>uploads/expert/2.jpg" alt="img">
+                            <p style="font-size:17px"><?php echo $details['expert_name'] ?></p>
+                        </span>
+                    </td>
+                    <!-- Change color to red if total return is negative -->
+                    <td style="color: <?php echo ($total_return < 0) ? 'red' : 'green'; ?>">
+                        <?php echo number_format($total_return, 2) ?> USD
+                    </td>
+                    <td >
+                        <?php echo number_format($total_amount, 2) ?> USD
+                    </td>
+                    <td><?php echo $details['max_drawdown'] ?>%</td>
+                    <td style="color: <?php echo ($win_rate >= 50) ? 'green' : 'red'  ?>">
+                        <?php echo $win_rate ?>%
+                    </td>
+                    <td><?php echo $trades ?></td>
+                    <td><?php echo $details['ratio'] ?>%</td>
+                    
 
-                                <?php }
-                                }
+                    <td><span class="btn btn-sm text-white bg-primary ms-2 px-4 py-2">Join</span></td>
+                </tr>
 
+        <?php }
+        }
 
-                                ?>
+        ?>
 
+    </tbody>
+</table>
 
-
-
-
-
-
-                            </tbody>
-                        </table>
                     </div>
                 </div>
                 <!--End::row-1 -->

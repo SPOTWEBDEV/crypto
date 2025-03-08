@@ -28,12 +28,12 @@ if ($resultres) {
 
 <body>
 
-    <!--<script src="jquery-3.6.0.min.js"></script>-->
+    <!--<script src="<?php echo $domain ?>app/assets/js/jquery-3.6.0.min.js"></script>-->
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.css">
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="sweetalert2.all.min.js"></script>
+   <script src="<?php echo $domain ?>app/assets/js/sweetalert2.all.min.js"></script>
     <?php
     if (isset($_POST['make_withdrawal'])) {
         $check_balance = 0;

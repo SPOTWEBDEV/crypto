@@ -47,8 +47,8 @@ $mail = new PHPMailer(true);
 
   <!-- Custom notification for demo -->
   <!-- beautify ignore:end -->
-  <script src="jquery-3.6.0.min.js"></script>
-  <script src="sweetalert2.all.min.js"></script>
+   <script src="<?php echo $domain ?>app/assets/js/jquery-3.6.0.min.js"></script>
+   <script src="<?php echo $domain ?>app/assets/js/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -178,8 +178,8 @@ $mail = new PHPMailer(true);
                   <thead>
                     <tr>
                       <th>S/N</th>
-                      <th>Expert Name</th>
                       <th>Expert Image</th>
+                      <th>Expert Name</th>
                       <th>Return</th>
                       <th>P/l Amount</th>
                       <th>Max Drawdown</th>
@@ -215,15 +215,19 @@ $mail = new PHPMailer(true);
                           <td><?php echo $count ?></td>
                          
                       
-                          
+                          <td>
+                             <img height="100" width="100" src="<?php echo $domain . 'uploads/expert/' . $details['expert_image']   ?>" alt="">
+                           </td>
                           <td><?php echo $details['expert_name'] ?></td>
-                          <td><?php echo $details['expert_image'] ?></td>
-                          <td><?php echo number_format($details['return'],2) ?> USD</td>
+                         
+                          <td><?php echo number_format($details['returns_profit'],2) ?> USD</td>
                           <td><?php echo number_format($details['amount'],2) ?> USD</td>
-                          <td><?php echo $details['max_drawdown'] ?></td>
+                          <td style="color: <?php echo ($details['max_drawdown'] < 5)? 'green':'red'  ?>"><?php echo $details['max_drawdown'] ?></td>
                           <td  style="color: <?php echo ($details['win_rates'] >= 50)? 'green':'red'  ?>"  ><?php echo $details['win_rates'] ?>%</td>
                           <td><?php echo $details['trades'] ?></td>
                           <td><?php echo $details['ratio'] ?></td>
+
+                          <td><a href="?del_id=<?php echo $details['id'] ?>" class="btn btn-sm btn-danger">Delete</a></td>
                           
                           
                           
@@ -231,7 +235,7 @@ $mail = new PHPMailer(true);
                     <?php $count++;
                       }
                     } else {
-                      ?> <p style="color:red">Table is empty</p> <?php
+                      ?> <caption class="p-2" style="color:red">Table is empty</caption> <?php
                     } ?>
                   </tbody>
                 </table>
@@ -242,13 +246,55 @@ $mail = new PHPMailer(true);
           <!-- / Content -->
 
 
+          
+
+          <?php
+if (isset($_GET['del_id'])) {
+    $del_id = $_GET['del_id'];
+
+    $query = mysqli_query($connection, "DELETE FROM `expert` WHERE `id`='$del_id'");
+
+    if ($query) {
+        echo "
+  
+        <script>
+            Swal.fire({
+                title: 'Deleted!',
+                text: 'Expert has been deleted successfully.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.href = 'view_expert.php'; // Replace 'your_page.php' with your actual page
+            });
+        </script>
+        ";
+    } else {
+        echo "
+      
+        <script>
+            Swal.fire({
+                title: 'Error!',
+                text: 'Failed to delete the Expert.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        </script>
+        ";
+    }
+}
+?>
+
+
+
+
+
 
 
           
 
               </div>
             </div>
-          </footer> -->
+          </footer> 
           <!-- / Footer -->
           <div class="content-backdrop fade"></div>
         </div>

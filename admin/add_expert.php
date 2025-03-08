@@ -72,8 +72,10 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) echo
     </script>
     <!-- Custom notification for demo -->
     <!-- beautify ignore:end -->
-    <script src="jquery-3.6.0.min.js"></script>
-    <script src="sweetalert2.all.min.js"></script>
+     <script src="<?php echo $domain ?>app/assets/js/jquery-3.6.0.min.js"></script>
+     <script src="<?php echo $domain ?>app/assets/js/sweetalert2.all.min.js"></script>
+
+    
 
 </head>
 
@@ -335,8 +337,8 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) echo
                                             </div>
 
                                             <div class="mb-3">
-                                                <label class="form-label" for="ratio">Ratio</label>
-                                                <input type="number" step="0.01" class="form-control" name="ratio" id="ratio" placeholder="Enter Ratio" required />
+                                                <label class="form-label" for="ratio">Rise To Reward Ratio</label>
+                                                <input type="text"  class="form-control" name="ratio" id="ratio" placeholder="Enter like  1:3" required />
                                             </div>
 
                                             <button type="submit" class="btn btn-primary" name="addExpert">Add Expert</button>

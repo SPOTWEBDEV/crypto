@@ -1,7 +1,5 @@
 <?php
 
-;
-
 include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
@@ -16,10 +14,10 @@ $user_identity = $userDetails['id'];
 
 
 
-$sql = mysqli_query($connection,"SELECT sum(amount) AS trading_balance FROM investments where user_id = '$user_identity' AND `status` = 0");
+$sql = mysqli_query($connection, "SELECT sum(amount) AS trading_balance FROM investments where user_id = '$user_identity' AND `status` = 0");
 // $sql = mysqli_query($connection,"SELECT sum(amount) AS trading_balance FROM investments where user_id = '$user_identity'");
 
-while($row = mysqli_fetch_array($sql)){
+while ($row = mysqli_fetch_array($sql)) {
     $trading_balance = $row['trading_balance'];
 }
 
@@ -29,12 +27,12 @@ $resultpromo = mysqli_query($connection, $querypromo);
 
 
 if ($resultpromo) {
-$row = mysqli_fetch_assoc($resultpromo);
-$promo_won = $row['promo_won'];
+    $row = mysqli_fetch_assoc($resultpromo);
+    $promo_won = $row['promo_won'];
 }
 
- ?>
- 
+?>
+
 
 
 
@@ -46,7 +44,7 @@ $promo_won = $row['promo_won'];
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-     <!-- Favicon -->
+    <!-- Favicon -->
     <link rel="icon" href="./assets/images/brand-logos/favicon.ico" type="image/x-icon" />
     <!-- Choices JS -->
     <script src="./assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
@@ -68,8 +66,8 @@ $promo_won = $row['promo_won'];
     <!-- Choices Css -->
     <link rel="stylesheet" href="./assets/libs/choices.js/public/assets/styles/choices.min.css" />
     <!-- <meta name="theme-color" content="#e7ecef" /> -->
-    
-   
+
+
     <meta name="google" content="notranslate">
     <script type="text/javascript">
         function googleTranslateElementInit() {
@@ -90,14 +88,14 @@ $promo_won = $row['promo_won'];
 
 <body>
     <!-- Switcher -->
-<?php include('./includes/switcher.php') ?>
+    <?php include('./includes/switcher.php') ?>
     <!-- End Switcher -->
 
-<div class="page">
+    <div class="page">
         <!-- app-header -->
         <?php include('./includes/header.php') ?>
         <!-- /app-header -->
-        
+
         <!-- Nah the app sidebar be this -->
         <!-- Start::app-sidebar -->
         <?php include('./includes/sidebar.php') ?>
@@ -108,7 +106,7 @@ $promo_won = $row['promo_won'];
         <!-- Start::app-content -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-         <div class="main-content app-content">
+        <div class="main-content app-content">
             <div class="container-fluid">
                 <!-- Page Header -->
                 <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
@@ -127,35 +125,51 @@ $promo_won = $row['promo_won'];
                     <div class="col-xxl-4 col-xl-12">
                         <div class="card custom-card overflow-hidden">
                             <div class="card-body p-0">
-                                
-                                <div class="p-4 d-flex gap-3 border-bottom border-block-end-dashed">
 
-                                <style>
+                                <div style="flex-wrap: wrap;" class="p-4 d-flex gap-3 border-bottom border-block-end-dashed">
 
-                                    .link{
-                                        color: rgb(0, 85, 255);
-                                    }
+                                    <style>
+                                        .link {
+                                            color: rgb(0, 85, 255);
+                                        }
 
-                                    .link:hover{
-                                       
-                                       text-decoration: underline;
-                                    }
-                                    
-                                </style>
-                                    
+                                        .link:hover {
+                                            text-decoration: underline;
+                                        }
+                                    </style>
+
                                     <div class="text-muted">
-                                        <a  href=""  class="mb-2 link"> <span class="avatar avatar-sm avatar-rounded me-2 bg-light text-muted"> <i class="ri-mail-line align-middle fs-14"></i> </span> Reset Password</a> 
+                                        <a href="./update_hash.php" class="mb-2 link">
+                                            <span class="avatar avatar-sm avatar-rounded me-2 bg-light text-muted">
+                                                <i class="ri-lock-unlock-line align-middle fs-14"></i> <!-- Changed to lock icon -->
+                                            </span>
+                                            Reset Password
+                                        </a>
                                     </div>
                                     <div class="text-muted">
-                                        <a href=""  class="mb-2 link"> <span class="avatar avatar-sm avatar-rounded me-2 bg-light text-muted"> <i class="ri-mail-line align-middle fs-14"></i> </span> Kyc Verification </a> 
+                                        <a href="./application.php" class="mb-2 link">
+                                            <span class="avatar avatar-sm avatar-rounded me-2 bg-light text-muted">
+                                                <i class="ri-exchange-line align-middle fs-14"></i> <!-- Changed to user verification icon -->
+                                            </span>
+                                            KYC Verification
+                                        </a>
+                                    </div>
+                                    <div class="text-muted">
+                                        <a href="./copy_trading_setting.php" class="mb-2 link">
+                                            <span class="avatar avatar-sm avatar-rounded me-2 bg-light text-muted">
+                                                <i class="ri-exchange-line align-middle fs-14"></i> <!-- Changed to exchange/trade icon -->
+                                            </span>
+                                            Copy Trading Setting
+                                        </a>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                     <div class="col-xxl-8 col-xl-12">
                         <div class="row">
-                            <div class="col-xl-8 col-xl-"> 
+                            <div class="col-xl-8 col-xl-">
                                 <div class="card custom-card">
                                     <div class="card-header">
                                         <div class="card-title"> Personal Info </div>
@@ -171,7 +185,7 @@ $promo_won = $row['promo_won'];
                                                 <div class="d-flex flex-wrap align-items-center">
                                                     <div class="me-2 fw-semibold"> Email : </div> <span class="fs-12 text-muted"><?php echo $userDetails['email'] ?></span>
                                                 </div>
-                                            </li> 
+                                            </li>
                                             <li class="list-group-item">
                                                 <div class="d-flex flex-wrap align-items-center">
                                                     <div class="me-2 fw-semibold"> Country : </div> <span class="fs-12 text-muted"><?php echo $userDetails['country'] ?></span>
@@ -179,42 +193,17 @@ $promo_won = $row['promo_won'];
                                             </li>
                                         </ul>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-xl-6">
-                        <div class="card custom-card">
-                            <div class="card-header justify-content-between">
-                                <div class="card-title"> Edit Your Details </div>
-                            </div>
-                            <form action="./controllers/updateDetails.php" method="POST" class="card-body">
-                                <div class="mb-3">
-                                    <label for="form-text" class="form-label fs-14 text-dark">Name</label>
-                                    <input type="text" class="form-control" name="name" value="<?php  ?>" id="form-text" placeholder="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="form-password" class="form-label fs-14 text-dark">Bio</label>
-                                    <input type="text" class="form-control" name="bio" value="<?php  ?>" id="form-password" placeholder="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="form-password" class="form-label fs-14 text-dark">Country</label>
-                                    <input type="text" class="form-control" name="country" value="<?php ?>" id="form-password" placeholder="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="form-password" class="form-label fs-14 text-dark">Mobile Number</label>
-                                    <input type="text" class="form-control" name="mobile" value="<?php ?>" id="form-password" placeholder="">
-                                </div>
-                                <button class="btn btn-primary" type="submit" name="update_user">SUBMIT TO UPDATE ACCOUNT DETAIL</button>
-                            </form>
-                        </div>
-                    </div> -->
+
 
 
                     <div class="row">
-                        <div class="col-xl-12">
+                        <div class="col-xxl-8 col-xl-12">
                             <div class="row">
-                                <div class="col-xl-12">
+                                <div class="col-8">
                                     <form action="./controllers/saveprofilePicture.php" method="POST" enctype="multipart/form-data" class="card custom-card p-2">
                                         <div class="card-header">
                                             <div class="card-title">Update Account profile picture </div>

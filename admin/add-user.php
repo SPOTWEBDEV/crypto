@@ -58,8 +58,8 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) echo
   </script>
   <!-- Custom notification for demo -->
   <!-- beautify ignore:end -->
-  <script src="jquery-3.6.0.min.js"></script>
-    <script src="sweetalert2.all.min.js"></script>
+   <script src="<?php echo $domain ?>app/assets/js/jquery-3.6.0.min.js"></script>
+     <script src="<?php echo $domain ?>app/assets/js/sweetalert2.all.min.js"></script>
 
 </head>
 

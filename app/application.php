@@ -332,7 +332,7 @@ function showToast($message, $backgroundColor) {
         <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>
     </div>
     <div id="responsive-overlay"></div>
-    <script src="./sweetalert2.all.min.js"></script>
+   <script src="<?php echo $domain ?>app/assets/js/sweetalert2.all.min.js"></script>
    
 
     <script src="./assets/libs/@popperjs/core/umd/popper.min.js"></script>

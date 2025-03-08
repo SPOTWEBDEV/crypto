@@ -54,7 +54,7 @@ include('controllers/logOut.php');
     <link rel="stylesheet" href="./assets/libs/choices.js/public/assets/styles/choices.min.css" />
 
     <script src="./jquery-3.6.0.min.js"></script>
-    <script src="./sweetalert2.all.min.js"></script>
+   <script src="<?php echo $domain ?>app/assets/js/sweetalert2.all.min.js"></script>
 </head>
 
 <body>

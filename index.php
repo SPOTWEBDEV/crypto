@@ -540,7 +540,7 @@
                         <div class="col-lg-6">
                             <div class="team-item-six">
                                 <div class="team-thumb-six">
-                                    <img src="<?php echo $domain ?>assets/img/team/h6_team_img01.jpg" alt="img">
+                                    <img src="<?php echo $domain ?>assets/img/team/1.PNG" alt="img">
                                 </div>
                                 <div class="team-content-six">
                                     <h2 class="title"><a href="team-details.html">Savannah Nguyen</a></h2>
@@ -553,7 +553,7 @@
                         <div class="col-lg-6">
                             <div class="team-item-six">
                                 <div class="team-thumb-six">
-                                    <img src="<?php echo $domain ?>assets/img/team/h6_team_img02.jpg" alt="img">
+                                    <img src="<?php echo $domain ?>assets/img/team/2.PNG" alt="img">
                                 </div>
                                 <div class="team-content-six">
                                     <h2 class="title"><a href="team-details.html">Guy Hawkins</a></h2>

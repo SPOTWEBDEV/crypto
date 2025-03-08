@@ -79,35 +79,86 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) echo
 
 <body>
 
-<?php
+    <?php
 
 
-// Process form data
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['addExpert'])) {
-    $expert_name = $connection->real_escape_string($_POST['expert_name']);
-    $expert_image = $connection->real_escape_string($_POST['expert_image']);
-    $return = $connection->real_escape_string($_POST['return']);
-    $amount = $connection->real_escape_string($_POST['amount']);
-    $max_drawdown = $connection->real_escape_string($_POST['max_drawdown']);
-    $win_rates = $connection->real_escape_string($_POST['win_rates']);
-    $trades = $connection->real_escape_string($_POST['trades']);
-    $ratio = $connection->real_escape_string($_POST['ratio']);
 
-    // SQL Insert Query
-    $sql = "INSERT INTO `expert`(`expert_name`, `expert_image`, `return`, `amount`, `max_drawdown`, `win_rates`, `trades`, `ratio`) 
-            VALUES ('$expert_name', '$expert_image', '$return', '$amount', '$max_drawdown', '$win_rates', '$trades', '$ratio')";
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addExpert'])) {
+        // Get form data
+        $expert_name = $_POST['expert_name'];
+        $return = $_POST['return'];
+        $amount = $_POST['amount'];
+        $max_drawdown = $_POST['max_drawdown'];
+        $win_rates = $_POST['win_rates'];
+        $trades = $_POST['trades'];
+        $ratio = $_POST['ratio'];
 
-    if ($connection->query($sql) === TRUE) {
+        // Handle file upload
         
-        echo "<script>Swal.fire('Expert Error','New expert added successfully!','success')</script>";
-    } else {
-       
-        echo "<script>Swal.fire('Account Error','Error: something went wrong','error')</script>";
-    }
+            $upload_dir = '../uploads/expert/'; // Specify the upload directory
+            $image_name = $_FILES['expert_image']['name'];
+            $image_tmp = $_FILES['expert_image']['tmp_name'];
+            $image_path = $upload_dir . basename($image_name);
 
-  
-}
-?>
+            // Move the uploaded image to the desired directory
+            if (move_uploaded_file($image_tmp, $image_path)) {
+                // Image uploaded successfully, now insert the data into the database
+
+
+                $img_name = basename($image_name);
+
+                
+
+                // Insert query
+                $stmt = mysqli_query($connection , "INSERT INTO expert (expert_name, expert_image, returns_profit, amount, max_drawdown, win_rates, trades, ratio) VALUES ('$expert_name', '$img_name', '$return', '$amount', '$max_drawdown', '$win_rates', '$trades', '$ratio') ");
+
+                echo $stmt;
+
+                echo mysqli_error($connection);
+
+                if ($stmt) {
+                    // Success: Show SweetAlert for success message
+                    echo "<script>
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Expert added successfully!',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                              </script>";
+                } else {
+                    // Error: Show SweetAlert for error message
+                    echo "<script>
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'There was an error while adding the expert: ',
+                                    showConfirmButton: true
+                                });
+                              </script>";
+                }
+
+               
+            } else {
+                // Image upload error: Show SweetAlert for image upload error
+                echo "<script>
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Error uploading image.',
+                                showConfirmButton: true
+                            });
+                          </script>";
+            }
+       
+    }
+    ?>
+
+
+
+
+
+
 
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar  ">
@@ -242,53 +293,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['addExpert'])) {
                             <div class="col-xl">
                                 <div class="card mb-4">
                                     <div class="card-header d-flex justify-content-between align-items-center">
-                                        <h5 class="mb-0">Add Payment Account</h5>
+                                        <!-- <h5 class="mb-0">Add Payment Account</h5> -->
                                     </div>
                                     <div class="card-body">
-                                        
-                                    <form method="POST">
-    <div class="mb-3">
-        <label class="form-label" for="expert_name">Expert Name</label>
-        <input type="text" class="form-control" name="expert_name" id="expert_name" placeholder="Enter Expert Name" required />
-    </div>
 
-    <div class="mb-3">
-        <label class="form-label" for="expert_image">Expert Image URL</label>
-        <input type="text" class="form-control" name="expert_image" id="expert_image" placeholder="Enter Image URL" required />
-    </div>
+                                        <form method="POST" enctype="multipart/form-data">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="expert_name">Expert Name</label>
+                                                <input type="text" class="form-control" name="expert_name" id="expert_name" placeholder="Enter Expert Name" required />
+                                            </div>
 
-    <div class="mb-3">
-        <label class="form-label" for="return">Return (%)</label>
-        <input type="number" step="0.01" class="form-control" name="return" id="return" placeholder="Enter Return Percentage" required />
-    </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="expert_image">Expert Image</label>
+                                                <input type="file" class="form-control" name="expert_image" id="expert_image" required />
 
-    <div class="mb-3">
-        <label class="form-label" for="amount">Amount ($)</label>
-        <input type="number" step="0.01" class="form-control" name="amount" id="amount" placeholder="Enter Amount" required />
-    </div>
+                                            </div>
 
-    <div class="mb-3">
-        <label class="form-label" for="max_drawdown">Max Drawdown (%)</label>
-        <input type="number" step="0.01" class="form-control" name="max_drawdown" id="max_drawdown" placeholder="Enter Max Drawdown" required />
-    </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="return">Return (%)</label>
+                                                <input type="number" step="0.01" class="form-control" name="return" id="return" placeholder="Enter Return Percentage" required />
+                                            </div>
 
-    <div class="mb-3">
-        <label class="form-label" for="win_rates">Win Rates (%)</label>
-        <input type="number" step="0.01" class="form-control" name="win_rates" id="win_rates" placeholder="Enter Win Rate" required />
-    </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="amount">Amount ($)</label>
+                                                <input type="number" step="0.01" class="form-control" name="amount" id="amount" placeholder="Enter Amount" required />
+                                            </div>
 
-    <div class="mb-3">
-        <label class="form-label" for="trades">Total Trades</label>
-        <input type="number" class="form-control" name="trades" id="trades" placeholder="Enter Number of Trades" required />
-    </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="max_drawdown">Max Drawdown (%)</label>
+                                                <input type="number" step="0.01" class="form-control" name="max_drawdown" id="max_drawdown" placeholder="Enter Max Drawdown" required />
+                                            </div>
 
-    <div class="mb-3">
-        <label class="form-label" for="ratio">Ratio</label>
-        <input type="number" step="0.01" class="form-control" name="ratio" id="ratio" placeholder="Enter Ratio" required />
-    </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="win_rates">Win Rates (%)</label>
+                                                <input type="number" step="0.01" class="form-control" name="win_rates" id="win_rates" placeholder="Enter Win Rate" required />
+                                            </div>
 
-    <button type="submit" class="btn btn-primary" name="addExpert">Add Expert</button>
-</form>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="trades">Total Trades</label>
+                                                <input type="number" class="form-control" name="trades" id="trades" placeholder="Enter Number of Trades" required />
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="ratio">Ratio</label>
+                                                <input type="number" step="0.01" class="form-control" name="ratio" id="ratio" placeholder="Enter Ratio" required />
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary" name="addExpert">Add Expert</button>
+                                        </form>
 
                                     </div>
                                 </div>

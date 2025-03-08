@@ -384,7 +384,7 @@ function formatNumber($number, $decimals = 2)
                                 </div>
                             </div>
 
-                            <!-- <div class="col-xxl-4 col-xl-4 col-lg-12">
+                            <div class="col-xxl-4 col-xl-4 col-lg-12">
                                 <div class="card custom-card">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center mb-4">
@@ -405,7 +405,7 @@ function formatNumber($number, $decimals = 2)
                                             <div>
                                                 <!-- <p class="mb-1">BTC / USD</p> -->
                                                 <p class="fs-20 mb-0 fw-semibold lh-1 text-primary">
-                                                    $<?php echo number_format($copy_balance['copy_balance']) ?>
+                                                    $<?php echo number_format($copy_balance) ?>
                                                 </p>
                                             </div>
                                             <div class="ms-auto text-end">
@@ -418,7 +418,7 @@ function formatNumber($number, $decimals = 2)
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
 
 
 
@@ -561,7 +561,7 @@ function formatNumber($number, $decimals = 2)
                                                 <tr>
                                                     <td><?php echo $count; ?></td>
                                                     <td><?php echo $row['source_table']; ?></td>
-                                                    <td><?php echo $row['amount']; ?></td>
+                                                    <td><?php echo number_format($row['amount'],2); ?></td>
                                                     <td><?php echo $row['date']; ?></td>
                                                     <td>
                                                         <?php

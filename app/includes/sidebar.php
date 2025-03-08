@@ -83,10 +83,10 @@
                     Referral</a>
                 </li>
 
-                <!-- <li class="slide mt-2">
-                    <a href="history.php" class="side-menu__item"><i class='bx bx-wallet side-menu__icon'></i>
-                    Transaction</a>
-                </li> -->
+                <li class="slide mt-2">
+                    <a href="signal.php" class="side-menu__item"><i class='bx bx-wallet side-menu__icon'></i>
+                    Signal</a>
+                </li>
             
               
 

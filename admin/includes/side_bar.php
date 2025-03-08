@@ -120,6 +120,30 @@
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
+                <div data-i18n="Layouts">Signal</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="add-signal.php" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                        <div data-i18n="Analytics">Add Signal</div>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="view-signal.php" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                        <div data-i18n="Analytics">View signal</div>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Expert</div>
             </a>
 

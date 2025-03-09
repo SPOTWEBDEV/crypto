@@ -122,6 +122,17 @@ function formatNumber($number, $decimals = 2)
                                             <td><?php echo $trade['take_profit'] ?  htmlspecialchars($trade['take_profit']) : 'N/A'; ?></td>
                                             <td><?php echo $trade['risk_reward'] ?  htmlspecialchars($trade['risk_reward']) : 'N/A'; ?></td>
                                             <td><?php echo htmlspecialchars($trade['created_at']); ?></td>
+                                            <td>
+                                                <?php
+                                                if ($trade['status'] == 'approved' ||  $trade['status'] == 'completed') {
+                                                    echo '<span class="badge bg-success-transparent ms-2">APPROVED</span>';
+                                                } else if ($trade['status'] == 'declined') {
+                                                    echo '<span class="badge bg-warning-transparent ms-2">DECLINED</span>';
+                                                } else {
+                                                    echo '<span class="badge bg-warning-transparent ms-2">PENDING</span>';
+                                                }
+                                                ?>
+                                            </td>
                                         </tr>
                                 <?php
                                         $count++;

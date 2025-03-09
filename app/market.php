@@ -10,9 +10,8 @@ include('controllers/invMTR_CTR.php');
 include('controllers/logOut.php');
 
 $user_identity = $userDetails['id'];
-?>
+$user_balance = $userDetails['wallet'];
 
-<?php
 
 $sql = mysqli_query($connection, "SELECT sum(amount) AS trading_balance FROM investments where user_id = '$user_identity'");
 
@@ -55,11 +54,21 @@ while ($row = mysqli_fetch_array($sql)) {
     <link rel="stylesheet" href="./assets/libs/choices.js/public/assets/styles/choices.min.css" />
     <!-- <meta name="theme-color" content="#e7ecef" /> -->
 
+    <script src="<?php echo $domain ?>app/assets/js/jquery-3.6.0.min.js"></script>
+    <script src="<?php echo $domain ?>app/assets/js/sweetalert2.all.min.js"></script>
+
     <title>DASHBOARD</title>
 
 </head>
 
 <body>
+
+
+
+
+
+
+
     <!-- Switcher -->
     <?php include('./includes/switcher.php') ?>
     <!-- End Switcher -->
@@ -77,19 +86,98 @@ while ($row = mysqli_fetch_array($sql)) {
         <!-- End::app-sidebar -->
 
         <!-- Start::app-content -->
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $pair = $_POST['tradingPair'];
+            $order_type = $_POST['orderType'];
+            $amount = $_POST['amount'];
+            $entry_price = $_POST['entryPrice'];
+            $stop_loss = $_POST['stopLoss'];
+            $take_profit = $_POST['takeProfit'];
+
+            // Default status: 'pending'
+            $status = 'pending';
+
+            // Validate input
+            if (empty($pair) || empty($order_type) || empty($amount) || $amount <= 0 || empty($entry_price) || empty($stop_loss) || empty($take_profit)) {
+                echo "<script>
+            window.onload = function() {
+                Swal.fire('Error!', 'Invalid input values.', 'error').then(() => {
+                        window.location.href='market.php';
+                    });
+            }
+        </script>";
+                exit;
+            }
+
+            if ($user_balance < $amount) {
+                echo "<script>
+            window.onload = function() {
+                Swal.fire('Error!', 'Insufficient balance!', 'error').then(() => {
+                        window.location.href='market.php';
+                    });
+            }
+        </script>";
+                exit;
+            }
+
+            // Deduct balance
+            $new_balance = $user_balance - $amount;
+            mysqli_query($connection, "UPDATE users SET wallet = '$new_balance' WHERE id = '$user_identity'");
+
+            // Calculate Risk-to-Reward Ratio (RRR)
+            $risk = abs($entry_price - $stop_loss);
+            $reward = abs($take_profit - $entry_price);
+
+            if ($risk == 0) {
+                $risk_to_reward = 'N/A'; // Avoid division by zero
+            } else {
+                $rr_ratio = round($reward / $risk, 2);
+                $risk_to_reward = "1:$rr_ratio"; // Format as "1:2, 1:3, etc."
+            }
+
+            // Calculate Pip Value
+            $pip_value = ($amount * 1) / $entry_price;  // (Trade size * 1 pip) / Entry Price
+
+            // Total money made from the trade
+            $total_money_made = ($take_profit - $entry_price) * $pip_value * $amount;
+
+            echo "<script>alert('$risk_to_reward')</script>";
+
+            // Insert the order
+            $insert_order = mysqli_query($connection, "INSERT INTO self_trade 
+        (user_id, pair, order_type, amount, entry_price, stop_loss, take_profit, status, risk_reward, pip_value, total_profit) 
+        VALUES ('$user_identity', '$pair', '$order_type', '$amount', '$entry_price', '$stop_loss', '$take_profit', '$status', '$risk_to_reward', '$pip_value', '$total_money_made')");
+
+
+           
+
+
+            if ($insert_order) {
+                echo "<script>
+                window.onload = function() {
+                    Swal.fire('Success!', 'Order placed successfully!', 'success').then(() => {
+                        window.location.href='market.php';
+                    });
+                }
+            </script>";
+            } else {
+                echo "<script>
+                window.onload = function() {
+                    Swal.fire('Error!', " . mysqli_error($connection) . ", 'error')
+                }
+            </script>";
+            }
+        }
+        ?>
+
+
         <div class="main-content app-content">
             <div class="container-fluid">
-                
-                <!-- Start::row-1 -->
-                <?php if ($userDetails['account_warning'] == 'yes') { ?>
-                    <div class="alert alert-danger text-center"><span class="spinner-grow text-danger spinner-grow-sm"></span> Account warning, please contact support</div>
-                <?php } ?>
-                <div class="row">
-                    <div class="col-12" style="height:650px">
-                        <!-- TradingView Widget BEGIN -->
+                <div class="row py-2">
+                    <div class="col-9" style="height:650px">
                         <div class="tradingview-widget-container" style="height:100%;width:100%">
                             <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-                            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text"></span></a></div>
                             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
                                 {
                                     "autosize": true,
@@ -109,37 +197,66 @@ while ($row = mysqli_fetch_array($sql)) {
                                 }
                             </script>
                         </div>
-                        <!-- TradingView Widget END -->
                     </div>
 
+                    <!-- Market Order Form -->
+                    <form method="POST" class="col-3" id="tradeForm">
+                        <div class="card p-3">
+                            <h5 class="text-center">Place Market Order</h5>
 
+                            <!-- Select Trading Pair -->
+                            <div class="mb-2">
+                                <label for="tradingPair" class="form-label">Select Pair</label>
+                                <select name="tradingPair" class="form-select" id="tradingPair">
+                                    <option value="BTCUSDT">BTC/USDT</option>
+                                    <option value="ETHUSDT">ETH/USDT</option>
+                                    <option value="BNBUSDT">BNB/USDT</option>
+                                </select>
+                            </div>
 
+                            <!-- Hidden Input for Order Type -->
+                            <input type="hidden" name="orderType" id="orderType">
 
+                            <!-- Entry Price Input -->
+                            <div class="mb-2">
+                                <label for="entryPrice" class="form-label">Entry Price</label>
+                                <input type="number" name="entryPrice" class="form-control" id="entryPrice" placeholder="Enter Entry Price" required>
+                            </div>
+
+                            <div class="mb-2">
+                                <label for="amount" class="form-label">Amount</label>
+                                <input type="number" name="amount" class="form-control" id="amount" placeholder="Enter Trade Amount" required>
+                            </div>
+
+                            <div class="mb-2">
+                                <label for="stopLoss" class="form-label">Stop-Loss (SL)</label>
+                                <input type="number" name="stopLoss" class="form-control" id="stopLoss" placeholder="Enter SL Price" required>
+                            </div>
+
+                            <div class="mb-2">
+                                <label for="takeProfit" class="form-label">Take-Profit (TP)</label>
+                                <input type="number" name="takeProfit" class="form-control" id="takeProfit" placeholder="Enter TP Price" required>
+                            </div>
+
+                            <!-- Buy and Sell Buttons -->
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-success w-50 me-1" onclick="setOrderType('Buy')">Buy</button>
+                                <button type="button" class="btn btn-danger w-50 ms-1" onclick="setOrderType('Sell')">Sell</button>
+                            </div>
+                        </div>
+                    </form>
 
                 </div>
-                <!--End::row-1 -->
 
-
+                <script>
+                    function setOrderType(type) {
+                        document.getElementById("orderType").value = type;
+                        document.getElementById("tradeForm").submit();
+                    }
+                </script>
             </div>
-            <!-- End::app-content -->
-
-            <?php
-            // include('./includes/hoverfooter.php')
-            ?>
-            <!-- Footer Start -->
-            <!-- <footer class="footer mt-auto py-3 bg-white text-center">
-                <div class="container">
-                    <span class="text-muted">
-                        Copyright © <span id="year"></span>
-                        <a href="javascript:void(0);">
-                            <span class="fw-semibold text-primary text-decoration-underline">Wealthsomething go enter here remember ooo werey</span>
-                        </a>
-                        All rights reserved
-                    </span>
-                </div>
-            </footer> -->
-            <!-- Footer End -->
         </div>
+
         <?php include('./includes/popin_with.php') ?>
         <!-- <div class="scrollToTop">
             <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>

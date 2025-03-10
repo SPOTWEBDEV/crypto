@@ -73,6 +73,25 @@
                     </ul>
                 </li>
 
+
+                <li class="slide has-sub mt-2">
+                    <a href="javascript:void(0);" class="side-menu__item">
+                        <i class="bx bx-fingerprint side-menu__icon"></i>
+                        <span class="side-menu__label">Trade</span>
+                        <i class="fe fe-chevron-right side-menu__angle"></i>
+                    </a>
+                    <ul class="slide-menu child1">
+                        
+                       
+                        <li class="slide">
+                            <a href="trade_history.php" class="side-menu__item">Trade History</a>
+                        </li>
+                        <li class="slide">
+                            <a href="copy-trade.php" class="side-menu__item">View Expert</a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="slide mt-2">
                 
                     <a href="copy-trade.php" class="side-menu__item"><i class="bx bx-copy side-menu__icon"></i>Copy Trade</a>

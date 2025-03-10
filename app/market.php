@@ -145,7 +145,7 @@ while ($row = mysqli_fetch_array($sql)) {
             echo "<script>alert('$risk_to_reward')</script>";
 
             // Insert the order
-            $insert_order = mysqli_query($connection, "INSERT INTO self_trade 
+            $insert_order = mysqli_query($connection, "INSERT INTO trade 
         (user_id, pair, order_type, amount, entry_price, stop_loss, take_profit, status, risk_reward, pip_value, total_profit) 
         VALUES ('$user_identity', '$pair', '$order_type', '$amount', '$entry_price', '$stop_loss', '$take_profit', '$status', '$risk_to_reward', '$pip_value', '$total_money_made')");
 

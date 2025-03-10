@@ -108,7 +108,7 @@ function formatNumber($number, $decimals = 2)
                             </thead>
                             <tbody>
                                 <?php
-                                $sql = mysqli_query($connection, "SELECT * FROM `self_trade` WHERE `user_id` = '$id'");
+                                $sql = mysqli_query($connection, "SELECT * FROM `trade` WHERE `user_id` = '$id'");
                                 if (mysqli_num_rows($sql) > 0) {
                                     $count = 1;
                                     while ($trade = mysqli_fetch_assoc($sql)) {
@@ -126,7 +126,7 @@ function formatNumber($number, $decimals = 2)
                                                 <?php
                                                 if ($trade['status'] == 'approved' ||  $trade['status'] == 'completed') {
                                                     echo '<span class="badge bg-success-transparent ms-2">APPROVED</span>';
-                                                } else if ($trade['status'] == 'declined') {
+ } else if ($trade['status'] == 'declined') {
                                                     echo '<span class="badge bg-warning-transparent ms-2">DECLINED</span>';
                                                 } else {
                                                     echo '<span class="badge bg-warning-transparent ms-2">PENDING</span>';

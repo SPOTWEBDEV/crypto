@@ -192,12 +192,12 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
                     <div class="container-xxl flex-grow-1 container-p-y">
 
                         <h4 class="fw-bold py-3 mb-4">
-                            <span class="text-muted fw-light">Admin /</span> Self Trade
+                            <span class="text-muted fw-light">Admin /</span> Copy Trade
                         </h4>
 
                         <!-- Basic Bootstrap Table -->
                         <div class="card">
-                            <h5 class="card-header">Self Trade</h5>
+                            <h5 class="card-header">Copy Trade</h5>
                             <div class="table-responsive text-nowrap">
                                 <table class="table">
                                     <thead>

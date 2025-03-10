@@ -101,23 +101,23 @@ while ($row = mysqli_fetch_array($sql)) {
             // Validate input
             if (empty($pair) || empty($order_type) || empty($amount) || $amount <= 0 || empty($entry_price) || empty($stop_loss) || empty($take_profit)) {
                 echo "<script>
-            window.onload = function() {
-                Swal.fire('Error!', 'Invalid input values.', 'error').then(() => {
-                        window.location.href='market.php';
-                    });
-            }
-        </script>";
+                        window.onload = function() {
+                            Swal.fire('Error!', 'Invalid input values.', 'error').then(() => {
+                                    window.location.href='market.php';
+                                });
+                        }
+                    </script>";
                 exit;
             }
 
             if ($user_balance < $amount) {
                 echo "<script>
-            window.onload = function() {
-                Swal.fire('Error!', 'Insufficient balance!', 'error').then(() => {
-                        window.location.href='market.php';
-                    });
-            }
-        </script>";
+                    window.onload = function() {
+                        Swal.fire('Error!', 'Insufficient balance!', 'error').then(() => {
+                                window.location.href='market.php';
+                            });
+                    }
+                    </script>";
                 exit;
             }
 
@@ -150,7 +150,7 @@ while ($row = mysqli_fetch_array($sql)) {
         VALUES ('$user_identity', '$pair', '$order_type', '$amount', '$entry_price', '$stop_loss', '$take_profit', '$status', '$risk_to_reward', '$pip_value', '$total_money_made')");
 
 
-           
+
 
 
             if ($insert_order) {
@@ -208,9 +208,9 @@ while ($row = mysqli_fetch_array($sql)) {
                             <div class="mb-2">
                                 <label for="tradingPair" class="form-label">Select Pair</label>
                                 <select name="tradingPair" class="form-select" id="tradingPair">
-                                    <option value="BTCUSDT">BTC/USDT</option>
-                                    <option value="ETHUSDT">ETH/USDT</option>
-                                    <option value="BNBUSDT">BNB/USDT</option>
+                                    <option value="BTC-USDT">BTC/USDT</option>
+                                    <option value="ETH-USDT">ETH/USDT</option>
+                                    <option value="BNB-USDT">BNB/USDT</option>
                                 </select>
                             </div>
 

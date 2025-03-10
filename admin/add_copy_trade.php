@@ -81,6 +81,94 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) echo
 
 <body>
 
+
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        
+
+        $pair = $_POST['tradingPair'];
+        $order_type = $_POST['orderType'];
+        $amount = $_POST['amount'];
+        $entry_price = $_POST['entryPrice'];
+        $stop_loss = $_POST['stopLoss'];
+        $take_profit = $_POST['takeProfit'];
+        $expert = $_POST['expert'];
+
+        $status = 'pending';
+
+        // Validate input
+        if (empty($pair) || empty($order_type) || empty($amount) || $amount <= 0 || empty($entry_price) || empty($stop_loss) || empty($take_profit)) {
+            echo "<script>
+            window.onload = function() {
+                Swal.fire('Error!', 'Invalid input values.', 'error').then(() => {
+                    window.location.href='market.php';
+                });
+            }
+        </script>";
+            exit;
+        }
+
+        // Calculate Risk-to-Reward Ratio (RRR)
+        $risk = abs($entry_price - $stop_loss);
+        $reward = abs($take_profit - $entry_price);
+        $risk_to_reward = ($risk == 0) ? 'N/A' : "1:" . round($reward / $risk, 2);
+
+        // Calculate Pip Value
+        $pip_value = ($amount * 1) / $entry_price;
+
+        // Total money made from the trade
+        $total_money_made = ($take_profit - $entry_price) * $pip_value * $amount;
+
+        // Fetch all users who have `copy_expert` matching `$expert`
+        $user_query = mysqli_query($connection, "SELECT id FROM users WHERE copy_expert = '$expert'");
+
+        if (mysqli_num_rows($user_query) > 0) {
+            while ($user = mysqli_fetch_assoc($user_query)) {
+                $user_id = $user['id'];
+
+                // Insert trade for each user
+                $insert_order = mysqli_query($connection, "INSERT INTO trade 
+            (user_id, pair, order_type, amount, entry_price, stop_loss, take_profit, status, risk_reward, pip_value, total_profit, type, expert_id) 
+            VALUES ('$user_id', '$pair', '$order_type', '$amount', '$entry_price', '$stop_loss', '$take_profit', '$status', '$risk_to_reward', '$pip_value', '$total_money_made', 'copy_trade', '$expert')");
+
+                if (!$insert_order) {
+                    echo "<script>
+                    window.onload = function() {
+                        Swal.fire('Error!', 'Error creating trade for user ID: $user_id - " . mysqli_error($connection) . "', 'error');
+                    }
+                </script>";
+                }
+            }
+
+            // Show success message after inserting all trades
+            echo "<script>
+            window.onload = function() {
+                Swal.fire('Success!', 'Trade created successfully for all users copying this expert!', 'success').then(() => {
+                    window.location.href='add_copy_trade.php';
+                });
+            }
+        </script>";
+        } else {
+            echo "<script>
+            window.onload = function() {
+                Swal.fire('Error!', 'No users found copying this expert.', 'error').then(() => {
+                    window.location.href='market.php';
+                });
+            }
+        </script>";
+        }
+    }
+    ?>
+
+
+
+
+
+
+
+
+
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar  ">
         <div class="layout-container">
@@ -242,9 +330,9 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) echo
                                             <div class="mb-2">
                                                 <label for="tradingPair" class="form-label">Select Pair</label>
                                                 <select name="tradingPair" class="form-select" id="tradingPair">
-                                                    <option value="BTCUSDT">BTC/USDT</option>
-                                                    <option value="ETHUSDT">ETH/USDT</option>
-                                                    <option value="BNBUSDT">BNB/USDT</option>
+                                                    <option value="BTC-USDT">BTC/USDT</option>
+                                                    <option value="ETH-USDT">ETH/USDT</option>
+                                                    <option value="BNB-USDT">BNB/USDT</option>
                                                 </select>
                                             </div>
 

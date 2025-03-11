@@ -111,12 +111,14 @@ function formatNumber($number, $decimals = 2)
                                 if (mysqli_num_rows($sql)) {
                                     $count = 1;
                                     while ($details = mysqli_fetch_assoc($sql)) {
+
+                                        $modified_string = str_replace("-", "", $details['pair']);
                                 ?>
                                         <tr>
                                             <td><?php echo $count ?></td>
                                          
-                                            <td><?php echo $details['pair'] ?></td>
-                                            <td><?php echo $details['order_type'] ?></td>
+                                            <td><?php echo $modified_string ?></td>
+                                            <td style="text-transform: capitalize;"><?php echo $details['order_type'] ?></td>
                                             <td><?php echo $details['stop_loss'] ?></td>
                                             <td><?php echo $details['take_profit'] ?></td>
                                             <td><?php echo $details['entry_price'] ?></td>

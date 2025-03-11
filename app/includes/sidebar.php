@@ -92,10 +92,7 @@
                     </ul>
                 </li>
 
-                <li class="slide mt-2">
-                
-                    <a href="copy-trade.php" class="side-menu__item"><i class="bx bx-copy side-menu__icon"></i>Copy Trade</a>
-                </li>
+             
 
                 <li class="slide mt-2">
                     <a href="referral.php" class="side-menu__item"><i class='bx bx-group side-menu__icon'></i>

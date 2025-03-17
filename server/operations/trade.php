@@ -49,7 +49,7 @@ $connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 
 
 // Fetch all pending trades
-$query = mysqli_query($connection, "SELECT * FROM trade WHERE status = 'pending'");
+$query = mysqli_query($connection, "SELECT * FROM trade WHERE status = 'pending' OR status = 'running'");
 
 if (!$query) {
     die("Database query failed: " . mysqli_error($connection));
@@ -97,7 +97,7 @@ while ($trade = mysqli_fetch_assoc($query)) {
     $current_price = $data['data'][$base_currency]['quote'][$quote_currency]['price'];
 
     $profit = 0;
-    $status = 'pending';
+    $status = 'running';
 
     if ($order_type === 'buy') {
         if ($current_price <= $stop_loss) {

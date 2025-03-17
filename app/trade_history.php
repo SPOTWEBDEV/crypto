@@ -218,8 +218,13 @@ function formatNumber($number, $decimals = 2)
 
                         const profitDisplay = total_profit ?
                             `$${parseFloat(total_profit).toFixed(2)}` : '$0.00';
-                        const currentProfitDisplay = current_price_made ?
-                            `$${parseFloat(current_price_made).toFixed(2)}` : '$0.00';
+                      
+
+                            const currentProfitDisplay = current_price_made 
+    ? `${current_price_made < 0 ? '-' : ''}$${Math.abs(parseFloat(current_price_made)).toFixed(2)}` 
+    : '$0.00';
+
+
 
                         const row = $(`
                     <tr>

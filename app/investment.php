@@ -86,33 +86,33 @@ include('controllers/logOut.php');
                                             <span class="avatar avatar-md text-secondary border bg-light"><i class="ti ti-user-circle fs-18"></i></span>
                                         </div>
                                         <div class="flex-fill">
-                                            <p class="fw-semibold fs-14 mb-0"> BASIC PLAN / PACKAGE</p>
+                                            <p class="fw-semibold fs-14 mb-0"> STARTER PLAN / STAGE</p>
                                             <p class="mb-0 text-muted fs-12 op-7">5 days</p>
                                         </div>
                                     </div>
                                 </div>
 
 
-                                <input type="hidden" name="plan" value="Basic Plan">
-                                <input type="hidden" name="percent" value="5.2">
+                                <input type="hidden" name="plan" value="Starter Plan">
+                                <input type="hidden" name="percent" value="10">
                                 <input type="hidden" name="duration" value="5 days">
                                 <input type="hidden" name="email" value="<?php echo $userDetails['email'] ?>">
                                 <label for="input-label" class="form-label">Plan Amount</label>
                                 <div class="d-flex align-items-center mb-0">
-                                    <p class="mb-0 fs-20 fw-semibold">$100</p>
+                                    <p class="mb-0 fs-20 fw-semibold">$50</p>
                                     <span class="text-muted ms-2">
-                                        <i class="ti ti-arrow-up align-middle text-success me-1 d-inline-block"></i>$499
+                                        <i class="ti ti-arrow-up align-middle text-success me-1 d-inline-block"></i>$500
                                     </span>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="flex-fill">
                                         <div class="progress progress-xs">
-                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 5.2%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
-                                    <div class="ms-3"> <span class="fs-12 text-muted">5.2%</span> </div>
+                                    <div class="ms-3"> <span class="fs-12 text-muted">10%</span> </div>
                                 </div>
-                                <input type="text" name="amount" onkeyup="checkbasic(this)" placeholder="Enter Amount" class="form-control" id="input-label">
+                                <input type="text" name="amount" onkeyup="checkstarter(this)" placeholder="Enter Amount" class="form-control" id="input-label">
                                 <p class="text-danger"></p>
                                 <div class="form-floating mt-3">
                                     <button class="btn btn-secondary" id="checkbasic_btn" onclick="return confirm('SURE TO ACTIVATE')" style="width: 100%" name="makeInvestment" type="submit" disabled>ACTIVATE</button>
@@ -122,11 +122,11 @@ include('controllers/logOut.php');
                         <script>
                             const btnchild = document.querySelector('#checkbasic_btn');
 
-                            function checkbasic(amount) {
+                            function checkstarter(amount) {
 
 
                                 const error = amount.nextElementSibling;
-                                if (amount.value >= 100 && amount.value <= 499) {
+                                if (amount.value >= 50 && amount.value <= 500) {
                                     btnchild.removeAttribute("disabled");
                                     error.innerHTML = '';
                                 } else {
@@ -145,31 +145,31 @@ include('controllers/logOut.php');
                                             <span class="avatar avatar-md text-secondary border bg-light"><i class="ti ti-user-circle fs-18"></i></span>
                                         </div>
                                         <div class="flex-fill">
-                                            <p class="fw-semibold fs-14 mb-0">STANDARD PLAN / PACKAGES</p>
+                                            <p class="fw-semibold fs-14 mb-0">PROFESSIONAL PLAN / STAGE</p>
                                             <p class="mb-0 text-muted fs-12 op-7">7 days</p>
                                         </div>
                                     </div>
 
                                 </div>
 
-                                <input type="hidden" name="plan" value="Standard Plan">
-                                <input type="hidden" name="percent" value="7.4">
+                                <input type="hidden" name="plan" value="Professional  Plan">
+                                <input type="hidden" name="percent" value="15">
                                 <input type="hidden" name="duration" value="7 days">
                                 <input type="hidden" name="email" value="<?php echo $userDetails['email'] ?>">
                                 <label for="input-label" class="form-label">Plan Amount</label>
                                 <div class="d-flex align-items-center mb-0">
-                                    <p class="mb-0 fs-20 fw-semibold">$500</p>
+                                    <p class="mb-0 fs-20 fw-semibold">$200</p>
                                     <span class="text-muted ms-2">
-                                        <i class="ti ti-arrow-up align-middle text-success me-1 d-inline-block"></i>$4,999
+                                        <i class="ti ti-arrow-up align-middle text-success me-1 d-inline-block"></i>$1000
                                     </span>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="flex-fill">
                                         <div class="progress progress-xs">
-                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 7.4%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 15%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
-                                    <div class="ms-3"> <span class="fs-12 text-muted">7.4</span> </div>
+                                    <div class="ms-3"> <span class="fs-12 text-muted">15</span> </div>
                                 </div>
                                 <input type="text" name="amount" onkeyup="standard(this)" class="form-control" id="input-label" placeholder="Enter Amount">
                                 <p class="text-danger"></p>
@@ -185,7 +185,7 @@ include('controllers/logOut.php');
 
 
                                 const error = amount.nextElementSibling;
-                                if (amount.value >= 500 && amount.value <= 4999) {
+                                if (amount.value >= 200 && amount.value <= 1000) {
                                     btnStandard.removeAttribute("disabled");
                                     error.innerHTML = '';
                                 } else {
@@ -204,22 +204,22 @@ include('controllers/logOut.php');
                                             <span class="avatar avatar-md text-secondary border bg-light"><i class="ti ti-user-circle fs-18"></i></span>
                                         </div>
                                         <div class="flex-fill">
-                                            <p class="fw-semibold fs-14 mb-0"> ADVANCE PLAN / PACKAGES</p>
+                                            <p class="fw-semibold fs-14 mb-0"> EXECUTIVE PLAN / STAGE</p>
                                             <p class="mb-0 text-muted fs-12 op-7">7 days</p>
                                         </div>
                                     </div>
                                 </div>
 
 
-                                <input type="hidden" name="plan" value="Advance Plan">
-                                <input type="hidden" name="percent" value="8.3">
+                                <input type="hidden" name="plan" value="Executive  Plan">
+                                <input type="hidden" name="percent" value="40">
                                 <input type="hidden" name="duration" value="7 days">
                                 <input type="hidden" name="email" value="<?php echo $userDetails['email'] ?>">
                                 <label for="input-label" class="form-label">Plan Amount</label>
                                 <div class="d-flex align-items-center mb-0">
-                                    <p class="mb-0 fs-20 fw-semibold">$5000</p>
+                                    <p class="mb-0 fs-20 fw-semibold">$1,500</p>
                                     <span class="text-muted ms-2">
-                                        <i class="ti ti-arrow-up align-middle text-success me-1 d-inline-block"></i>$9,999
+                                        <i class="ti ti-arrow-up align-middle text-success me-1 d-inline-block"></i>$5000
                                     </span>
                                 </div>
                                 <div class="d-flex align-items-center">
@@ -228,7 +228,7 @@ include('controllers/logOut.php');
                                             <div class="progress-bar bg-secondary" role="progressbar" style="width: 8.3%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
-                                    <div class="ms-3"> <span class="fs-12 text-muted">8.3%</span> </div>
+                                    <div class="ms-3"> <span class="fs-12 text-muted">40%</span> </div>
                                 </div>
                                 <input type="text" name="amount" onkeyup="Advance(this)" placeholder="Enter Amount" class="form-control" id="input-label">
                                 <p class="text-danger"></p>
@@ -242,7 +242,7 @@ include('controllers/logOut.php');
 
                             function Advance(amount) {
                                 const error = amount.nextElementSibling;
-                                if (amount.value >= 5000 && amount.value <= 9999) {
+                                if (amount.value >= 1500 && amount.value <= 5000) {
                                     btnSecondary.removeAttribute("disabled");
                                     error.innerHTML = '';
                                 } else {
@@ -261,7 +261,7 @@ include('controllers/logOut.php');
                                             <span class="avatar avatar-md text-secondary border bg-light"><i class="ti ti-user-circle fs-18"></i></span>
                                         </div>
                                         <div class="flex-fill">
-                                            <p class="fw-semibold fs-14 mb-0">SILVERS PLAN/PACKAGES
+                                            <p class="fw-semibold fs-14 mb-0">PLATINUM PLAN/PACKAGES
                                             </p>
                                             <p class="mb-0 text-muted fs-12 op-7">30 days</p>
                                         </div>
@@ -270,24 +270,24 @@ include('controllers/logOut.php');
                                 </div>
 
 
-                                <input type="hidden" name="plan" value="Silvers Plan">
-                                <input type="hidden" name="percent" value="9">
+                                <input type="hidden" name="plan" value="Platinum  Plan">
+                                <input type="hidden" name="percent" value="80">
                                 <input type="hidden" name="duration" value="14 days">
                                 <input type="hidden" name="email" value="<?php echo $userDetails['email'] ?>">
                                 <label for="input-label" class="form-label">Plan Amount</label>
                                 <div class="d-flex align-items-center mb-0">
-                                    <p class="mb-0 fs-20 fw-semibold">$10,000</p>
+                                    <p class="mb-0 fs-20 fw-semibold">$2,500</p>
                                     <span class="text-muted ms-2">
-                                        <i class="ti ti-arrow-up align-middle text-success me-1 d-inline-block"></i>$19,999
+                                        <i class="ti ti-arrow-up align-middle text-success me-1 d-inline-block"></i>
                                     </span>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="flex-fill">
                                         <div class="progress progress-xs">
-                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 9%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 80%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
-                                    <div class="ms-3"> <span class="fs-12 text-muted">9%</span> </div>
+                                    <div class="ms-3"> <span class="fs-12 text-muted">80%</span> </div>
                                 </div>
                                 <input type="text" name="amount" onkeyup="Silvers(this)" placeholder="Enter Amount" class="form-control" id="input-label">
                                 <p class="text-danger"></p>
@@ -303,7 +303,7 @@ include('controllers/logOut.php');
                                 const error = amount.nextElementSibling;
                                 console.log(amount.value);
                                 console.log('expert');
-                                if (amount.value >= 10000 && amount.value <= 19999) {
+                                if (amount.value >= 2500) {
                                     btnAdvanced.removeAttribute("disabled");
                                     error.innerHTML = '';
                                 } else {
@@ -313,66 +313,7 @@ include('controllers/logOut.php');
                             }
                         </script>
                     </form>
-                    <form action="./controllers/investCTR.php" method="POST" class="col-xxl-3 col-sm-6">
-                        <div class="card custom-card">
-                            <div class="card-body">
-                                <div class="d-flex align-items-top justify-content-between mb-4">
-                                    <div class="flex-fill d-flex align-items-top">
-                                        <div class="me-2">
-                                            <span class="avatar avatar-md text-secondary border bg-light"><i class="ti ti-user-circle fs-18"></i></span>
-                                        </div>
-                                        <div class="flex-fill">
-                                            <p class="fw-semibold fs-14 mb-0"> GOLD PLAN/PACKAGES</p>
-                                            <p class="mb-0 text-muted fs-12 op-7">21 day</p>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-                                <input type="hidden" name="plan" value="Gold Plan">
-                                <input type="hidden" name="percent" value="9.8">
-                                <input type="hidden" name="duration" value="21 days">
-                                <input type="hidden" name="email" value="<?php echo $userDetails['email'] ?>">
-                                <label for="input-label" class="form-label">Plan Amount</label>
-                                <div class="d-flex align-items-center mb-0">
-                                    <p class="mb-0 fs-20 fw-semibold">$20,000</p>
-                                    <span class="text-muted ms-2">
-                                        <!--<i class="ti ti-arrow-up align-middle text-success me-1 d-inline-block"></i>-->
-                                    </span>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-fill">
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 9.8%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="ms-3"> <span class="fs-12 text-muted">9.8%</span> </div>
-                                </div>
-                                <input type="text" name="amount" onkeyup="Gold(this)" placeholder="Enter Amount" class="form-control" id="input-label">
-                                <p class="text-danger"></p>
-                                <div class="form-floating mt-3">
-                                    <button class="btn btn-secondary" id="btnpro" onclick="return confirm('SURE TO ACTIVATE')" style="width: 100%" name="makeInvestment" type="submit" disabled>ACTIVATE</button>
-                                </div>
-                            </div>
-                        </div>
-                        <script>
-                            const btnpro = document.querySelector('#btnpro');
-
-                            function Gold(amount) {
-
-
-                                const error = amount.nextElementSibling;
-                                if (amount.value >= 20000) {
-                                    btnpro.removeAttribute("disabled");
-                                    error.innerHTML = '';
-                                } else {
-                                    btnpro.setAttribute("disabled", "");
-                                    error.innerHTML = 'Amount range Missmatch';
-                                }
-                            }
-                        </script>
-                    </form>
+                    
 
 
 

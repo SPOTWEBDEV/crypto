@@ -9,6 +9,9 @@ include('controllers/invMTR_CTR.php');
 include('controllers/logOut.php');
 
 
+// server/operations/trade.php
+
+
 function formatNumber($number, $decimals = 2)
 {
     // Check if the input is empty or not numeric

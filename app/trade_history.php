@@ -108,6 +108,7 @@ function formatNumber($number, $decimals = 2)
                                     <th>Risk Reward</th>
                                     <th>Total Profit</th>
                                     <th>Profit</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -138,6 +139,17 @@ function formatNumber($number, $decimals = 2)
                                             <td><?php echo $details['risk_reward'] ?></td>
                                             <td><span class="badge bg-success-transparent">$<?php echo number_format($details['total_profit'],2) ?></span></td>
                                             <td><span class="badge bg-success-transparent">$<?php echo number_format($details['current_price_made'],2) ?></span></td>
+                                            <td>
+                                                <?php
+                                                if ($details['status'] == 'completed' ||  $details['status'] == 'takeprofit') { ?>
+                                                  <span class="badge bg-success-transparent ms-2"><?php echo $details['status'] ?></span>
+                                               <?php } else if ($details['status'] == 'running') { ?>
+                                                <span class="badge bg-warning-transparent ms-2"><?php echo $details['status'] ?></span>
+                                                <?php } else { ?>
+                                                   <span class="badge bg-danger-transparent ms-2"><?php echo $details['status'] ?></span>
+                                            <?php }
+                                                ?>
+                                            </td>
                                         </tr>
                                 <?php
                                         $count++;

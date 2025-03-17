@@ -11,6 +11,7 @@ include('controllers/logOut.php');
 
 // server/operations/trade.php
 
+$user_identity = $userDetails['id'];
 
 function formatNumber($number, $decimals = 2)
 {
@@ -28,7 +29,8 @@ function formatNumber($number, $decimals = 2)
 
 <!DOCTYPE html>
 <!-- saved from url=(0014)about:internet -->
-<html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light" data-menu-styles="dark" data-toggled="close">
+<html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light"
+    data-menu-styles="dark" data-toggled="close">
 
 <head>
     <!-- Meta Data -->
@@ -38,7 +40,8 @@ function formatNumber($number, $decimals = 2)
     <title>EMPTY PAGE BRUH</title>
     <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template" />
     <meta name="Author" content="Spruko Technologies Private Limited" />
-    <meta name="keywords" content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit." />
+    <meta name="keywords"
+        content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit." />
     <!-- Favicon -->
     <link rel="icon" href="./assets/images/brand-logos/favicon.ico" type="image/x-icon" />
     <!-- Choices JS -->
@@ -111,57 +114,8 @@ function formatNumber($number, $decimals = 2)
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <?php
-                                $sql = mysqli_query($connection, "SELECT trade.*,users.name,users.email FROM trade,users WHERE trade.type='self_trade' and trade.user_id = users.id");
-                                if (mysqli_num_rows($sql)) {
-                                    $count = 1;
-                                    while ($details = mysqli_fetch_assoc($sql)) {
+                            <tbody id="tradeTableBody">
 
-                                        $modified_string = str_replace("-", "", $details['pair']);
-                                ?>
-                                        <tr>
-                                            <td><?php echo $count ?></td>
-                                         
-                                            <td><?php echo $modified_string ?></td>
-                                            <td style="text-transform: capitalize; font-size:20px">
-                                                <?php
-                                                if ($details['status'] == 1) { ?>
-                                                    <span class="badge bg-success-transparent ms-2 "><?php echo $details['order_type'] ?></span>
-                                                <?php } else { ?>
-                                                    <span class="badge bg-warning-transparent ms-2 "><?php echo $details['order_type'] ?></span>
-                                                <?php }
-                                                ?>
-                                            </td>
-                                            <td><?php echo $details['stop_loss'] ?></td>
-                                            <td><?php echo $details['take_profit'] ?></td>
-                                            <td><?php echo $details['entry_price'] ?></td>
-                                            <td><?php echo $details['risk_reward'] ?></td>
-                                            <td><span class="badge bg-success-transparent">$<?php echo number_format($details['total_profit'],2) ?></span></td>
-                                            <td><span class="badge bg-success-transparent">$<?php echo number_format($details['current_price_made'],2) ?></span></td>
-                                            <td>
-                                                <?php
-                                                if ($details['status'] == 'completed' ||  $details['status'] == 'takeprofit') { ?>
-                                                  <span class="badge bg-success-transparent ms-2"><?php echo $details['status'] ?></span>
-                                               <?php } else if ($details['status'] == 'running') { ?>
-                                                <span class="badge bg-warning-transparent ms-2"><?php echo $details['status'] ?></span>
-                                                <?php } else { ?>
-                                                   <span class="badge bg-danger-transparent ms-2"><?php echo $details['status'] ?></span>
-                                            <?php }
-                                                ?>
-                                            </td>
-                                        </tr>
-                                <?php
-                                        $count++;
-                                    }
-                                } else {
-                                    echo "<tr> 
-                                    <td colspan='7'> 
-                                    <span class='badge bg-danger-transparent'> NO DATA </span>
-                                    </td>
-                                    </tr>";
-                                }
-                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -194,6 +148,115 @@ function formatNumber($number, $decimals = 2)
     <script src="./assets/js/custom-switcher.min.js"></script>
     <!-- Custom JS -->
     <script src="./assets/js/custom.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+
+
+    <script>
+     function fetchTradeUpdates() {
+        $.ajax({
+            url: '../server/api/trade.php',
+            method: 'POST',
+            data: {
+                user_id: '<?php echo $user_identity ?>',
+                from: 'firstclass'
+            },
+            success: function(data) {
+               console.log(data)
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching trade updates:', error);
+            }
+        });
+    }
+
+    // Poll every second (1000ms)
+    setInterval(fetchTradeUpdates, 1000);
+    fetchTradeUpdates(); // Initial fetch
+
+
+
+    function fetchTable() {
+        $.ajax({
+            url: '../server/api/getTrade.php',
+            method: 'POST',
+            data: {
+                user_id: '<?php echo $user_identity ?>',
+                from: 'firstclass'
+            },
+            success: function(res) {
+
+                let data = JSON.parse(res)
+                const tableBody = $('#tradeTableBody');
+                tableBody.empty(); // Clear previous data
+
+                if (data.length > 0) {
+                    data.forEach(trade => {
+                        const {
+                            id,
+                            pair,
+                            order_type,
+                            stop_loss,
+                            take_profit,
+                            entry_price,
+                            risk_reward,
+                            total_profit,
+                            current_price_made,
+                            status,
+                            error
+                        } = trade;
+
+                        const statusBadge = status === 'completed' || status === 'takeprofit' ?
+                            `<span class="badge bg-success-transparent ms-2">${status}</span>` :
+                            status === 'running' ?
+                            `<span class="badge bg-warning-transparent ms-2">${status}</span>` :
+                            `<span class="badge bg-danger-transparent ms-2">${status}</span>`;
+
+                        const orderTypeBadge = status === '1' ?
+                            `<span class="badge bg-success-transparent ms-2">${order_type}</span>` :
+                            `<span class="badge bg-warning-transparent ms-2">${order_type}</span>`;
+
+                        const profitDisplay = total_profit ?
+                            `$${parseFloat(total_profit).toFixed(2)}` : '$0.00';
+                        const currentProfitDisplay = current_price_made ?
+                            `$${parseFloat(current_price_made).toFixed(2)}` : '$0.00';
+
+                        const row = $(`
+                    <tr>
+                        <td>${id}</td>
+                        <td>${pair.replace('-','')}</td>
+                        <td style="text-transform: capitalize; font-size:16px">${orderTypeBadge}</td>
+                        <td>${stop_loss}</td>
+                        <td>${take_profit}</td>
+                        <td>${entry_price}</td>
+                        <td>${risk_reward}</td>
+                        <td><span class="badge bg-success-transparent">${profitDisplay}</span></td>
+                        <td><span class="badge bg-success-transparent">${currentProfitDisplay}</span></td>
+                        <td>${statusBadge}</td>
+                    </tr>
+                `);
+
+
+                        tableBody.append(row);
+                    });
+                } else {
+                    tableBody.append('<tr><td colspan="10">No pending trades found.</td></tr>');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching trade updates:', error);
+            }
+        });
+
+    }
+
+    // Poll every second (1000ms)
+    setInterval(fetchTable, 1000);
+    fetchTable(); // Initial fetch
+    </script>
+
+
+
 </body>
 
 </html>

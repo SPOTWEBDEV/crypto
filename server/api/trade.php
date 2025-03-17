@@ -1,49 +1,5 @@
 <?php
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-
-// Check if running from CLI
-$isCli = php_sapi_name() === 'cli';
-
-// Set default protocol and domain for CLI
-if ($isCli) {
-    $request = 'https'; // Default to HTTPS or set based on environment
-    $domain = "https://fusionsassets.com/";
-} else {
-    $currentUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") 
-        . "://" . ($_SERVER['HTTP_HOST'] ?? 'localhost') 
-        . ($_SERVER['REQUEST_URI'] ?? '');
-    $request = checkUrlProtocol($currentUrl);
-}
-
-// Default configurations
-define("HOST", "localhost");
-
-// Set configurations based on protocol
-if ($request == 'https') {
-    define("USER", "tifkvkth_crypto");
-    define("PASSWORD", "tifkvkth_crypto");
-    define("DATABASE", "tifkvkth_crypto");
-} elseif ($request == 'http') {
-    define("USER", "root");
-    define("PASSWORD", "");
-    define("DATABASE", "jay");
-} else {
-    die("Invalid protocol detected. Cannot establish configuration.");
-}
-
-
-
-
-$apiKey = "1312f57d-3307-4c2b-bd94-9850caf54b40";
-
-
-
-
-// // Database connection
-$connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+include '../connection.php';
 
 
 
@@ -143,4 +99,5 @@ while ($trade = mysqli_fetch_assoc($query)) {
         echo "Failed to update Trade ID $trade_id: " . mysqli_error($connection) . "\n";
     }
 }
+
 ?>

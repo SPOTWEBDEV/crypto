@@ -80,7 +80,7 @@
     </li>
 
     <!-- Signal -->
-    <li class="menu-item">
+    <!-- <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <div data-i18n="Layouts">📡 Signal</div>
         </a>
@@ -88,7 +88,7 @@
             <li class="menu-item"><a href="add-signal.php" class="menu-link">➕ Add Signal</a></li>
             <li class="menu-item"><a href="view-signal.php" class="menu-link">👀 View Signal</a></li>
         </ul>
-    </li>
+    </li> -->
 
     <!-- Expert -->
     <li class="menu-item">

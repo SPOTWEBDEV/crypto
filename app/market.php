@@ -87,89 +87,88 @@ while ($row = mysqli_fetch_array($sql)) {
 
         <!-- Start::app-content -->
         <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $pair = $_POST['tradingPair'];
-            $order_type = $_POST['orderType'];
-            $amount = $_POST['amount'];
-            $entry_price = $_POST['entryPrice'];
-            $stop_loss = $_POST['stopLoss'];
-            $take_profit = $_POST['takeProfit'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $pair = $_POST['tradingPair'];
+    $order_type = $_POST['orderType'];
+    $amount = $_POST['amount'];
+    $entry_price = $_POST['entryPrice'];
+    $stop_loss = $_POST['stopLoss'];
+    $take_profit = $_POST['takeProfit'];
 
-            // Default status: 'pending'
-            $status = 'pending';
+    $status = 'pending';
 
-            // Validate input
-            if (empty($pair) || empty($order_type) || empty($amount) || $amount <= 0 || empty($entry_price) || empty($stop_loss) || empty($take_profit)) {
-                echo "<script>
-                        window.onload = function() {
-                            Swal.fire('Error!', 'Invalid input values.', 'error').then(() => {
-                                    window.location.href='market.php';
-                                });
-                        }
-                    </script>";
-                exit;
-            }
-
-            if ($user_balance < $amount) {
-                echo "<script>
-                    window.onload = function() {
-                        Swal.fire('Error!', 'Insufficient balance!', 'error').then(() => {
-                                window.location.href='market.php';
-                            });
-                    }
-                    </script>";
-                exit;
-            }
-
-            // Deduct balance
-            $new_balance = $user_balance - $amount;
-            mysqli_query($connection, "UPDATE users SET wallet = '$new_balance' WHERE id = '$user_identity'");
-
-            // Calculate Risk-to-Reward Ratio (RRR)
-            $risk = abs($entry_price - $stop_loss);
-            $reward = abs($take_profit - $entry_price);
-
-            if ($risk == 0) {
-                $risk_to_reward = 'N/A'; // Avoid division by zero
-            } else {
-                $rr_ratio = round($reward / $risk, 2);
-                $risk_to_reward = "1:$rr_ratio"; // Format as "1:2, 1:3, etc."
-            }
-
-            // Calculate Pip Value
-            $pip_value = ($amount * 1) / $entry_price;  // (Trade size * 1 pip) / Entry Price
-
-            // Total money made from the trade
-            $total_money_made = ($take_profit - $entry_price) * $pip_value * $amount;
-
-            echo "<script>alert('$risk_to_reward')</script>";
-
-            // Insert the order
-            $insert_order = mysqli_query($connection, "INSERT INTO trade 
-        (user_id, pair, order_type, amount, entry_price, stop_loss, take_profit, status, risk_reward, pip_value, total_profit) 
-        VALUES ('$user_identity', '$pair', '$order_type', '$amount', '$entry_price', '$stop_loss', '$take_profit', '$status', '$risk_to_reward', '$pip_value', '$total_money_made')");
-
-
-
-
-
-            if ($insert_order) {
-                echo "<script>
+    // Validate input
+    if (empty($pair) || empty($order_type) || empty($amount) || $amount <= 0 || empty($entry_price) || empty($stop_loss) || empty($take_profit)) {
+        echo "<script>
                 window.onload = function() {
-                    Swal.fire('Success!', 'Order placed successfully!', 'success').then(() => {
+                    Swal.fire('Error!', 'Invalid input values.', 'error').then(() => {
                         window.location.href='market.php';
                     });
                 }
             </script>";
-            } else {
-                echo "<script>
-                window.onload = function() {
-                    Swal.fire('Error!', " . mysqli_error($connection) . ", 'error')
-                }
-            </script>";
+        exit;
+    }
+
+    if ($user_balance < $amount) {
+        echo "<script>
+            window.onload = function() {
+                Swal.fire('Error!', 'Insufficient balance!', 'error').then(() => {
+                    window.location.href='market.php';
+                });
             }
-        }
-        ?>
+        </script>";
+        exit;
+    }
+
+    // Deduct balance
+    $new_balance = $user_balance - $amount;
+    mysqli_query($connection, "UPDATE users SET wallet = '$new_balance' WHERE id = '$user_identity'");
+
+    // Calculate Risk-to-Reward Ratio (RRR)
+    $risk = abs($entry_price - $stop_loss);
+    $reward = abs($take_profit - $entry_price);
+
+    if ($risk == 0) {
+        $risk_to_reward = 'N/A'; 
+        $rr_ratio = 0;
+    } else {
+        $rr_ratio = round($reward / $risk, 2);
+        $risk_to_reward = "1:$rr_ratio";
+    }
+
+    // Calculate Pip Value
+    $pip_value = ($amount * 1) / $entry_price;
+
+    // Calculate Total Money Made based on Order Type
+    if ($rr_ratio > 0) {
+        $total_money_made = $amount * $rr_ratio;
+    } else {
+        $total_money_made = 0;
+    }
+
+    // Insert the order
+    $insert_order = mysqli_query($connection, "INSERT INTO trade 
+        (user_id, pair, order_type, amount, entry_price, stop_loss, take_profit, status, risk_reward, pip_value, total_profit) 
+        VALUES ('$user_identity', '$pair', '$order_type', '$amount', '$entry_price', '$stop_loss', '$take_profit', '$status', '$risk_to_reward', '$pip_value', '$total_money_made')");
+
+    if ($insert_order) {
+        echo "<script>
+            window.onload = function() {
+                Swal.fire('Success!', 'Order placed successfully!', 'success').then(() => {
+                    window.location.href='market.php';
+                });
+            }
+        </script>";
+    } else {
+        echo "<script>
+            window.onload = function() {
+                Swal.fire('Error!', '" . mysqli_error($connection) . "', 'error');
+            }
+        </script>";
+    }
+}
+?>
+
 
 
         <div class="main-content app-content">

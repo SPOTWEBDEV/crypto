@@ -103,6 +103,8 @@ function formatNumber($number, $decimals = 2)
                                     <th>Take Profit</th>
                                     <th>Entry Price</th>
                                     <th>Risk Reward</th>
+                                    <th>Total Profit</th>
+                                    <th>Profit</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -118,11 +120,21 @@ function formatNumber($number, $decimals = 2)
                                             <td><?php echo $count ?></td>
                                          
                                             <td><?php echo $modified_string ?></td>
-                                            <td style="text-transform: capitalize;"><?php echo $details['order_type'] ?></td>
+                                            <td style="text-transform: capitalize; font-size:20px">
+                                                <?php
+                                                if ($details['status'] == 1) { ?>
+                                                    <span class="badge bg-success-transparent ms-2 "><?php echo $details['order_type'] ?></span>
+                                                <?php } else { ?>
+                                                    <span class="badge bg-warning-transparent ms-2 "><?php echo $details['order_type'] ?></span>
+                                                <?php }
+                                                ?>
+                                            </td>
                                             <td><?php echo $details['stop_loss'] ?></td>
                                             <td><?php echo $details['take_profit'] ?></td>
                                             <td><?php echo $details['entry_price'] ?></td>
                                             <td><?php echo $details['risk_reward'] ?></td>
+                                            <td><span class="badge bg-success-transparent">$<?php echo number_format($details['total_profit'],2) ?></span></td>
+                                            <td><span class="badge bg-success-transparent">$<?php echo number_format($details['current_price_made'],2) ?></span></td>
                                         </tr>
                                 <?php
                                         $count++;

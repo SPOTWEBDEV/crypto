@@ -126,9 +126,7 @@
                         <li class="slide">
                             <a href="withdrawals.php" class="side-menu__item">Withdrawals</a>
                         </li>
-                        <li class="slide">
-                            <a href="self_trade.php" class="side-menu__item">Trading</a>
-                        </li>
+                        
                     </ul>
                 </li>
 

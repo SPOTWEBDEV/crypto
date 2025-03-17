@@ -153,7 +153,7 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) echo
             echo "<script>
             window.onload = function() {
                 Swal.fire('Error!', 'No users found copying this expert.', 'error').then(() => {
-                    window.location.href='market.php';
+                    window.location.href='add_copy_trade.php';
                 });
             }
         </script>";

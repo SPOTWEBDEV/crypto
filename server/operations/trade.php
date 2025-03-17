@@ -42,7 +42,8 @@ $apiKey = "1312f57d-3307-4c2b-bd94-9850caf54b40";
 
 
 
-
+// // Database connection
+$connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 
 
 

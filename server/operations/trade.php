@@ -1,5 +1,5 @@
 <?php
-require './server/connection.php'; // Include your database connection file
+require '../connection.php'; // Include your database connection file
 
 
 // Fetch all pending trades

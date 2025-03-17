@@ -1,13 +1,7 @@
 <?php
 // Include your configuration file
-define("HOST","localhost");
-define("USER","ocjrgyjg_jay");
-define("PASSWORD","ocjrgyjg_jay");
-define("DATABASE","ocjrgyjg_jay");
 
-
-
-$connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+require '../connection.php';
 
 echo "THEBEST";
 

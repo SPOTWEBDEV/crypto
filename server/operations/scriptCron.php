@@ -1,9 +1,16 @@
 <?php
-// Include your configuration file
 
-require '../connection.php';
+define("HOST", "localhost");
+define("USER", "tifkvkth_crypto");
+define("PASSWORD", "tifkvkth_crypto");
+define("DATABASE", "tifkvkth_crypto");
 
-echo "THEBEST";
+$connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+
+
+$check = mysqli_query($connection,"INSERT INTO `testcron`(`type`) VALUES ('investment')");
+
+
 
 // SQL query with corrected syntax and parameterization
 $sql = mysqli_query($connection, "SELECT * FROM `investments` WHERE `status`= 0");

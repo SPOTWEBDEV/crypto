@@ -543,9 +543,9 @@
                                     <img src="<?php echo $domain ?>assets/img/team/1.PNG" alt="img">
                                 </div>
                                 <div class="team-content-six">
-                                    <h2 class="title"><a href="team-details.html">Savannah Nguyen</a></h2>
+                                    <h2 class="title"><a href="team-details.html">Bakker Hendrik</a></h2>
                                     <span>Lead Consultant</span>
-                                    <p>Bringing years of expertise, Savannah provides top-tier business strategies for crypto ventures.</p>
+                                    <p>Bringing years of expertise, Bakker provides top-tier business strategies for crypto ventures.</p>
                                   
                                 </div>
                             </div>
@@ -556,14 +556,14 @@
                                     <img src="<?php echo $domain ?>assets/img/team/2.PNG" alt="img">
                                 </div>
                                 <div class="team-content-six">
-                                    <h2 class="title"><a href="team-details.html">Guy Hawkins</a></h2>
+                                    <h2 class="title"><a href="team-details.html">Emily Lisa</a></h2>
                                     <span>Investment Advisor</span>
-                                    <p>Specializing in cryptocurrency investments, Guy offers expert advice to guide your financial decisions.</p>
+                                    <p>Specializing in cryptocurrency investments, Emily offers expert advice to guide your financial decisions.</p>
                                  
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <!-- <div class="col-lg-6">
                             <div class="team-item-six">
                                 <div class="team-thumb-six">
                                     <img src="<?php echo $domain ?>assets/img/team/h6_team_img03.jpg" alt="img">
@@ -588,7 +588,7 @@
                                     
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

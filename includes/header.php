@@ -37,11 +37,12 @@
                         <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
                         <div class="menu-wrap">
                             <nav class="menu-nav">
-                                <div class="logo">
+                                <!-- <div class="logo">
                                     <a href="#"><img src="assets/img/logo/w_logo.png" alt="Logo"></a>
-                                </div>
+                                </div> -->
+                                <h1 style="color:white;" > <?php echo $sitename?></h1>
                                 <div class="logo d-none">
-                                    <a href="#"><img src="assets/img/logo/logo.png" alt="Logo"></a>
+                                <h1 style="color:blue;" > <?php echo $sitename?></h1>
                                 </div>
                                 <div class="navbar-wrap main-menu d-none d-lg-flex">
                                     <ul class="navigation">
@@ -134,9 +135,10 @@
             <div class="close-icon menu-close">
                 <button><i class="far fa-window-close"></i></button>
             </div>
-            <div class="logo-side mb-30">
+            <!-- <div class="logo-side mb-30">
                 <a href="index.html"><img src="assets/img/logo/logo.png" alt="Logo"></a>
-            </div>
+            </div> -->
+            <h1 style="color:white;" > <?php echo $sitename?></h1>
             <div class="side-info mb-30">
                 <div class="contact-list mb-30">
                     <h4>Office Address</h4>

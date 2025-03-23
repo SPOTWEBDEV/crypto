@@ -5,9 +5,10 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-7">
                         <div class="footer-widget">
-                            <div class="fw-logo">
+                            <!-- <div class="fw-logo">
                                 <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                            </div>
+                            </div> -->
+                            <h1 style="color:black;" > <?php echo $sitename?></h1>
                             <div class="footer-content">
                                 <p>When blockchain technology revolutionized finance, innovators seized the opportunity to create a decentralized system, transforming the way we invest and trade in cryptocurrencies.</p>
 

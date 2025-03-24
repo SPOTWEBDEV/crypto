@@ -96,7 +96,7 @@ $user_identity = $userDetails['id'];
                                     <th scope="col">TOTAL PROFIT</th>
                                     <th scope="col">INVESTED DATE</th>
                                     <th scope="col">END ON</th>
-                                    <!--<th scope="col">COUNTDOWN</th>-->
+                                    <th scope="col">DATE</th>
                                     <th scope="col">STATUS</th>
                                 </tr>
                             </thead>

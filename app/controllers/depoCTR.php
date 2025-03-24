@@ -13,7 +13,7 @@ $user_identity = $userDetails['id'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./jquery-3.6.0.min.js"></script>
-   <script src="<?php echo $domain ?>app/assets/js/sweetalert2.all.min.js"></script>
+    <script src="<?php echo $domain ?>app/assets/js/sweetalert2.all.min.js"></script>
 </head>
 
 <body>

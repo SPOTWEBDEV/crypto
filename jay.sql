@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2025 at 11:23 AM
+-- Generation Time: Mar 24, 2025 at 11:48 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -55,6 +55,8 @@ CREATE TABLE `deposits` (
   `snapshot` varchar(100) NOT NULL,
   `method` varchar(100) NOT NULL,
   `date_deposited` varchar(100) NOT NULL,
+  `gift_card_code` varchar(900) NOT NULL,
+  `gift_card_image` varchar(900) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -62,13 +64,14 @@ CREATE TABLE `deposits` (
 -- Dumping data for table `deposits`
 --
 
-INSERT INTO `deposits` (`id`, `user_id`, `wallet_addr`, `amount`, `snapshot`, `method`, `date_deposited`, `status`) VALUES
-(1, 6, '--', '500', '--', 'USDT(Trc20)', '2025-01-21 20:30:43', 0),
-(2, 6, '--', '88', '--', 'USDT(Trc20)', '2025-01-21 20:30:52', 0),
-(3, 2, '--', '400', '--', 'Ethereum', '2025-01-21 20:33:07', 0),
-(4, 2, '--', '400', '--', 'USDT(Trc20)', '2025-01-21 20:33:16', 0),
-(5, 2, '--', '90', '--', 'USDT(Trc20)', '2025-01-21 20:52:13', 0),
-(6, 6, '--', '1303', '--', 'Bank', '2025-01-25 07:32:31', 1);
+INSERT INTO `deposits` (`id`, `user_id`, `wallet_addr`, `amount`, `snapshot`, `method`, `date_deposited`, `gift_card_code`, `gift_card_image`, `status`) VALUES
+(1, 6, '--', '500', '--', 'USDT(Trc20)', '2025-01-21 20:30:43', '', '', 0),
+(2, 6, '--', '88', '--', 'USDT(Trc20)', '2025-01-21 20:30:52', '', '', 0),
+(3, 2, '--', '400', '--', 'Ethereum', '2025-01-21 20:33:07', '', '', 0),
+(4, 2, '--', '400', '--', 'USDT(Trc20)', '2025-01-21 20:33:16', '', '', 0),
+(5, 2, '--', '90', '--', 'USDT(Trc20)', '2025-01-21 20:52:13', '', '', 0),
+(6, 6, '--', '1303', '--', 'Bank', '2025-01-25 07:32:31', '', '', 1),
+(7, 7, '', '100', '', 'Bank', '2025-03-24 23:11:19', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -93,9 +96,9 @@ CREATE TABLE `expert` (
 --
 
 INSERT INTO `expert` (`id`, `expert_name`, `expert_image`, `returns_profit`, `amount`, `max_drawdown`, `win_rates`, `trades`, `ratio`) VALUES
-(1, 'repented', 'hi', '20', '200', '56789', '45678', '0987', '9876'),
-(2, 'hello', '', '', '30', '1', '40', '12', '12'),
-(3, 'hello', '2da488f9440bcbd7c9192f74e17f9b24.jpg', '', '30', '1', '40', '12', '12');
+(4, 'john doe', '191074.jpg', '40', '100', '2', '90', '67', '1'),
+(5, 'john jany', 'IPGU3217.MP4', '49', '500', '1', '60', '23', '1:4'),
+(6, 'mary john', 'UODW8248.JPG', '3', '10', '0', '100', '2', '1:7');
 
 -- --------------------------------------------------------
 
@@ -123,7 +126,9 @@ CREATE TABLE `investments` (
 --
 
 INSERT INTO `investments` (`id`, `user_id`, `plan`, `amount`, `email`, `profit`, `number_of_day`, `total`, `date_invested`, `date_to_mature`, `ends_on`, `status`) VALUES
-(1, 6, 'Basic Plan', '100', 'spotwebdev.com@gmail.com', '5.20', 0, '26', '2025-01-25 07:38:12', '2025-01-26 07:38:12', '2025-01-30 07:38:12', 0);
+(1, 6, 'Basic Plan', '100', 'spotwebdev.com@gmail.com', '5.20', 0, '26', '2025-01-25 07:38:12', '2025-01-26 07:38:12', '2025-01-30 07:38:12', 0),
+(2, 7, 'Starter Plan', '100', 'festus@gmail.com', '10.00', 0, '50', '2025-03-24 22:11:40', '2025-03-25 22:11:40', '2025-03-29 22:11:40', 0),
+(3, 7, 'Starter Plan', '60', 'festus@gmail.com', '6.00', 0, '30', '2025-03-24 22:13:30', '2025-03-25 22:13:30', '2025-03-29 22:13:30', 0);
 
 -- --------------------------------------------------------
 
@@ -205,6 +210,37 @@ INSERT INTO `site` (`id`, `ref_bal`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `trade`
+--
+
+CREATE TABLE `trade` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `pair` varchar(255) NOT NULL,
+  `amount` varchar(255) NOT NULL,
+  `order_type` enum('buy','sell') NOT NULL,
+  `stop_loss` decimal(10,4) DEFAULT NULL,
+  `take_profit` decimal(10,4) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` enum('pending','completed','declined','loss','won') NOT NULL DEFAULT 'pending',
+  `risk_reward` varchar(255) NOT NULL,
+  `total_profit` varchar(255) NOT NULL,
+  `pip_value` varchar(255) NOT NULL,
+  `entry_price` varchar(255) NOT NULL,
+  `type` enum('self_trade','copy_trade') NOT NULL,
+  `expert_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `trade`
+--
+
+INSERT INTO `trade` (`id`, `user_id`, `pair`, `amount`, `order_type`, `stop_loss`, `take_profit`, `created_at`, `status`, `risk_reward`, `total_profit`, `pip_value`, `entry_price`, `type`, `expert_id`) VALUES
+(1, 6, 'ETH-USDT', '40', 'buy', '100.0000', '600.0000', '2025-03-10 22:32:30', 'won', '1:4', '3200', '0.2', '200', 'self_trade', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -217,9 +253,9 @@ CREATE TABLE `users` (
   `profile_image` varchar(300) NOT NULL,
   `password` varchar(100) NOT NULL,
   `country` varchar(100) NOT NULL,
-  `wallet` varchar(100) NOT NULL,
-  `ref_wallet` varchar(100) NOT NULL,
-  `gain_wallet` varchar(100) NOT NULL,
+  `wallet` varchar(100) NOT NULL DEFAULT '0',
+  `ref_wallet` varchar(100) NOT NULL DEFAULT '0',
+  `gain_wallet` varchar(100) NOT NULL DEFAULT '0',
   `total_deposit` float NOT NULL,
   `total_withdrawal` float NOT NULL,
   `trading_commission` int(11) NOT NULL,
@@ -236,17 +272,19 @@ CREATE TABLE `users` (
   `dn_with` int(11) NOT NULL,
   `status` varchar(11) NOT NULL,
   `kycstatus` enum('null','pending','declined','approved') NOT NULL,
-  `copy_balance` varchar(255) NOT NULL DEFAULT '0'
+  `copy_balance` varchar(255) NOT NULL DEFAULT '0',
+  `copy_rise` varchar(255) NOT NULL DEFAULT '1:2',
+  `copy_expert` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user`, `name`, `email`, `phone`, `profile_image`, `password`, `country`, `wallet`, `ref_wallet`, `gain_wallet`, `total_deposit`, `total_withdrawal`, `trading_commission`, `pending_investment`, `referral_balance`, `referral`, `account_warning`, `restriction`, `promo_won`, `ref_id`, `referree`, `date_registered`, `paid_ref`, `dn_with`, `status`, `kycstatus`, `copy_balance`) VALUES
-(2, 'firstclass', 'firstclass', 'firstclass@gmail.com', '949494', '--', 'firstclass123', 'Afghanistan', '5', '0', '0', 0, 0, 0, 0, 10, 0, 'no', 'no', '', '1115504554', '', '2025-01-21 19:19:55', '0', 0, '0', 'null', '0'),
-(6, 'thebest', 'thebest', 'spotwebdev.com@gmail.com', '07080879952', '--', 'thebest', 'Albania', '1203', '0', '0', 1303, 0, 0, 0, 0, 0, 'no', 'no', '', '228706318', '1115504554', '2025-01-21 19:47:40', '1', 0, '0', 'null', '0'),
-(7, 'aypvkhag', 'jfjf', 'festus@gmail.com', 'fff', '1739257269.jpg', 'repented', 'Afghanistan', '200', '0', '0', 0, 0, 0, 0, 100, 0, 'no', 'no', '', '173257284', '', '2025-01-24 19:49:29', '0', 0, '0', 'null', '0');
+INSERT INTO `users` (`id`, `user`, `name`, `email`, `phone`, `profile_image`, `password`, `country`, `wallet`, `ref_wallet`, `gain_wallet`, `total_deposit`, `total_withdrawal`, `trading_commission`, `pending_investment`, `referral_balance`, `referral`, `account_warning`, `restriction`, `promo_won`, `ref_id`, `referree`, `date_registered`, `paid_ref`, `dn_with`, `status`, `kycstatus`, `copy_balance`, `copy_rise`, `copy_expert`) VALUES
+(2, 'firstclass', 'firstclass', 'firstclass@gmail.com', '949494', '--', 'firstclass123', 'Afghanistan', '5', '0', '0', 0, 0, 0, 0, 10, 0, 'no', 'no', '', '1115504554', '', '2025-01-21 19:19:55', '0', 0, '0', 'null', '0', '1:2', 0),
+(6, 'thebest', 'thebest', 'spotwebdev.com@gmail.com', '07080879952', '--', 'thebest', 'Albania', '3920', '0', '0', 1303, 0, 0, 0, 0, 0, 'no', 'no', '', '228706318', '1115504554', '2025-01-21 19:47:40', '1', 0, '0', 'null', '200', '1:2', 4),
+(7, 'aypvkhag', 'jfjf', 'festus@gmail.com', 'fff', '1739257269.jpg', 'repented', 'Afghanistan', '40', '0', '0', 0, 0, 0, 0, 100, 0, 'no', 'no', '', '173257284', '', '2025-01-24 19:49:29', '1', 0, '0', 'null', '0', '1:2', 0);
 
 -- --------------------------------------------------------
 
@@ -315,6 +353,12 @@ ALTER TABLE `site`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `trade`
+--
+ALTER TABLE `trade`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -341,19 +385,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `deposits`
 --
 ALTER TABLE `deposits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `expert`
 --
 ALTER TABLE `expert`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `investments`
 --
 ALTER TABLE `investments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `kyc`
@@ -371,6 +415,12 @@ ALTER TABLE `payment_accounts`
 -- AUTO_INCREMENT for table `site`
 --
 ALTER TABLE `site`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `trade`
+--
+ALTER TABLE `trade`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --

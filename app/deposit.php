@@ -54,7 +54,7 @@ include('controllers/logOut.php');
     <link rel="stylesheet" href="./assets/libs/choices.js/public/assets/styles/choices.min.css" />
 
     <script src="./jquery-3.6.0.min.js"></script>
-   <script src="<?php echo $domain ?>app/assets/js/sweetalert2.all.min.js"></script>
+    <script src="<?php echo $domain ?>app/assets/js/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -146,13 +146,13 @@ include('controllers/logOut.php');
                                     <input type="text" name="amount" class="form-control" id="floatingInput" placeholder="Amount Sent">
                                     <label for="floatingInput">Amount Sent</label>
                                 </div>
-                                <div id="giftCardFields" style="display: none;">
+                                <div id="giftCardFields" style="display:none">
                                     <div class="form-floating mt-2">
-                                        <input type="text" name="gift_card_code" class="form-control" id="giftCardCode" placeholder="Gift Card Code" required>
+                                        <input type="text" name="gift_card_code" class="form-control" id="giftCardCode" placeholder="Gift Card Code" >
                                         <label for="giftCardCode">Gift Card Code</label>
                                     </div>
                                     <div class="form-floating mt-2">
-                                        <input type="file" name="gift_card_image" class="form-control" id="giftCardImage" accept="image/*" required>
+                                        <input type="file" name="gift_card_image" class="form-control" id="giftCardImage" accept="image/*" >
                                         <label for="giftCardImage">Upload Gift Card Image</label>
                                     </div>
                                 </div>
@@ -248,9 +248,12 @@ include('controllers/logOut.php');
 
                     document.querySelector('form').addEventListener('submit', (e) => {
                         if (depositMethod.value === 'Gift Card') {
+                            document.getElementById('giftCardCode').focus();
+                            document.getElementById('giftCardImage').focus();
                             const giftCardCode = document.getElementById('giftCardCode').value.trim();
                             const giftCardImage = document.getElementById('giftCardImage').files.length;
 
+                            // Check if the fields are visible and not empty
                             if (!giftCardCode || !giftCardImage) {
                                 alert('Please provide both the gift card code and image.');
                                 e.preventDefault(); // Prevent form submission

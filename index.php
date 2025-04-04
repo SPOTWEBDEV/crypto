@@ -508,7 +508,7 @@
                                         </div>
                                         <div class="content">
                                             <span>Get in Touch for More Information</span>
-                                            <a href="tel:0123456789"><?php echo $sitephone?></a>
+                                            <a href="tel:<?php echo $sitephone?>"><?php echo $sitephone?></a>
                                         </div>
                                     </div>
                                     <h2 class="title">Request a Free Consultation Schedule Today</h2>

@@ -15,7 +15,7 @@
                     <div class="col-lg-5">
                         <div class="header-top-right header-top-right-two">
                             <div class="header-contact">
-                                <a href="tel:0123456789"><i class="fas fa-phone"></i>+123 8989 444</a>
+                                <a href="tel:0123456789"><i class="fas fa-phone"></i><?php echo $sitephone?></a>
                             </div>
                             <div class="header-social">
                                 <ul class="list-wrap">

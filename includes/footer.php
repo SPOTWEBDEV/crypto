@@ -19,7 +19,7 @@
                                                 <i class="flaticon-phone-call"></i>
                                             </div>
                                             <div class="content">
-                                                <a href="tel:0123456789">+123 888 9999</a>
+                                                <a href="tel:<?php echo $sitephone?>"><?php echo $sitephone?></a>
                                             </div>
                                         </li>
                                         <li>

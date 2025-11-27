@@ -115,6 +115,21 @@ function calculateProfitAmount($coin_type, $capital)
             font-size: 24px;
             font-weight: bold;
         }
+
+        .adaptive-text {
+            font-weight: 800;
+            /* Extra thick text */
+            color: #111;
+            /* Dark gray ensures visibility on light mode */
+        }
+
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            .adaptive-text {
+                color: #fff;
+                /* White text for dark mode */
+            }
+        }
     </style>
 
 
@@ -160,19 +175,21 @@ function calculateProfitAmount($coin_type, $capital)
                                 <div class="percent-circle" style="border-top-color:#f7931a;border-right-color:#f7931a;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
                                     <span>43%</span>
                                 </div>
+                                <p class="btc_profit" style=" margin-top: 10px;">0</p>
                             </div>
                         </div>
-                        <div class="card custom-card" style="width:300px !important">
+                        <div class="card custom-card" style="width:300px !important;">
                             <div class="card-header justify-content-between">
                                 <div class="card-title">GOLD Earning</div>
                             </div>
 
                             <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
                                 <img src="<?php echo $domain . 'assets/img/gold.png'  ?>" alt="GOLD" style="width:70px;height:70px;margin-bottom:5px;" />
-                                <div style="font-size:20px;margin-bottom:10px;">USDT</div>
+                                <div style="font-size:20px;margin-bottom:10px;">GOLD</div>
                                 <div class="percent-circle" style="border-top-color:#26a17b;border-right-color:#26a17b;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
                                     <span>95%</span>
                                 </div>
+                                <p class="gold_profit" style=" margin-top: 10px;">0</p>
 
                             </div>
 
@@ -273,7 +290,8 @@ function calculateProfitAmount($coin_type, $capital)
                     ?>
                     <form method="POST" class="col-12 col-md-4" id="tradeForm">
                         <div class="card p-3">
-                            <h5 class="text-center">Place Market Order</h5>
+                            <h5 class="card-header" style="font-weight: 900; justify-content: center;display: flex;font-size: 20px;">Place Market Order</h5>
+
 
                             <!-- Select Trading Pair -->
                             <div class="mb-2">
@@ -317,8 +335,9 @@ function calculateProfitAmount($coin_type, $capital)
                     dataType: 'json',
                     success: function(response) {
                         console.log('Profit Data:', response);
-                        // $('#btc_profit').text(parseFloat(response.btc).toFixed(8));
-                        // $('#gold_profit').text(parseFloat(response.gold).toFixed(8));
+                        console.log(response['btc-profit']);
+                        $('.btc_profit').text(parseFloat(response['btc-profit']).toFixed(8) + ' BTC');
+                        $('.gold_profit').text(parseFloat(response['gold-profit']).toFixed(8) + ' Gold');
                     },
                     error: function(err) {
                         console.error('Error fetching profit:', err);

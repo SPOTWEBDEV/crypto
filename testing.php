@@ -1,4 +1,5 @@
 <?php
+
 include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
@@ -8,19 +9,14 @@ include('controllers/invMTR_CTR.php');
 // Log out the mother force;
 include('controllers/logOut.php');
 
+$user_identity = $userDetails['id'];
+$user_balance = $userDetails['wallet'];
 
-// server/operations/trade.php
 
+$sql = mysqli_query($connection, "SELECT sum(amount) AS trading_balance FROM investments where user_id = '$user_identity'");
 
-function formatNumber($number, $decimals = 2)
-{
-    // Check if the input is empty or not numeric
-    if (empty($number) || !is_numeric($number)) {
-        $number = 0;
-    }
-
-    // Use number_format to format the number
-    return number_format((float)$number, $decimals, '.', ',');
+while ($row = mysqli_fetch_array($sql)) {
+    $trading_balance = $row['trading_balance'];
 }
 
 
@@ -35,10 +31,6 @@ function formatNumber($number, $decimals = 2)
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>EMPTY PAGE BRUH</title>
-    <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template" />
-    <meta name="Author" content="Spruko Technologies Private Limited" />
-    <meta name="keywords" content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit." />
     <!-- Favicon -->
     <link rel="icon" href="./assets/images/brand-logos/favicon.ico" type="image/x-icon" />
     <!-- Choices JS -->
@@ -60,32 +52,102 @@ function formatNumber($number, $decimals = 2)
     <link rel="stylesheet" href="./assets/libs/@simonwep/pickr/themes/nano.min.css" />
     <!-- Choices Css -->
     <link rel="stylesheet" href="./assets/libs/choices.js/public/assets/styles/choices.min.css" />
+    <!-- <meta name="theme-color" content="#e7ecef" /> -->
+
+    <script src="<?php echo $domain ?>app/assets/js/jquery-3.6.0.min.js"></script>
+    <script src="<?php echo $domain ?>app/assets/js/sweetalert2.all.min.js"></script>
+    <title>Crypto Boxes</title>
+
+    <style>
+        body {
+
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .box {
+            /* background: #ffffff; */
+            width: 150px;
+            height: 150px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            font-weight: bold;
+            padding-top: 10px;
+        }
+
+        .box img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .percent-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 10px solid #e0e0e0;
+            position: relative;
+            margin-top: 15px;
+        }
+
+        .percent-circle span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+
 </head>
 
 <body>
-    <!-- Start Switcher -->
+
+    <!-- Switcher -->
     <?php include('./includes/switcher.php') ?>
     <!-- End Switcher -->
+
     <div class="page">
         <!-- app-header -->
         <?php include('./includes/header.php') ?>
         <!-- /app-header -->
+
+        <!-- Nah the app sidebar be this -->
         <!-- Start::app-sidebar -->
         <?php include('./includes/sidebar.php') ?>
-
+        <!-- Start::app-sidebar -->
+        <!-- OMOR NAH HERE WHERE SIDEBAR ENDED OOO -->
         <!-- End::app-sidebar -->
+
         <!-- Start::app-content -->
+
+
         <div class="main-content app-content">
             <div class="container-fluid">
                 <!-- Page Header -->
                 <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-                    <h1 class="page-title fw-semibold fs-18 mb-0">Trading History</h1>
+                    <h1 class="page-title fw-semibold fs-18 mb-0">DAHSBOARD</h1>
                     <div class="ms-md-1 ms-0">
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Trading History
+                                    Home
                                 </li>
                             </ol>
                         </nav>
@@ -93,156 +155,134 @@ function formatNumber($number, $decimals = 2)
                 </div>
                 <!-- Page Header Close -->
                 <!-- Start::row-1 -->
-                <div class="row">
-                    <div class="table-responsive">
-                        <table class="table text-nowrap table-borderless">
-                            <thead>
-                                <tr>
-                                    <th>S/N</th>
 
-                                    <th>Pair</th>
-                                    <th>Order Type</th>
-                                    <th>Stop Loss</th>
-                                    <th>Take Profit</th>
-                                    <th>Entry Price</th>
-                                    <th>Risk Reward</th>
-                                    <th>Total Profit</th>
-                                    <th>Profit</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tradeTableBody" class="tradeTableBody">
-                               
-                            </tbody>
-                        </table>
+                <div class="container" style="width: 100%; justify-content: center; gap: 40px;">
+
+
+
+
+
+                    <div class="col-12 col-md-8">
+                        <div class="card custom-card" style="width:300px !important">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title">BITCOIN Earning</div>
+
+                            </div>
+                            <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
+                                <img src="https://cryptologos.cc/logos/bitcoin-btc-newlogo.png" alt="Bitcoin" style="width:70px;height:70px;margin-bottom:5px;" />
+                                <div style="font-size:20px;margin-bottom:10px;">Bitcoin</div>
+                                <div class="percent-circle" style="border-top-color:#f7931a;border-right-color:#f7931a;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
+                                    <span>43%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card custom-card" style="width:300px !important">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title">USDT Earning</div>
+
+                                <div class="card custom-card" style="width:300px !important">
+                                    <div class="card-header justify-content-between">
+                                        <div class="card-title">GOLD Earning</div>
+
+                                        <img src="https://cryptologos.cc/logos/tether-usdt-newlogo.png" alt="USDT" style="width:70px;height:70px;margin-bottom:5px;" />
+                                        <div style="font-size:20px;margin-bottom:10px;">USDT</div>
+                                        <div class="percent-circle" style="border-top-color:#26a17b;border-right-color:#26a17b;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
+                                            <span>95%</span>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+
+
+
+                            </div>
+
+                            <!--End::row-1 -->
+
+
+                        </div>
                     </div>
+
+
+
+
+
+
+
+
+
+
+
                 </div>
-                <!--End::row-1 -->
-            </div>
-        </div>
-
-    </div>
-    <div class="scrollToTop">
-        <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>
-    </div>
-    <div id="responsive-overlay"></div>
-    <!-- Popper JS -->
-    <script src="./assets/libs/@popperjs/core/umd/popper.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="./assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Defaultmenu JS -->
-    <script src="./assets/js/defaultmenu.min.js"></script>
-    <!-- Node Waves JS-->
-    <script src="./assets/libs/node-waves/waves.min.js"></script>
-    <!-- Sticky JS -->
-    <script src="./assets/js/sticky.js"></script>
-    <!-- Simplebar JS -->
-    <script src="./assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="./assets/js/simplebar.js"></script>
-    <!-- Color Picker JS -->
-    <script src="./assets/libs/@simonwep/pickr/pickr.es5.min.js"></script>
-    <!-- Custom-Switcher JS -->
-    <script src="./assets/js/custom-switcher.min.js"></script>
-    <!-- Custom JS -->
-    <script src="./assets/js/custom.js"></script>
 
 
-    <script>
-    function fetchTradeUpdates() {
-        console.log('jjj')
-        fetch('../server/api/trade.php')
-            .then(response => response.json())
-            .then(data => {
-                
+                <form method="POST" class="col-12 col-md-4" id="tradeForm">
+                    <div class="card p-3">
+                        <h5 class="text-center">Place Market Order</h5>
 
-                
-                if (data.error) {
-                console.error(`Error: ${data.error}`);
-            } else if (data.length === 0) {
-                console.log("No pending trades found.");
-            } else {
-                data.forEach(trade => {
-                    if (trade.error) {
-                        console.error(`Trade ID: ${trade.trade_id} | Error: ${trade.error}`);
-                    } else {
-                        console.log(`Trade ID: ${trade.trade_id} | Pair: ${trade.pair} | Current Price: ${trade.current_price} | Profit: ${trade.profit} | Status: ${trade.status}`);
-                        console.log(trade.message);
-                    }
-                });
-            }
-                
-            })
-            .catch(error => {
-                console.error('Error fetching trade updates:', error);
-        });
-    }
+                        <!-- Select Trading Pair -->
+                        <div class="mb-2">
+                            <label for="tradingPair" class="form-label">Mining Coin</label>
+                            <select name="tradingPair" class="form-select" id="tradingPair">
+                                <option value="BTC-USDT">Gold</option>
+                                <option value="ETH-USDT">BitCoin</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label for="entryPrice" class="form-label">Amount</label>
+                            <input type="number" name="entryPrice" class="form-control" id="entryPrice" placeholder="Enter Entry Price" required>
+                        </div>
 
-    // Poll every 5 seconds
-    setInterval(fetchTradeUpdates, 1000);
-    fetchTradeUpdates(); // Initial fetch
+                        <div class="mb-2">
+                            <label for="amount" class="form-label">Profit in minute</label>
+                            <input type="number" name="amount" class="form-control" id="amount" placeholder="1minute => 0.004 btc => 0.012 gold" required>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-success w-100 me-1" onclick="setOrderType('Buy')">Mining</button>
+                        </div>
+                    </div>
+                </form>
+
+
+                <?php
+                include('./includes/hoverfooter.php')
+                ?>
 
 
 
-    function fetchTable() {
-    fetch('../server/api/getTrade.php')
-        .then(response => response.json())
-        .then(data => {
-            const tableBody = document.getElementById('tradeTableBody');
-            tableBody.innerHTML = ''; // Clear previous data
 
-            if (data.length > 0) {
-                data.forEach(trade => {
-                    const row = document.createElement('tr');
-
-                    row.innerHTML = `
-                        <td>${trade.trade_id || 'N/A'}</td>
-                        <td>${trade.pair || 'N/A'}</td>
-                        <td>${trade.order_type || 'N/A'}</td>
-                        <td>${trade.stop_loss || 'N/A'}</td>
-                        <td>${trade.take_profit || 'N/A'}</td>
-                        <td>${trade.entry_price || ''}</td>
-                        <td>${trade.risk_reward || ''}</td>
-                        <td>${trade.total_profit || ''}</td>
-                        <td>${trade.current_price_made || ''}</td>
-                    `;
-
-                    // Highlight rows with errors
-                    if (trade.error) {
-                        row.style.backgroundColor = '#f8d7da'; // Light red for errors
-                    } else if (trade.status === 'takeprofit') {
-                        row.style.backgroundColor = '#d4edda'; // Light green for profit
-                    } else if (trade.status === 'stoploss') {
-                        row.style.backgroundColor = '#f8d7da'; // Light red for loss
-                    } else {
-                        row.style.backgroundColor = '#fff'; // Default white for pending
-                    }
-
-                    tableBody.appendChild(row);
-                });
-            } else {
-                const row = document.createElement('tr');
-                row.innerHTML = `<td colspan="7">No pending trades found.</td>`;
-                tableBody.appendChild(row);
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching trade updates:', error);
-        });
-}
-
-// Poll every second (1000ms)
-setInterval(fetchTable, 1000);
-fetchTable(); // Initial fetch
-
-</script>
-
-
-
+                <?php include('./includes/popin_with.php') ?>
+                <!-- <div class="scrollToTop">
+            <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>
+        </div> -->
+                <div id="responsive-overlay"></div>
+                <!-- Popper JS -->
+                <script src="./assets/libs/@popperjs/core/umd/popper.min.js"></script>
+                <!-- Bootstrap JS -->
+                <script src="./assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <!-- Defaultmenu JS -->
+                <script src="./assets/js/defaultmenu.min.js"></script>
+                <!-- Node Waves JS-->
+                <script src="./assets/libs/node-waves/waves.min.js"></script>
+                <!-- Sticky JS -->
+                <script src="./assets/js/sticky.js"></script>
+                <!-- Simplebar JS -->
+                <script src="./assets/libs/simplebar/simplebar.min.js"></script>
+                <script src="./assets/js/simplebar.js"></script>
+                <!-- Color Picker JS -->
+                <script src="./assets/libs/@simonwep/pickr/pickr.es5.min.js"></script>
+                <!-- Apex Charts JS -->
+                <script src="./assets/libs/apexcharts/apexcharts.min.js"></script>
+                <!-- Crypto-Dashboard JS -->
+                <script src="./assets/js/crypto-dashboard.js"></script>
+                <!-- Custom-Switcher JS -->
+                <script src="./assets/js/custom-switcher.min.js"></script>
+                <!-- Custom JS -->
+                <script src="./assets/js/custom.js"></script>
 </body>
 
 </html>
-
-
-
-
-

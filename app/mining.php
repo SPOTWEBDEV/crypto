@@ -56,24 +56,14 @@ while ($row = mysqli_fetch_array($sql)) {
 
     <script src="<?php echo $domain ?>app/assets/js/jquery-3.6.0.min.js"></script>
     <script src="<?php echo $domain ?>app/assets/js/sweetalert2.all.min.js"></script>
-    <title>Crypto Boxes</title>
+
+    <title>DASHBOARD</title>
+
+</head>
+
+<body>
 
     <style>
-        body {
-
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .container {
-            display: flex;
-            gap: 20px;
-        }
-
         .box {
             /* background: #ffffff; */
             width: 150px;
@@ -114,9 +104,11 @@ while ($row = mysqli_fetch_array($sql)) {
         }
     </style>
 
-</head>
 
-<body>
+
+
+
+
 
     <!-- Switcher -->
     <?php include('./includes/switcher.php') ?>
@@ -135,99 +127,53 @@ while ($row = mysqli_fetch_array($sql)) {
         <!-- End::app-sidebar -->
 
         <!-- Start::app-content -->
+       
+
 
 
         <div class="main-content app-content">
             <div class="container-fluid">
-                <!-- Page Header -->
-                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-                    <h1 class="page-title fw-semibold fs-18 mb-0">DAHSBOARD</h1>
-                    <div class="ms-md-1 ms-0">
-                        <nav>
-                            <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">
-                                    Home
-                                </li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-                <!-- Page Header Close -->
-                <!-- Start::row-1 -->
-
-                <div class="container" style="width: 100%; justify-content: center; gap: 40px;">
-
-
-
-                    <div class="col-12 col-md-8">
+                <div class="row py-2">
+                    <div class="col-12 col-md-8 flex flex-wrap d-flex gap-3 justify-content-center mb-3">
 
                         <div class="card custom-card" style="width:300px !important">
                             <div class="card-header justify-content-between">
                                 <div class="card-title">BITCOIN Earning</div>
 
-                        </div>
-                        <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
-                            <img src="https://cryptologos.cc/logos/bitcoin-btc-newlogo.png" alt="Bitcoin" style="width:70px;height:70px;margin-bottom:5px;" />
-                            <div style="font-size:20px;margin-bottom:10px;">Bitcoin</div>
-                            <div class="percent-circle" style="border-top-color:#f7931a;border-right-color:#f7931a;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
-                                <span>43%</span>
                             </div>
                             <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
-                                <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Bitcoin" style="width:70px;height:70px;margin-bottom:5px;" />
+                                <img src="https://cryptologos.cc/logos/bitcoin-btc-newlogo.png" alt="Bitcoin" style="width:70px;height:70px;margin-bottom:5px;" />
                                 <div style="font-size:20px;margin-bottom:10px;">Bitcoin</div>
                                 <div class="percent-circle" style="border-top-color:#f7931a;border-right-color:#f7931a;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
                                     <span>43%</span>
                                 </div>
-                                <p style="margin-top:15px;font-size:17px;font-weight:bold;">5605172333 BTC</p>
-
                             </div>
                         </div>
-                    </div>
-
-                    <div class="card custom-card" style="width:300px !important">
-                        <div class="card-header justify-content-between">
-                            <div class="card-title">USDT Earning</div>
-
                         <div class="card custom-card" style="width:300px !important">
                             <div class="card-header justify-content-between">
                                 <div class="card-title">GOLD Earning</div>
+                            </div>
 
-                            <img src="https://cryptologos.cc/logos/tether-usdt-newlogo.png" alt="USDT" style="width:70px;height:70px;margin-bottom:5px;" />
+                             <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
+                                <img src="https://cryptologos.cc/logos/tether-usdt-newlogo.png" alt="USDT" style="width:70px;height:70px;margin-bottom:5px;" />
                             <div style="font-size:20px;margin-bottom:10px;">USDT</div>
                             <div class="percent-circle" style="border-top-color:#26a17b;border-right-color:#26a17b;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
                                 <span>95%</span>
                             </div>
-                            <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
 
-                                <img src="https://cdn-icons-png.flaticon.com/512/217/217425.png" alt="Gold" style="width:70px;height:70px;margin-bottom:5px;" />
-                                <div style="font-size:20px;margin-bottom:10px;">Gold</div>
-                                <div class="percent-circle" style="border-top-color:#d4af37;border-right-color:#d4af37;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
-                                    <span>70%</span>
-                                </div>
-                                <p style="margin-top:15px;font-size:17px;font-weight:bold;">120 KG</p>
+                             </div>
 
-                            </div>
-                        </div>
+                            
 
-                        <div class="card custom-card" style="width:300px !important">
-                            <div class="card-header justify-content-between">
-                                <div class="card-title">USDT Earning</div>
 
-                            </div>
-                            <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
 
-                                <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT" style="width:70px;height:70px;margin-bottom:5px;" />
-                                <div style="font-size:20px;margin-bottom:10px;">USDT</div>
-                                <div class="percent-circle" style="border-top-color:#26a17b;border-right-color:#26a17b;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
-                                    <span>95%</span>
-                                </div>
-                                <p style="margin-top:15px;font-size:17px;font-weight:bold;">250,000 USDT</p>
 
-                            </div>
+
                         </div>
 
                     </div>
+
+                    <!-- Market Order Form -->
                     <form method="POST" class="col-12 col-md-4" id="tradeForm">
                         <div class="card p-3">
                             <h5 class="text-center">Place Market Order</h5>
@@ -255,56 +201,45 @@ while ($row = mysqli_fetch_array($sql)) {
                         </div>
                     </form>
 
-
                 </div>
 
-                <!--End::row-1 -->
-
-
+                <script>
+                    function setOrderType(type) {
+                        document.getElementById("orderType").value = type;
+                        document.getElementById("tradeForm").submit();
+                    }
+                </script>
             </div>
-            <!-- End::app-content -->
-
-            <?php
-            include('./includes/hoverfooter.php')
-            ?>
-
         </div>
 
-
-
-    </div>
-
-
-
-
-    <?php include('./includes/popin_with.php') ?>
-    <!-- <div class="scrollToTop">
+        <?php include('./includes/popin_with.php') ?>
+        <!-- <div class="scrollToTop">
             <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>
         </div> -->
-    <div id="responsive-overlay"></div>
-    <!-- Popper JS -->
-    <script src="./assets/libs/@popperjs/core/umd/popper.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="./assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Defaultmenu JS -->
-    <script src="./assets/js/defaultmenu.min.js"></script>
-    <!-- Node Waves JS-->
-    <script src="./assets/libs/node-waves/waves.min.js"></script>
-    <!-- Sticky JS -->
-    <script src="./assets/js/sticky.js"></script>
-    <!-- Simplebar JS -->
-    <script src="./assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="./assets/js/simplebar.js"></script>
-    <!-- Color Picker JS -->
-    <script src="./assets/libs/@simonwep/pickr/pickr.es5.min.js"></script>
-    <!-- Apex Charts JS -->
-    <script src="./assets/libs/apexcharts/apexcharts.min.js"></script>
-    <!-- Crypto-Dashboard JS -->
-    <script src="./assets/js/crypto-dashboard.js"></script>
-    <!-- Custom-Switcher JS -->
-    <script src="./assets/js/custom-switcher.min.js"></script>
-    <!-- Custom JS -->
-    <script src="./assets/js/custom.js"></script>
+        <div id="responsive-overlay"></div>
+        <!-- Popper JS -->
+        <script src="./assets/libs/@popperjs/core/umd/popper.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="./assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Defaultmenu JS -->
+        <script src="./assets/js/defaultmenu.min.js"></script>
+        <!-- Node Waves JS-->
+        <script src="./assets/libs/node-waves/waves.min.js"></script>
+        <!-- Sticky JS -->
+        <script src="./assets/js/sticky.js"></script>
+        <!-- Simplebar JS -->
+        <script src="./assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="./assets/js/simplebar.js"></script>
+        <!-- Color Picker JS -->
+        <script src="./assets/libs/@simonwep/pickr/pickr.es5.min.js"></script>
+        <!-- Apex Charts JS -->
+        <script src="./assets/libs/apexcharts/apexcharts.min.js"></script>
+        <!-- Crypto-Dashboard JS -->
+        <script src="./assets/js/crypto-dashboard.js"></script>
+        <!-- Custom-Switcher JS -->
+        <script src="./assets/js/custom-switcher.min.js"></script>
+        <!-- Custom JS -->
+        <script src="./assets/js/custom.js"></script>
 </body>
 
 </html>

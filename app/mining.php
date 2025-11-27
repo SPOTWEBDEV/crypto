@@ -115,6 +115,21 @@ function calculateProfitAmount($coin_type, $capital)
             font-size: 24px;
             font-weight: bold;
         }
+
+        .adaptive-text {
+            font-weight: 800;
+            /* Extra thick text */
+            color: #111;
+            /* Dark gray ensures visibility on light mode */
+        }
+
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            .adaptive-text {
+                color: #fff;
+                /* White text for dark mode */
+            }
+        }
     </style>
 
 
@@ -160,19 +175,21 @@ function calculateProfitAmount($coin_type, $capital)
                                 <div class="percent-circle" style="border-top-color:#f7931a;border-right-color:#f7931a;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
                                     <span>43%</span>
                                 </div>
+                                <p style=" margin-top: 10px;">0.00012btc</p>
                             </div>
                         </div>
-                        <div class="card custom-card" style="width:300px !important">
+                        <div class="card custom-card" style="width:300px !important;">
                             <div class="card-header justify-content-between">
                                 <div class="card-title">GOLD Earning</div>
                             </div>
 
                             <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
                                 <img src="<?php echo $domain . 'assets/img/gold.png'  ?>" alt="GOLD" style="width:70px;height:70px;margin-bottom:5px;" />
-                                <div style="font-size:20px;margin-bottom:10px;">USDT</div>
+                                <div style="font-size:20px;margin-bottom:10px;">GOLD</div>
                                 <div class="percent-circle" style="border-top-color:#26a17b;border-right-color:#26a17b;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
                                     <span>95%</span>
                                 </div>
+                                <p style=" margin-top: 10px;">50kg</p>
 
                             </div>
 
@@ -273,7 +290,8 @@ function calculateProfitAmount($coin_type, $capital)
                     ?>
                     <form method="POST" class="col-12 col-md-4" id="tradeForm">
                         <div class="card p-3">
-                            <h5 class="text-center">Place Market Order</h5>
+                            <h5 class="card-header" style="font-weight: 900; justify-content: center;display: flex;font-size: 20px;">Place Market Order</h5>
+
 
                             <!-- Select Trading Pair -->
                             <div class="mb-2">
@@ -290,7 +308,7 @@ function calculateProfitAmount($coin_type, $capital)
 
                             <div class="mb-2">
                                 <label for="profit_amount" class="form-label">Profit in minute</label>
-                                <input type="number" name="profit_amount" class="form-control" id="profit_amount" placeholder="1minute => 0.004 btc => 0.012 gold" >
+                                <input type="number" name="profit_amount" class="form-control" id="profit_amount" placeholder="1minute => 0.004 btc => 0.012 gold">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <button type="submit" name="mining" class="btn btn-success w-100 me-1">Mining</button>

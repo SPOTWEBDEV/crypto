@@ -160,10 +160,11 @@ while ($row = mysqli_fetch_array($sql)) {
 
 
 
+                    <div class="col-12 col-md-8">
 
-                    <div class="card custom-card" style="width:300px !important">
-                        <div class="card-header justify-content-between">
-                            <div class="card-title">BITCOIN Earning</div>
+                        <div class="card custom-card" style="width:300px !important">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title">BITCOIN Earning</div>
 
                         </div>
                         <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
@@ -172,25 +173,15 @@ while ($row = mysqli_fetch_array($sql)) {
                             <div class="percent-circle" style="border-top-color:#f7931a;border-right-color:#f7931a;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
                                 <span>43%</span>
                             </div>
-                            <p style="margin-top:15px;font-size:17px;font-weight:bold;">5605172333 BTC</p>
+                            <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
+                                <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Bitcoin" style="width:70px;height:70px;margin-bottom:5px;" />
+                                <div style="font-size:20px;margin-bottom:10px;">Bitcoin</div>
+                                <div class="percent-circle" style="border-top-color:#f7931a;border-right-color:#f7931a;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
+                                    <span>43%</span>
+                                </div>
+                                <p style="margin-top:15px;font-size:17px;font-weight:bold;">5605172333 BTC</p>
 
-                        </div>
-                    </div>
-
-                    <div class="card custom-card" style="width:300px !important">
-                        <div class="card-header justify-content-between">
-                            <div class="card-title">GOLD Earning</div>
-
-                        </div>
-                        <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
-
-                            <img src="https://cdn-icons-png.flaticon.com/512/217/217425.png" alt="Gold" style="width:70px;height:70px;margin-bottom:5px;" />
-                            <div style="font-size:20px;margin-bottom:10px;">Gold</div>
-                            <div class="percent-circle" style="border-top-color:#d4af37;border-right-color:#d4af37;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
-                                <span>70%</span>
                             </div>
-                            <p style="margin-top:15px;font-size:17px;font-weight:bold;">120 KG</p>
-
                         </div>
                     </div>
 
@@ -198,18 +189,73 @@ while ($row = mysqli_fetch_array($sql)) {
                         <div class="card-header justify-content-between">
                             <div class="card-title">USDT Earning</div>
 
-                        </div>
-                        <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
+                        <div class="card custom-card" style="width:300px !important">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title">GOLD Earning</div>
 
                             <img src="https://cryptologos.cc/logos/tether-usdt-newlogo.png" alt="USDT" style="width:70px;height:70px;margin-bottom:5px;" />
                             <div style="font-size:20px;margin-bottom:10px;">USDT</div>
                             <div class="percent-circle" style="border-top-color:#26a17b;border-right-color:#26a17b;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
                                 <span>95%</span>
                             </div>
-                            <p style="margin-top:15px;font-size:17px;font-weight:bold;">250,000 USDT</p>
+                            <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
 
+                                <img src="https://cdn-icons-png.flaticon.com/512/217/217425.png" alt="Gold" style="width:70px;height:70px;margin-bottom:5px;" />
+                                <div style="font-size:20px;margin-bottom:10px;">Gold</div>
+                                <div class="percent-circle" style="border-top-color:#d4af37;border-right-color:#d4af37;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
+                                    <span>70%</span>
+                                </div>
+                                <p style="margin-top:15px;font-size:17px;font-weight:bold;">120 KG</p>
+
+                            </div>
                         </div>
+
+                        <div class="card custom-card" style="width:300px !important">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title">USDT Earning</div>
+
+                            </div>
+                            <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
+
+                                <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT" style="width:70px;height:70px;margin-bottom:5px;" />
+                                <div style="font-size:20px;margin-bottom:10px;">USDT</div>
+                                <div class="percent-circle" style="border-top-color:#26a17b;border-right-color:#26a17b;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
+                                    <span>95%</span>
+                                </div>
+                                <p style="margin-top:15px;font-size:17px;font-weight:bold;">250,000 USDT</p>
+
+                            </div>
+                        </div>
+
                     </div>
+                    <form method="POST" class="col-12 col-md-4" id="tradeForm">
+                        <div class="card p-3">
+                            <h5 class="text-center">Place Market Order</h5>
+
+                            <!-- Select Trading Pair -->
+                            <div class="mb-2">
+                                <label for="tradingPair" class="form-label">Mining Coin</label>
+                                <select name="tradingPair" class="form-select" id="tradingPair">
+                                    <option value="BTC-USDT">Gold</option>
+                                    <option value="ETH-USDT">BitCoin</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <label for="entryPrice" class="form-label">Amount</label>
+                                <input type="number" name="entryPrice" class="form-control" id="entryPrice" placeholder="Enter Entry Price" required>
+                            </div>
+
+                            <div class="mb-2">
+                                <label for="amount" class="form-label">Profit in minute</label>
+                                <input type="number" name="amount" class="form-control" id="amount" placeholder="1minute => 0.004 btc => 0.012 gold" required>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-success w-100 me-1" onclick="setOrderType('Buy')">Mining</button>
+                            </div>
+                        </div>
+                    </form>
+
+
                 </div>
 
                 <!--End::row-1 -->

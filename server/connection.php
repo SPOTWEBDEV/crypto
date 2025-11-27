@@ -2,18 +2,10 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-
 function checkUrlProtocol($url)
 {
-    // Parse the URL to get the scheme
     $parsedUrl = parse_url($url);
-
-    // Check if the scheme exists and if it's http or https
-    if (isset($parsedUrl['scheme'])) {
-        return $parsedUrl['scheme'];
-    } else {
-        return 'invalid'; // Invalid URL if no scheme is found
-    }
+    return isset($parsedUrl['scheme']) ? $parsedUrl['scheme'] : 'invalid';
 }
 
 // Automatically get the current URL
@@ -26,6 +18,8 @@ $request = checkUrlProtocol($currentUrl);
 // Default configurations
 define("HOST", "localhost");
 
+// Determine if online or offline
+$isLocalhost = ($_SERVER['HTTP_HOST'] === 'localhost');
 
 // Set configurations based on protocol
 if ($request == 'https') {
@@ -36,17 +30,31 @@ if ($request == 'https') {
 }
 elseif ($request == 'http') {
     $domain = "http://localhost/crypto/";
+
     define("USER", "root");
     define("PASSWORD", "");
     define("DATABASE", "jay");
+
+    // Database connection
+    $connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+    if (!$connection) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+} else {
+    // Online (Live Server)
+    $domain = "https://fusionsassets.com/";
+
+    define("USER", "fusionsa_crypto");
+    define("PASSWORD", "fusionsa_crypto");
+    define("DATABASE", "fusionsa_crypto");
+
+    // Database connection
+    $connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+    if (!$connection) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
 }
 
-// // Database connection
-$connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
-
-if (!$connection) {
-    die("Connection failed: " . mysqli_connect_error());
-}
 
 // // Site configurations
 $sitename = "Proteus Chain";

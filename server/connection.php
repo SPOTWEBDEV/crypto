@@ -22,31 +22,17 @@ define("HOST", "localhost");
 $isLocalhost = ($_SERVER['HTTP_HOST'] === 'localhost');
 
 // Set configurations based on protocol
-if ($request == 'https') {
+if (!$isLocalhost) {
     $domain = "https://proteuschain.com/";
     define("USER", "proteusc_cry");
     define("PASSWORD", "proteusc_cry");
     define("DATABASE", "proteusc_cry");
-}
-elseif ($request == 'http') {
+}else{
     $domain = "http://localhost/crypto/";
 
     define("USER", "root");
     define("PASSWORD", "");
     define("DATABASE", "jay");
-
-    // Database connection
-    $connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
-    if (!$connection) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-} else {
-    // Online (Live Server)
-    $domain = "https://fusionsassets.com/";
-
-    define("USER", "fusionsa_crypto");
-    define("PASSWORD", "fusionsa_crypto");
-    define("DATABASE", "fusionsa_crypto");
 
     // Database connection
     $connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
@@ -61,9 +47,9 @@ $sitename = "Proteus Chain";
 
 
 // email config 
-$siteemail = "support@fusionsassets.com";
-$emailpassword  = "support@fusionsassets.com";
-$host = 'mail.fusionsassets.com';
+$siteemail = "support@proteuschain.com";
+$emailpassword  = "support@proteuschain.com";
+$host = 'mail.proteuschain.com';
 $sitephone  = "+44 776 0957 798";
 $siteaddress  = "weston newyork";
 

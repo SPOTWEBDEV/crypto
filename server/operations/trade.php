@@ -10,7 +10,7 @@ $isCli = php_sapi_name() === 'cli';
 // Set default protocol and domain for CLI
 if ($isCli) {
     $request = 'https'; // Default to HTTPS or set based on environment
-    $domain = "https://fusionsassets.com/";
+    $domain = "https://proteuschain.com/";
 } else {
     $currentUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") 
         . "://" . ($_SERVER['HTTP_HOST'] ?? 'localhost') 
@@ -23,9 +23,9 @@ define("HOST", "localhost");
 
 // Set configurations based on protocol
 if ($request == 'https') {
-    define("USER", "tifkvkth_crypto");
-    define("PASSWORD", "tifkvkth_crypto");
-    define("DATABASE", "tifkvkth_crypto");
+    define("USER", "proteusc_cry");
+    define("PASSWORD", "proteusc_cry");
+    define("DATABASE", "proteusc_cry");
 } elseif ($request == 'http') {
     define("USER", "root");
     define("PASSWORD", "");

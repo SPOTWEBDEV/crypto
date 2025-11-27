@@ -6,7 +6,7 @@
                     <div class="col-lg-4 col-md-7">
                         <div class="footer-widget">
                             <!-- <div class="fw-logo">
-                                <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                <a href="index.html"><img src="assets/img/logo/newlogo.png" alt=""></a>
                             </div> -->
                             <h1 style="color:black;" > <?php echo $sitename?></h1>
                             <div class="footer-content">

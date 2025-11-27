@@ -20,7 +20,7 @@ if(isset($_GET['ref'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>REGISTRATION</title>
     <!-- Favicon -->
-    <link rel="icon" href="https://ravenassetlimited.com/assets/sitelogo.png"> <!-- Main Theme Js -->
+    <link rel="icon" href="https://ravenassetlimited.com/assets/sitenewlogo.png"> <!-- Main Theme Js -->
     <script src="../assets/js/authentication-main.js"></script> <!-- Bootstrap Css -->
     <link id="style" href="./assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet"> <!-- Style Css -->
     <link href="./assets/css/styles.min.css" rel="stylesheet"> <!-- Icons Css -->

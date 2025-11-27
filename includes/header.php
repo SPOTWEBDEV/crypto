@@ -44,12 +44,12 @@
                                 }
                             </style>
 
-                            <div class="logo">
-                                <a href="#"><img src="assets/img/logo/newlogo.png" alt="Logo"></a>
+                            <div class="logo t">
+                                <a href="#"><img  src="assets/img/logo/blacklogo.jpeg" alt="Logo"></a>
                             </div>
                             <h1 style="color:white;"> </h1>
-                            <div class="logo d-none">
-                               <a href="#"><img src="assets/img/logo/blacklogo.png" alt="Logo"></a>
+                            <div class="logo d-none b">
+                                <a href="#"><img src="assets/img/logo/newlogo.png" alt="Logo"></a>
                             </div>
                             <div class="navbar-wrap main-menu d-none d-lg-flex">
                                 <ul class="navigation">

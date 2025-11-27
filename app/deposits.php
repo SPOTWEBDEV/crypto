@@ -37,7 +37,7 @@ function formatNumber($number, $decimals = 2) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>History</title>
     <!-- Favicon -->
-    <link rel="icon" href="./assets/images/brand-logos/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo $domain ?>assets/img/newfavicon.jpeg">
     <!-- Choices JS -->
     <script src="./assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
     <!-- Main Theme Js -->

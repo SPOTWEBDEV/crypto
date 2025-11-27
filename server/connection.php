@@ -61,9 +61,9 @@ $sitename = "Proteus Chain";
 
 
 // email config 
-$siteemail = "support@fusionsassets.com";
-$emailpassword  = "support@fusionsassets.com";
-$host = 'mail.fusionsassets.com';
+$siteemail = "support@proteuschain.com";
+$emailpassword  = "support@proteuschain.com";
+$host = 'mail.proteuschain.com';
 $sitephone  = "+44 776 0957 798";
 $siteaddress  = "weston newyork";
 

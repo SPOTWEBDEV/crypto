@@ -13,11 +13,24 @@ $user_identity = $userDetails['id'];
 $user_balance = $userDetails['wallet'];
 
 
-$sql = mysqli_query($connection, "SELECT sum(amount) AS trading_balance FROM investments where user_id = '$user_identity'");
 
-while ($row = mysqli_fetch_array($sql)) {
-    $trading_balance = $row['trading_balance'];
+function getProfitAmount($coin_type, $capital)
+{
+    $coin_type = strtolower($coin_type); // convert to lowercase for comparison
+
+    if ($coin_type == 'btc') {
+        // Example profit calculation for BTC
+        return $capital * 0.0004; // 0.04% profit per minute
+    } elseif ($coin_type == 'gold') {
+        // Example profit calculation for ETH/Gold
+        return $capital * 0.0012; // 0.12% profit per minute
+    } else {
+        return 0; // unknown coin type
+    }
 }
+
+
+
 
 
 ?>
@@ -127,7 +140,7 @@ while ($row = mysqli_fetch_array($sql)) {
         <!-- End::app-sidebar -->
 
         <!-- Start::app-content -->
-       
+
 
 
 
@@ -154,16 +167,16 @@ while ($row = mysqli_fetch_array($sql)) {
                                 <div class="card-title">GOLD Earning</div>
                             </div>
 
-                             <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
+                            <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
                                 <img src="https://cryptologos.cc/logos/tether-usdt-newlogo.png" alt="USDT" style="width:70px;height:70px;margin-bottom:5px;" />
-                            <div style="font-size:20px;margin-bottom:10px;">USDT</div>
-                            <div class="percent-circle" style="border-top-color:#26a17b;border-right-color:#26a17b;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
-                                <span>95%</span>
+                                <div style="font-size:20px;margin-bottom:10px;">USDT</div>
+                                <div class="percent-circle" style="border-top-color:#26a17b;border-right-color:#26a17b;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
+                                    <span>95%</span>
+                                </div>
+
                             </div>
 
-                             </div>
 
-                            
 
 
 
@@ -174,6 +187,90 @@ while ($row = mysqli_fetch_array($sql)) {
                     </div>
 
                     <!-- Market Order Form -->
+                    <?php
+
+
+
+                    if (isset($_POST['mining'])) {
+                        $coin_type = mysqli_real_escape_string($connection, $_POST['coin_type']);
+                        $capital = mysqli_real_escape_string($connection, $_POST['capital']);
+
+                        $user_balance = $userDetails['wallet'];
+                        if ($capital > $user_balance) {
+                            echo '<script>
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Insufficient Balance",
+                                    text: "You do not have enough balance to start mining.",
+                                    confirmButtonText: "OK"
+                                });
+                                </script>';
+                        } else {
+
+                            // Deduct the capital from user wallet
+                            $new_balance = $user_balance - $capital;
+
+                            $mining_capital_btc  = $userDetails['mining_capital_btc'];
+                            $mining_capital_gold = $userDetails['mining_capital_gold'];
+                            $mining_profit_btc = $userDetails['mining_profit_btc'];
+                            $mining_profit_gold = $userDetails['mining_profit_gold'];
+
+
+                            $profit_amount = getProfitAmount($coin_type, $capital);
+
+                            if ($coin_type == 'btc') {
+                                $mining_capital_btc += $capital;
+                                $mining_profit_btc += $profit_amount;
+
+                                $update_mining_stats = mysqli_query($connection, "UPDATE users SET mining_capital_btc = '$mining_capital_btc', mining_profit_btc = '$mining_profit_btc' , wallet = '$new_balance' WHERE id = '$user_identity'");
+                                if ($update_mining_stats) {
+                                    echo '<script>
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "Mining Started",
+                                        text: "Your mining has been started successfully.",
+                                        confirmButtonText: "OK"
+                                    });
+                                    </script>';
+                                } else {
+                                    echo '<script>
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "Error",
+                                        text: "There was an error starting your mining. Please try again.",
+                                        confirmButtonText: "OK"
+                                    });
+                                    </script>';
+                                }
+                            } elseif ($coin_type == 'gold') {
+                                $mining_capital_gold += $capital;
+                                $mining_profit_gold += $profit_amount;
+                                $update_mining_stats = mysqli_query($connection, "UPDATE users SET mining_capital_gold = '$mining_capital_gold', mining_profit_gold = '$mining_profit_gold' , wallet = '$new_balance' WHERE id = '$user_identity'");
+                                if ($update_mining_stats) {
+                                    echo '<script>
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "Mining Started",
+                                        text: "Your mining has been started successfully.",
+                                        confirmButtonText: "OK"
+                                    });
+                                    </script>';
+                                } else {
+                                    echo '<script>
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "Error",
+                                        text: "There was an error starting your mining. Please try again.",
+                                        confirmButtonText: "OK"
+                                    });
+                                    </script>';
+                                }
+                            }
+                        }
+                    }
+
+
+                    ?>
                     <form method="POST" class="col-12 col-md-4" id="tradeForm">
                         <div class="card p-3">
                             <h5 class="text-center">Place Market Order</h5>
@@ -181,34 +278,29 @@ while ($row = mysqli_fetch_array($sql)) {
                             <!-- Select Trading Pair -->
                             <div class="mb-2">
                                 <label for="tradingPair" class="form-label">Mining Coin</label>
-                                <select name="tradingPair" class="form-select" id="tradingPair">
-                                    <option value="BTC-USDT">Gold</option>
-                                    <option value="ETH-USDT">BitCoin</option>
+                                <select name="coin_type" class="form-select" id="tradingPair">
+                                    <option value="gold">Gold</option>
+                                    <option value="btc">Btc Coin</option>
                                 </select>
                             </div>
                             <div class="mb-2">
-                                <label for="entryPrice" class="form-label">Amount</label>
-                                <input type="number" name="entryPrice" class="form-control" id="entryPrice" placeholder="Enter Entry Price" required>
+                                <label for="capital" class="form-label">Amount</label>
+                                <input type="number" name="capital" class="form-control" id="capital" placeholder="Enter Entry Price" required>
                             </div>
 
                             <div class="mb-2">
-                                <label for="amount" class="form-label">Profit in minute</label>
-                                <input type="number" name="amount" class="form-control" id="amount" placeholder="1minute => 0.004 btc => 0.012 gold" required>
+                                <label for="profit_amount" class="form-label">Profit in minute</label>
+                                <input type="number" name="profit_amount" class="form-control" id="profit_amount" placeholder="1minute => 0.004 btc => 0.012 gold" >
                             </div>
                             <div class="d-flex justify-content-between">
-                                <button type="button" class="btn btn-success w-100 me-1" onclick="setOrderType('Buy')">Mining</button>
+                                <button type="submit" name="mining" class="btn btn-success w-100 me-1">Mining</button>
                             </div>
                         </div>
                     </form>
 
                 </div>
 
-                <script>
-                    function setOrderType(type) {
-                        document.getElementById("orderType").value = type;
-                        document.getElementById("tradeForm").submit();
-                    }
-                </script>
+
             </div>
         </div>
 

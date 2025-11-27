@@ -290,7 +290,7 @@ function calculateProfitAmount($coin_type, $capital)
 
                             <div class="mb-2">
                                 <label for="profit_amount" class="form-label">Profit in minute</label>
-                                <input type="number" name="profit_amount" class="form-control" id="profit_amount" placeholder="1minute => 0.004 btc => 0.012 gold" >
+                                <input type="number" name="profit_amount" class="form-control" id="profit_amount" placeholder="1minute => 0.004 btc => 0.012 gold">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <button type="submit" name="mining" class="btn btn-success w-100 me-1">Mining</button>
@@ -305,6 +305,36 @@ function calculateProfitAmount($coin_type, $capital)
         </div>
 
         <?php include('./includes/popin_with.php') ?>
+
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function fetchProfit() {
+                const url = '<?php echo $domain ?>server/api/get_profit.php'
+                console.log('Fetching profit data...', url);
+                $.ajax({
+                    url,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log('Profit Data:', response);
+                        // $('#btc_profit').text(parseFloat(response.btc).toFixed(8));
+                        // $('#gold_profit').text(parseFloat(response.gold).toFixed(8));
+                    },
+                    error: function(err) {
+                        console.error('Error fetching profit:', err);
+                    }
+                });
+            }
+
+            // Fetch profit on page load
+            fetchProfit();
+
+            // Optionally, refresh every 30 seconds
+            setInterval(fetchProfit, 10000);
+        </script>
+
+
+
         <!-- <div class="scrollToTop">
             <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>
         </div> -->
@@ -332,6 +362,9 @@ function calculateProfitAmount($coin_type, $capital)
         <script src="./assets/js/custom-switcher.min.js"></script>
         <!-- Custom JS -->
         <script src="./assets/js/custom.js"></script>
+
+       
+
 </body>
 
 </html>

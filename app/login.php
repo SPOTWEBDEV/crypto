@@ -16,13 +16,14 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Login</title>
-    <link rel="icon" href="./assets/images/brand-logos/favicon.ico" type="image/x-icon"> <!-- Main Theme Js -->
+ 
     <script src="./assets/js/authentication-main.js"></script> <!-- Bootstrap Css -->
     <link id="style" href="./assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet"> <!-- Style Css -->
     <link href="./assets/css/styles.min.css" rel="stylesheet"> <!-- Icons Css -->
     <link href="./assets/css/icons.min.css" rel="stylesheet">
     <script src="./assets/js/main.js"></script>
     <script src="./controllers/sweetalert2.all.min.js"></script>
+        <link rel="shortcut icon" type="image/x-icon" href="<?php echo $domain ?>assets/img/newfavicon.jpeg">
 
 </head>
 

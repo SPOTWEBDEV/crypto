@@ -27,6 +27,7 @@ if(isset($_GET['ref'])){
     <link href="./assets/css/icons.min.css" rel="stylesheet">
     <script src="./assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link rel="shortcut icon" type="image/x-icon" href="<?php echo $domain ?>assets/img/newfavicon.jpeg">
 
 </head>
 

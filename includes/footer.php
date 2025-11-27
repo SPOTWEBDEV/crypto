@@ -5,10 +5,19 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-7">
                         <div class="footer-widget">
-                            <!-- <div class="fw-logo">
+
+                          <style>
+                                .fw-logoo img {
+                                    width: 200px;
+                                    /* Increase logo width */
+                                    height: 130px !important;
+                                    /* Keep proportions */
+                                }
+                            </style>
+                            <div class="fw-logoo">
                                 <a href="index.html"><img src="assets/img/logo/newlogo.png" alt=""></a>
-                            </div> -->
-                            <h1 style="color:black;" > <?php echo $sitename?></h1>
+                            </div>
+                            <!-- <h1 style="color:black;" > <?php echo $sitename?></h1> -->
                             <div class="footer-content">
                                 <p>When blockchain technology revolutionized finance, innovators seized the opportunity to create a decentralized system, transforming the way we invest and trade in cryptocurrencies.</p>
 

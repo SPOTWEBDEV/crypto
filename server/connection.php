@@ -27,6 +27,10 @@ if (!$isLocalhost) {
     define("USER", "proteusc_cry");
     define("PASSWORD", "proteusc_cry");
     define("DATABASE", "proteusc_cry");
+    $connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+    if (!$connection) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
 }else{
     $domain = "http://localhost/crypto/";
 

@@ -175,7 +175,7 @@ function calculateProfitAmount($coin_type, $capital)
                                 <div class="percent-circle" style="border-top-color:#f7931a;border-right-color:#f7931a;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
                                     <span>43%</span>
                                 </div>
-                                <p style=" margin-top: 10px;">0.00012btc</p>
+                                <p class="btc_profit" style=" margin-top: 10px;">0</p>
                             </div>
                         </div>
                         <div class="card custom-card" style="width:300px !important;">
@@ -189,7 +189,7 @@ function calculateProfitAmount($coin_type, $capital)
                                 <div class="percent-circle" style="border-top-color:#26a17b;border-right-color:#26a17b;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
                                     <span>95%</span>
                                 </div>
-                                <p style=" margin-top: 10px;">50kg</p>
+                                <p class="gold_profit" style=" margin-top: 10px;">0</p>
 
                             </div>
 
@@ -323,6 +323,37 @@ function calculateProfitAmount($coin_type, $capital)
         </div>
 
         <?php include('./includes/popin_with.php') ?>
+
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function fetchProfit() {
+                const url = '<?php echo $domain ?>server/api/get_profit.php'
+                console.log('Fetching profit data...', url);
+                $.ajax({
+                    url,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log('Profit Data:', response);
+                        console.log(response['btc-profit']);
+                        $('.btc_profit').text(parseFloat(response['btc-profit']).toFixed(8) + ' BTC');
+                        $('.gold_profit').text(parseFloat(response['gold-profit']).toFixed(8) + ' Gold');
+                    },
+                    error: function(err) {
+                        console.error('Error fetching profit:', err);
+                    }
+                });
+            }
+
+            // Fetch profit on page load
+            fetchProfit();
+
+            // Optionally, refresh every 30 seconds
+            setInterval(fetchProfit, 10000);
+        </script>
+
+
+
         <!-- <div class="scrollToTop">
             <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>
         </div> -->
@@ -350,6 +381,9 @@ function calculateProfitAmount($coin_type, $capital)
         <script src="./assets/js/custom-switcher.min.js"></script>
         <!-- Custom JS -->
         <script src="./assets/js/custom.js"></script>
+
+       
+
 </body>
 
 </html>

@@ -24,49 +24,15 @@ $user_identity = $userDetails['id'];
         $method = mysqli_real_escape_string($connection, $_POST['method']);
         $amount = mysqli_real_escape_string($connection, $_POST['amount']);
 
-        $gift_card_code = null;
-        $gift_card_image_path = null;
+      
 
         $url = $domain . 'app/deposit.php';
 
-        if ($method === 'Gift Card') {
-            $gift_card_code = mysqli_real_escape_string($connection, $_POST['gift_card_code']);
-
-            // Handle gift card image upload
-            if (!empty($_FILES['gift_card_image']['name'])) {
-                $target_dir = "../../uploads/gift_cards/";
-                $target_file = $target_dir . basename($_FILES["gift_card_image"]["name"]);
-
-                // Check if image file is a valid image
-                $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-                $valid_extensions = ["jpg", "png", "jpeg"];
-                if (in_array($imageFileType, $valid_extensions)) {
-                    if (move_uploaded_file($_FILES["gift_card_image"]["tmp_name"], $target_file)) {
-                        $gift_card_image_path = $target_file;
-                    } else {
-                        echo "<script>
-                            Swal.fire('Error', 'Error uploading gift card image.', 'error');
-                            setTimeout(() => { 
-                                window.open('$url', '_self');
-                            }, 2000);
-                        </script>";
-                        exit;
-                    }
-                } else {
-                    echo "<script>
-                        Swal.fire('Invalid Format', 'Only JPG, PNG, and JPEG formats are allowed.', 'error');
-                        setTimeout(() => { 
-                            window.open('$url', '_self');
-                        }, 2000);
-                    </script>";
-                    exit;
-                }
-            }
-        }
+       
 
         $date = date('Y-m-d H:i:s');
-        $query = "INSERT INTO deposits (user_id, method, amount, gift_card_code, gift_card_image, date_deposited, status) 
-              VALUES ('$user', '$method', '$amount', '$gift_card_code', '$gift_card_image_path', '$date', '0')";
+        $query = "INSERT INTO deposits (user_id, method, amount, date_deposited, status) 
+              VALUES ('$user', '$method', '$amount', '$date', '0')";
         if (mysqli_query($connection, $query)) {
             $url = $domain . 'app/deposits.php';
             echo "<script>

@@ -167,7 +167,7 @@ while ($row = mysqli_fetch_array($sql)) {
 
                         </div>
                         <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
-                            <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Bitcoin" style="width:70px;height:70px;margin-bottom:5px;" />
+                            <img src="https://cryptologos.cc/logos/bitcoin-btc-newlogo.png" alt="Bitcoin" style="width:70px;height:70px;margin-bottom:5px;" />
                             <div style="font-size:20px;margin-bottom:10px;">Bitcoin</div>
                             <div class="percent-circle" style="border-top-color:#f7931a;border-right-color:#f7931a;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
                                 <span>43%</span>
@@ -193,7 +193,7 @@ while ($row = mysqli_fetch_array($sql)) {
 
                         </div>
                     </div>
-                    
+
                     <div class="card custom-card" style="width:300px !important">
                         <div class="card-header justify-content-between">
                             <div class="card-title">USDT Earning</div>
@@ -201,7 +201,7 @@ while ($row = mysqli_fetch_array($sql)) {
                         </div>
                         <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
 
-                            <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT" style="width:70px;height:70px;margin-bottom:5px;" />
+                            <img src="https://cryptologos.cc/logos/tether-usdt-newlogo.png" alt="USDT" style="width:70px;height:70px;margin-bottom:5px;" />
                             <div style="font-size:20px;margin-bottom:10px;">USDT</div>
                             <div class="percent-circle" style="border-top-color:#26a17b;border-right-color:#26a17b;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
                                 <span>95%</span>

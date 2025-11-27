@@ -14,7 +14,7 @@ $user_balance = $userDetails['wallet'];
 
 
 
-function getProfitAmount($coin_type, $capital)
+function calculateProfitAmount($coin_type, $capital)
 {
     $coin_type = strtolower($coin_type); // convert to lowercase for comparison
 
@@ -216,7 +216,7 @@ function getProfitAmount($coin_type, $capital)
                             $mining_profit_gold = $userDetails['mining_profit_gold'];
 
 
-                            $profit_amount = getProfitAmount($coin_type, $capital);
+                            $profit_amount = calculateProfitAmount($coin_type, $capital);
 
                             if ($coin_type == 'btc') {
                                 $mining_capital_btc += $capital;

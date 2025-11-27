@@ -29,10 +29,10 @@ define("HOST", "localhost");
 
 // Set configurations based on protocol
 if ($request == 'https') {
-    $domain = "https://fusionsassets.com/";
-    define("USER", "tifkvkth_crypto");
-    define("PASSWORD", "tifkvkth_crypto");
-    define("DATABASE", "tifkvkth_crypto");
+    $domain = "https://proteuschain.com/";
+    define("USER", "proteusc_cry");
+    define("PASSWORD", "proteusc_cry");
+    define("DATABASE", "proteusc_cry");
 }
 elseif ($request == 'http') {
     $domain = "http://localhost/crypto/";
@@ -49,7 +49,7 @@ if (!$connection) {
 }
 
 // // Site configurations
-$sitename = "Fusions Assets";
+$sitename = "Proteus Chain";
 
 
 // email config 

@@ -349,7 +349,7 @@
                             </div>
                             <div class="counter-content-five">
                                 <p>Total clients</p>
-                                <span class="count odometer" data-count="9525"></span>
+                                <span class="count odometer" data-count="11985"></span>
                             </div>
                         </div>
                     </div>
@@ -360,7 +360,7 @@
                             </div>
                             <div class="counter-content-five">
                                 <p>Paid clients</p>
-                                <span class="count odometer" data-count="11985"></span>
+                                <span class="count odometer" data-count="9525"></span>
                             </div>
                         </div>
                     </div>

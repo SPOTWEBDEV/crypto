@@ -12,16 +12,16 @@ include('controllers/logOut.php');
 $user_identity = $userDetails['id'];
 ?>
 
-<?php 
+<?php
 
-$sql = mysqli_query($connection,"SELECT sum(amount) AS trading_balance FROM investments where user_id = '$user_identity'");
+$sql = mysqli_query($connection, "SELECT sum(amount) AS trading_balance FROM investments where user_id = '$user_identity'");
 
-while($row = mysqli_fetch_array($sql)){
+while ($row = mysqli_fetch_array($sql)) {
     $trading_balance = $row['trading_balance'];
 }
 
 
- ?>
+?>
 
 <!DOCTYPE html>
 <!-- saved from url=(0014)about:internet -->
@@ -32,7 +32,7 @@ while($row = mysqli_fetch_array($sql)){
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-     <!-- Favicon -->
+    <!-- Favicon -->
     <link rel="icon" href="./assets/images/brand-logos/favicon.ico" type="image/x-icon" />
     <!-- Choices JS -->
     <script src="./assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
@@ -57,6 +57,18 @@ while($row = mysqli_fetch_array($sql)){
 
     <title>DASHBOARD</title>
 
+    <style>
+        .custom-card {
+            min-height: 260px !important;
+            /* make the box longer */
+            padding: 25px !important;
+            /* more internal spacing */
+            font-size: 1.1rem;
+            /* bigger text (optional) */
+        }
+    </style>
+
+
 </head>
 
 <body>
@@ -68,7 +80,7 @@ while($row = mysqli_fetch_array($sql)){
         <!-- app-header -->
         <?php include('./includes/header.php') ?>
         <!-- /app-header -->
-        
+
         <!-- Nah the app sidebar be this -->
         <!-- Start::app-sidebar -->
         <?php include('./includes/sidebar.php') ?>
@@ -95,76 +107,47 @@ while($row = mysqli_fetch_array($sql)){
                 </div>
                 <!-- Page Header Close -->
                 <!-- Start::row-1 -->
-                <?php if($userDetails['account_warning'] == 'yes'){ ?>
-          <div class="alert alert-danger text-center"><span class="spinner-grow text-danger spinner-grow-sm"></span> Account warning, please contact support</div>
-        <?php } ?>
+                <?php if ($userDetails['account_warning'] == 'yes') { ?>
+                    <div class="alert alert-danger text-center"><span class="spinner-grow text-danger spinner-grow-sm"></span> Account warning, please contact support</div>
+                <?php } ?>
                 <div class="row">
                     <div class="col-xxl-9">
                         <div class="row justify-content-center">
 
-               
-
-                    <!-- DIS ONE NAH FOR RECENT TRANSACTIONS -->
-                            <div class="col-xxl-4 col-xl-5">
+                            <div class="col-xxl-6 col-xl-7 col-lg-8 col-md-10">
                                 <div class="card custom-card">
                                     <div class="card-header justify-content-between">
                                         <div class="card-title">Referral link</div>
-                                        
                                     </div>
+
                                     <div class="card-body">
-                                        
-                                                <ul class="list-unstyled mb-0">
-                                                    <li class="mb-3">
-                                                        <a href="javascript:void(0);">
-                                                            <div class="">
-                                                                <div class="">
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="mb-3">
+                                                <a href="javascript:void(0);">
+                                                    <p>Invite your friend to register with us and earn referral bonuses</p>
 
-                                                                    <p>Invite your friend to register with us and earn referral bonuses</p>
+                                                    <div>
+                                                        <input type="text" name="" id="copyText"
+                                                            class="form-control"
+                                                            value="<?php echo $domain ?>app/register.php?ref=<?php echo $userDetails['ref_id'] ?>"
+                                                            readonly><br>
 
-                                                                    <div>
-                                                                        <input type="text" name="" id="copyText" class="form-control" value="<?php echo $domain ?>app/register.php?ref=<?php echo $userDetails['ref_id'] ?>" readonly><br>
-
-                                                                        <button class="btn btn-primary w-100" onclick="copy_this()">Copy</button>
-                                                                    </div>
-                                                                    
-                                                                </div>
-                                                                
-                                                            </div>
-                                                        </a>
-                                                    </li>
-
-                                                </ul>
-                                            
+                                                        <button class="btn btn-primary w-100" onclick="copy_this()">Copy</button>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            <!-- SEE RECENT TRANSACTION DON FINISH -->
+
                         </div>
                     </div>
-
-                    <script type="text/javascript">
-    function copy_this() {
-  /* Get the text field */
-  var copyText = document.getElementById("copyText");
-
-  /* Select the text field */
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
-   /* Copy the text inside the text field */
-  document.execCommand("copy");
-
-  /* Alert the copied text */
-  alert("Copied");
-}
-  </script>
-
-
-                   
                 </div>
+
                 <!--End::row-1 -->
 
-                
+
             </div>
             <!-- End::app-content -->
 

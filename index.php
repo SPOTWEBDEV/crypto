@@ -155,6 +155,19 @@
 
                             </div>
                         </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="features-item-five">
+                                <div class="features-icon-five">
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                                <div class="features-content-five">
+                                    <h2 class="title">Mining Trading</h2>
+                                    <p>Earn consistent rewards by mining digital assets with automated mining technology designed for stable and continuous profit generation.</p>
+
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -162,7 +175,7 @@
 
 
         <script src="https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js"></script>
-<gecko-coin-price-marquee-widget locale="en" outlined="true" coin-ids="" initial-currency="usd"></gecko-coin-price-marquee-widget>
+        <gecko-coin-price-marquee-widget locale="en" outlined="true" coin-ids="" initial-currency="usd"></gecko-coin-price-marquee-widget>
 
 
 
@@ -266,7 +279,7 @@
                                     <h2 class="title"><a href="services-details.html">Cryptocurrency Market Trends</a></h2>
                                 </div>
                                 <p>Stay informed with comprehensive analysis and insights into the ever-evolving crypto market.</p>
-                               
+
                             </div>
                         </div>
                     </div>
@@ -285,7 +298,7 @@
                                     <h2 class="title"><a href="services-details.html">Blockchain Project Promotion</a></h2>
                                 </div>
                                 <p>Elevate your blockchain projects with customized marketing strategies to ensure greater reach and impact.</p>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -304,7 +317,7 @@
                                     <h2 class="title"><a href="services-details.html">Token Launch & Growth</a></h2>
                                 </div>
                                 <p>Strategize and successfully launch your tokens with expert guidance and a step-by-step approach.</p>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -323,7 +336,7 @@
                                     <h2 class="title"><a href="services-details.html">Crypto Investment Guidance</a></h2>
                                 </div>
                                 <p>Get expert advice on how to optimize your crypto portfolio and manage risks effectively.</p>
-                              
+
                             </div>
                         </div>
                     </div>
@@ -392,33 +405,33 @@
 
 
         <!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text"></span></a></div>
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js" async>
-  {
-  "width": "100%",
-  "height": "550",
-  "currencies": [
-    "EUR",
-    "USD",
-    "JPY",
-    "GBP",
-    "CHF",
-    "AUD",
-    "CAD",
-    "NZD",
-    "THB",
-    "INR"
-  ],
-  "isTransparent": false,
-  "colorTheme": "light",
-  "locale": "en",
-  "backgroundColor": "#ffffff"
-}
-  </script>
-</div>
-<!-- TradingView Widget END -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text"></span></a></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js" async>
+                {
+                    "width": "100%",
+                    "height": "550",
+                    "currencies": [
+                        "EUR",
+                        "USD",
+                        "JPY",
+                        "GBP",
+                        "CHF",
+                        "AUD",
+                        "CAD",
+                        "NZD",
+                        "THB",
+                        "INR"
+                    ],
+                    "isTransparent": false,
+                    "colorTheme": "light",
+                    "locale": "en",
+                    "backgroundColor": "#ffffff"
+                }
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
 
         <!-- counter-area-end -->
 
@@ -508,7 +521,7 @@
                                         </div>
                                         <div class="content">
                                             <span>Get in Touch for More Information</span>
-                                            <a href="tel:<?php echo $sitephone?>"><?php echo $sitephone?></a>
+                                            <a href="tel:<?php echo $sitephone ?>"><?php echo $sitephone ?></a>
                                         </div>
                                     </div>
                                     <h2 class="title">Request a Free Consultation Schedule Today</h2>
@@ -546,7 +559,7 @@
                                     <h2 class="title"><a href="team-details.html">Bakker Hendrik</a></h2>
                                     <span>Lead Consultant</span>
                                     <p>Bringing years of expertise, Bakker provides top-tier business strategies for crypto ventures.</p>
-                                  
+
                                 </div>
                             </div>
                         </div>
@@ -559,7 +572,7 @@
                                     <h2 class="title"><a href="team-details.html">Emily Lisa</a></h2>
                                     <span>Investment Advisor</span>
                                     <p>Specializing in cryptocurrency investments, Emily offers expert advice to guide your financial decisions.</p>
-                                 
+
                                 </div>
                             </div>
                         </div>
@@ -688,7 +701,7 @@
                             </div>
                             <p>“Thanks to the crypto consultancy team, my investments have seen tremendous growth in a short period. Highly recommended!”</p>
                             <div class="testimonial-avatar">
-                               
+
                                 <div class="avatar-info">
                                     <h2 class="title">Mr. John Doe</h2>
                                     <span>Crypto Investor</span>
@@ -712,7 +725,7 @@
                             </div>
                             <p>“The personalized advice I received about investing in crypto has been invaluable. My portfolio has never been better!”</p>
                             <div class="testimonial-avatar">
-                                
+
                                 <div class="avatar-info">
                                     <h2 class="title">Ms. Jane Smith</h2>
                                     <span>Crypto Enthusiast</span>
@@ -736,7 +749,7 @@
                             </div>
                             <p>“I’ve been able to diversify my investments with the help of their crypto experts. Great service and support.”</p>
                             <div class="testimonial-avatar">
-                               
+
                                 <div class="avatar-info">
                                     <h2 class="title">Mr. Robey Alexa</h2>
                                     <span>CEO, Gerow Agency</span>
@@ -755,22 +768,22 @@
 
 
         <!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text"></span></a></div>
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
-  {
-  "width": "100%",
-  "height": "550",
-  "defaultColumn": "moving_averages",
-  "screener_type": "crypto_mkt",
-  "displayCurrency": "USD",
-  "colorTheme": "light",
-  "locale": "en"
-}
-  </script>
-</div>
-<!-- TradingView Widget END -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text"></span></a></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+                {
+                    "width": "100%",
+                    "height": "550",
+                    "defaultColumn": "moving_averages",
+                    "screener_type": "crypto_mkt",
+                    "displayCurrency": "USD",
+                    "colorTheme": "light",
+                    "locale": "en"
+                }
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
 
         <!-- testimonial-area-end -->
 
@@ -796,7 +809,7 @@
                             <div class="blog-post-content-two">
                                 <h2 class="title"><a href="blog-details.html">Meet AutoManage, the best AI management tools</a></h2>
                                 <p>Everything you need to start building area atching presence for your business.</p>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -809,7 +822,7 @@
                             <div class="blog-post-content-two">
                                 <h2 class="title"><a href="blog-details.html">Meet AutoManage, the best AI management tools</a></h2>
                                 <p>Everything you need to start building area atching presence for your business.</p>
-                               
+
                             </div>
                         </div>
                     </div>
@@ -822,7 +835,7 @@
                             <div class="blog-post-content-two">
                                 <h2 class="title"><a href="blog-details.html">Meet AutoManage, the best AI management tools</a></h2>
                                 <p>Everything you need to start building area atching presence for your business.</p>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -849,7 +862,7 @@
                                 </div>
                                 <div class="content">
                                     <span>Hotline 24/7</span>
-                                    <a href="tel:0123456789"><?php echo $sitephone?></a>
+                                    <a href="tel:0123456789"><?php echo $sitephone ?></a>
                                 </div>
                             </div>
                             <div class="request-btn request-btn-two">

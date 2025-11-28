@@ -146,16 +146,7 @@ include('controllers/logOut.php');
                                     <input type="text" name="amount" class="form-control" id="floatingInput" placeholder="Amount Sent">
                                     <label for="floatingInput">Amount Sent</label>
                                 </div>
-                                <div id="giftCardFields" style="display:none">
-                                    <div class="form-floating mt-2">
-                                        <input type="text" name="gift_card_code" class="form-control" id="giftCardCode" placeholder="Gift Card Code" >
-                                        <label for="giftCardCode">Gift Card Code</label>
-                                    </div>
-                                    <div class="form-floating mt-2">
-                                        <input type="file" name="gift_card_image" class="form-control" id="giftCardImage" accept="image/*" >
-                                        <label for="giftCardImage">Upload Gift Card Image</label>
-                                    </div>
-                                </div>
+                         
 
                                 <div class="form-floating mt-3">
                                     <button class="btn btn-secondary" name="make_depo" type="submit">Submit</button>
@@ -169,7 +160,7 @@ include('controllers/logOut.php');
                     const copyBoard = document.querySelector('#copyBoard');
                     const copyBtn = document.querySelector('#copyBtn');
                     let depositMethod = document.querySelector('#deposit_method');
-                    let giftCardFields = document.getElementById('giftCardFields'); // Reference to gift card fields
+               
 
                     // Function to display wallet details
                     function displayWallet(method, accountNumber, accountName, bankName) {
@@ -190,11 +181,7 @@ include('controllers/logOut.php');
                                 detailsDiv.innerHTML += `<p><strong>Bank Account Name:</strong> ${accountName}</p>`;
                                 copyBoard.value = `${accountNumber}`;
                                 break;
-                            case "Gift Card": // For Gift card payment type
-                                detailsDiv.innerHTML = `<p><strong>Gift Card</strong> selected. Please enter details below.</p>`;
-                                copyBoard.value = ''; // No default value for gift card
-                                giftCardFields.style.display = 'block'; // Show gift card fields
-                                break;
+                         
                             default:
                                 break;
                         }
@@ -246,20 +233,7 @@ include('controllers/logOut.php');
                         };
                     })();
 
-                    document.querySelector('form').addEventListener('submit', (e) => {
-                        if (depositMethod.value === 'Gift Card') {
-                            document.getElementById('giftCardCode').focus();
-                            document.getElementById('giftCardImage').focus();
-                            const giftCardCode = document.getElementById('giftCardCode').value.trim();
-                            const giftCardImage = document.getElementById('giftCardImage').files.length;
-
-                            // Check if the fields are visible and not empty
-                            if (!giftCardCode || !giftCardImage) {
-                                alert('Please provide both the gift card code and image.');
-                                e.preventDefault(); // Prevent form submission
-                            }
-                        }
-                    });
+                    
                 </script>
 
 

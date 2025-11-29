@@ -112,3 +112,124 @@
         </div>
     </div>
 </footer>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+<style>
+.floating-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  z-index: 50;
+}
+
+/* Button base */
+.float-btn {
+  position: relative;
+  padding: 12px;
+  border-radius: 50%;
+  color: #fff;
+  background-color: #22c55e;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* WhatsApp Buttons */
+.float-btn.whatsapp {
+  background-color: #22c55e;
+}
+
+.float-btn.whatsapp:hover {
+  background-color: #16a34a;
+}
+
+/* Telegram Button */
+.float-btn.telegram {
+  background-color: #3b82f6;
+}
+
+.float-btn.telegram:hover {
+  background-color: #2563eb;
+}
+
+.float-btn i {
+  font-size: 32px;
+}
+
+/* Tooltip */
+.float-btn::after {
+  content: attr(data-label);
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #333;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.2s ease, left 0.2s ease;
+}
+
+.float-btn:hover::after {
+  opacity: 1;
+  left: 50px;
+}
+
+
+</style>
+
+
+<div class="floating-container">
+
+  <!-- WhatsApp – Chat Us -->
+  <!-- <a
+    href="https://wa.me/13184395179"
+    target="_blank"
+    rel="noopener noreferrer"
+    data-label="Chat Us"
+    class="float-btn whatsapp"
+    aria-label="Chat on WhatsApp"
+  >
+    <i class="fab fa-whatsapp"></i>
+  </a> -->
+
+  <!-- WhatsApp – Join Community -->
+  <!-- <a
+    href="https://chat.whatsapp.com/EkvULqNxYow7Tghk3Ml4IN"
+    target="_blank"
+    rel="noopener noreferrer"
+    data-label="Join Our WhatsApp Community"
+    class="float-btn whatsapp"
+    aria-label="Join WhatsApp Group"
+  >
+    <i class="fab fa-whatsapp"></i>
+  </a> -->
+
+  <!-- Telegram – Join Community -->
+  <a
+    href="https://t.me/GoldForex_pip"
+    target="_blank"
+    rel="noopener noreferrer"
+    data-label="Join Our Telegram Community"
+    class="float-btn telegram"
+    aria-label="Join Telegram Group"
+  >
+    <i class="fab fa-telegram"></i>
+  </a>
+
+</div>
+

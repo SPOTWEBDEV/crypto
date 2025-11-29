@@ -556,9 +556,10 @@
                                     <img src="<?php echo $domain ?>assets/img/team/1.PNG" alt="img">
                                 </div>
                                 <div class="team-content-six">
-                                    <h2 class="title"><a href="team-details.html">Bakker Hendrik</a></h2>
+                                    <h2 class="title"><a href="team-details.html">Elder Robert</a></h2>
                                     <span>Lead Consultant</span>
                                     <p>Bringing years of expertise, Bakker provides top-tier business strategies for crypto ventures.</p>
+                                    <p style="text-transform: capitalize;" class="capitalize">mrrobertelder99@gmail.com</p>
 
                                 </div>
                             </div>

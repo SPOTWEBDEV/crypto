@@ -54,7 +54,7 @@ $sitename = "Proteus Chain";
 $siteemail = "support@proteuschain.com";
 $emailpassword  = "support@proteuschain.com";
 $host = 'mail.proteuschain.com';
-$sitephone  = "+44 776 0957 798";
+$sitephone  = "+44 744 0466 217";
 $siteaddress  = "weston newyork";
 
 

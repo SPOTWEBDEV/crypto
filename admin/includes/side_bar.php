@@ -80,15 +80,12 @@
     </li>
 
     <!-- Signal -->
-    <!-- <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Layouts">📡 Signal</div>
+    <li class="menu-item">
+        <a href="chat.php" class="menu-link menu-toggle">
+            <div data-i18n="Layouts">📡 Send Email </div>
         </a>
-        <ul class="menu-sub">
-            <li class="menu-item"><a href="add-signal.php" class="menu-link">➕ Add Signal</a></li>
-            <li class="menu-item"><a href="view-signal.php" class="menu-link">👀 View Signal</a></li>
-        </ul>
-    </li> -->
+
+    </li>
 
     <!-- Expert -->
     <li class="menu-item">

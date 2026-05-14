@@ -9882,7 +9882,7 @@ label {
 }
 
 .heder-top-wrap-two {
-    background: linear-gradient(93deg, rgba(255, 255, 255, 0.10) 5.46%, rgba(255, 255, 255, 0.10) 91.45%);
+    /* background: linear-gradient(93deg, rgba(255, 255, 255, 0.10) 5.46%, rgba(255, 255, 255, 0.10) 91.45%); */
     backdrop-filter: blur(5px);
 }
 

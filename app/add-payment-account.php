@@ -162,6 +162,8 @@ if(isset($_POST['saveAccount'])){
     <script src="./assets/js/custom-switcher.min.js"></script> <!-- Bootstrap JS -->
     <script src="./assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script> <!-- Show Password JS -->
     <script src="./assets/js/show-password.js"></script>
+    <script src="//code.jivosite.com/widget/rbZ8FspaA4" async></script>
+
 </body>
 
 </html>

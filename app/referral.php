@@ -54,6 +54,7 @@ while ($row = mysqli_fetch_array($sql)) {
     <!-- Choices Css -->
     <link rel="stylesheet" href="./assets/libs/choices.js/public/assets/styles/choices.min.css" />
     <!-- <meta name="theme-color" content="#e7ecef" /> -->
+     <script src="./controllers/sweetalert2.all.min.js"></script>
 
     <title>DASHBOARD</title>
 
@@ -110,40 +111,98 @@ while ($row = mysqli_fetch_array($sql)) {
                 <?php if ($userDetails['account_warning'] == 'yes') { ?>
                     <div class="alert alert-danger text-center"><span class="spinner-grow text-danger spinner-grow-sm"></span> Account warning, please contact support</div>
                 <?php } ?>
-                <div class="row">
-                    <div class="col-xxl-9">
-                        <div class="row justify-content-center">
+                <div class="row justify-content-center">
 
-                            <div class="col-xxl-6 col-xl-7 col-lg-8 col-md-10">
-                                <div class="card custom-card">
-                                    <div class="card-header justify-content-between">
-                                        <div class="card-title">Referral link</div>
-                                    </div>
+    <div class="col-xl-8 col-lg-10">
 
-                                    <div class="card-body">
-                                        <ul class="list-unstyled mb-0">
-                                            <li class="mb-3">
-                                                <a href="javascript:void(0);">
-                                                    <p>Invite your friend to register with us and earn referral bonuses</p>
+        <div class="card custom-card shadow-sm border-0">
 
-                                                    <div>
-                                                        <input type="text" name="" id="copyText"
-                                                            class="form-control"
-                                                            value="<?php echo $domain ?>app/register.php?ref=<?php echo $userDetails['ref_id'] ?>"
-                                                            readonly><br>
+            <div class="card-body p-4">
 
-                                                        <button class="btn btn-primary w-100" onclick="copy_this()">Copy</button>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="text-center mb-4">
 
-                        </div>
+                    <div class="mb-3">
+                        <span class="avatar avatar-lg bg-primary-transparent">
+                            <i class="ri-user-add-line fs-24"></i>
+                        </span>
                     </div>
+
+                    <h4 class="fw-bold mb-1">
+                        Invite & Earn
+                    </h4>
+
+                    <p class="text-muted mb-0">
+                        Share your referral link with friends and earn referral bonuses when they register.
+                    </p>
+
                 </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label fw-semibold">
+                        Your Referral Link
+                    </label>
+
+                    <div class="input-group">
+
+                        <input
+                            type="text"
+                            id="copyText"
+                            class="form-control"
+                            value="<?php echo $domain ?>app/register.php?ref=<?php echo $userDetails['ref_id'] ?>"
+                            readonly
+                        >
+
+                        <button
+                            class="btn btn-primary"
+                            type="button"
+                            onclick="copyReferralLink()"
+                        >
+                            <i class="ri-file-copy-line me-1"></i>
+                            Copy
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="alert alert-primary-transparent mb-0">
+
+                    <i class="ri-information-line me-1"></i>
+
+                    Earn rewards whenever someone signs up using your referral link.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function copyReferralLink() {
+
+    var copyText = document.getElementById("copyText");
+
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+
+    navigator.clipboard.writeText(copyText.value);
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Copied',
+        text: 'Referral link copied successfully',
+        timer: 1500,
+        showConfirmButton: false
+    });
+}
+
+</script>
 
                 <!--End::row-1 -->
 

@@ -1,288 +1,926 @@
-<?php
-
-include('../server/connection.php');
-include('controllers/authFy.php');
-// PREPARE USERS DETAILS;
-include('controllers/userDetails.php');
-//  FOR INVESTMENT MATURITY
-include('controllers/invMTR_CTR.php');
-// Log out the mother force;
-include('controllers/logOut.php');
-
-$user_identity = $userDetails['id'];
-$user_balance = $userDetails['wallet'];
+<?php include('./server/connection.php') ?>
 
 
-$sql = mysqli_query($connection, "SELECT sum(amount) AS trading_balance FROM investments where user_id = '$user_identity'");
-
-while ($row = mysqli_fetch_array($sql)) {
-    $trading_balance = $row['trading_balance'];
-}
 
 
-?>
 
-<!DOCTYPE html>
-<!-- saved from url=(0014)about:internet -->
-<html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light" data-menu-styles="dark" data-toggled="close">
+
+
+
+
+
+<!doctype html>
+<html lang="en">
 
 <head>
-    <!-- Meta Data -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- Favicon -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title><?php echo $sitename ?> || Home</title>
+    <meta name="description" content="Gerow - Business Consulting HTML Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo $domain ?>assets/img/newfavicon.jpeg">
-    <!-- Choices JS -->
-    <script src="./assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
-    <!-- Main Theme Js -->
-    <script src="./assets/js/main.js"></script>
-    <!-- Bootstrap Css -->
-    <link id="style" href="./assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Style Css -->
-    <link href="./assets/css/styles.min.css" rel="stylesheet" />
-    <!-- Icons Css -->
-    <link href="./assets/css/icons.css" rel="stylesheet" />
-    <!-- Node Waves Css -->
-    <link href="./assets/libs/node-waves/waves.min.css" rel="stylesheet" />
-    <!-- Simplebar Css -->
-    <link href="./assets/libs/simplebar/simplebar.min.css" rel="stylesheet" />
-    <!-- Color Picker Css -->
-    <link rel="stylesheet" href="./assets/libs/flatpickr/flatpickr.min.css" />
-    <link rel="stylesheet" href="./assets/libs/@simonwep/pickr/themes/nano.min.css" />
-    <!-- Choices Css -->
-    <link rel="stylesheet" href="./assets/libs/choices.js/public/assets/styles/choices.min.css" />
-    <!-- <meta name="theme-color" content="#e7ecef" /> -->
+    <!-- Place favicon.ico in the root directory -->
 
-    <script src="<?php echo $domain ?>app/assets/js/jquery-3.6.0.min.js"></script>
-    <script src="<?php echo $domain ?>app/assets/js/sweetalert2.all.min.js"></script>
-    <title>Crypto Boxes</title>
-
-    <style>
-        body {
-
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .container {
-            display: flex;
-            gap: 20px;
-        }
-
-        .box {
-            /* background: #ffffff; */
-            width: 150px;
-            height: 150px;
-            border-radius: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            font-size: 18px;
-            font-weight: bold;
-            padding-top: 10px;
-        }
-
-        .box img {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 10px;
-        }
-
-        .percent-circle {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            border: 10px solid #e0e0e0;
-            position: relative;
-            margin-top: 15px;
-        }
-
-        .percent-circle span {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-            font-weight: bold;
-        }
-    </style>
+    <!-- CSS here -->
+    <link rel="stylesheet" href="<?php echo $domain ?>assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo $domain ?>assets/css/animate.min.css">
+    <link rel="stylesheet" href="<?php echo $domain ?>assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="<?php echo $domain ?>assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="<?php echo $domain ?>assets/css/flaticon.css">
+    <link rel="stylesheet" href="<?php echo $domain ?>assets/css/odometer.css">
+    <link rel="stylesheet" href="<?php echo $domain ?>assets/css/jarallax.css">
+    <link rel="stylesheet" href="<?php echo $domain ?>assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="<?php echo $domain ?>assets/css/slick.css">
+    <link rel="stylesheet" href="<?php echo $domain ?>assets/css/aos.css">
+    <link rel="stylesheet" href="<?php echo $domain ?>assets/css/default.css">
+    <link rel="stylesheet" href="<?php echo $domain ?>assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 </head>
 
 <body>
 
-    <!-- Switcher -->
-    <?php include('./includes/switcher.php') ?>
-    <!-- End Switcher -->
+    <!-- preloader -->
+    <div id="preloader">
+        <div id="loading-center">
+            <div class="loader">
+                <div class="loader-outter"></div>
+                <div class="loader-inner"></div>
+            </div>
+        </div>
+    </div>
+    <!-- preloader-end -->
 
-    <div class="page">
-        <!-- app-header -->
-        <?php include('./includes/header.php') ?>
-        <!-- /app-header -->
+    <!-- Scroll-top -->
+    <button class="scroll-top scroll-to-target" data-target="html">
+        <i class="fas fa-angle-up"></i>
+    </button>
+    <!-- Scroll-top-end-->
 
-        <!-- Nah the app sidebar be this -->
-        <!-- Start::app-sidebar -->
-        <?php include('./includes/sidebar.php') ?>
-        <!-- Start::app-sidebar -->
-        <!-- OMOR NAH HERE WHERE SIDEBAR ENDED OOO -->
-        <!-- End::app-sidebar -->
-
-        <!-- Start::app-content -->
-
-
-        <div class="main-content app-content">
-            <div class="container-fluid">
-                <!-- Page Header -->
-                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-                    <h1 class="page-title fw-semibold fs-18 mb-0">DAHSBOARD</h1>
-                    <div class="ms-md-1 ms-0">
-                        <nav>
-                            <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">
-                                    Home
-                                </li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-                <!-- Page Header Close -->
-                <!-- Start::row-1 -->
-
-                <div class="container" style="width: 100%; justify-content: center; gap: 40px;">
+    <!-- header-area -->
 
 
 
+    <!-- header-area-end -->
+    <?php include('./includes/header.php') ?>
 
+    <!-- main-area -->
+    <main class="fix">v
 
-                    <div class="col-12 col-md-8">
-                        <div class="card custom-card" style="width:300px !important">
-                            <div class="card-header justify-content-between">
-                                <div class="card-title">BITCOIN Earning</div>
-
-                            </div>
-                            <div class="card-body flex flex-col justify-content-center" style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
-                                <img src="https://cryptologos.cc/logos/bitcoin-btc-newlogo.png" alt="Bitcoin" style="width:70px;height:70px;margin-bottom:5px;" />
-                                <div style="font-size:20px;margin-bottom:10px;">Bitcoin</div>
-                                <div class="percent-circle" style="border-top-color:#f7931a;border-right-color:#f7931a;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
-                                    <span>43%</span>
+        <!-- slider-area -->
+        <section class="slider-area-two">
+            <div class="slider-active-two">
+                <div class="single-slider slider-bg-two" data-background="<?php echo $domain ?>assets/img/slider/slider_bg01.jpg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-7">
+                                <div class="slider-content-two">
+                                    <span class="sub-title" data-animation="fadeInUp" data-delay=".2s">Smart & Secure Trading</span>
+                                    <h2 class="title" data-animation="fadeInUp" data-delay=".4s">Trade Crypto & Forex with Confidence</h2>
+                                    <p data-animation="fadeInUp" data-delay=".6s">Join our platform to experience expert account management, copy trading, and self-trading for maximum profitability.</p>
+                                    <a href="<?php echo $domain ?>app/login.php" class="btn btn-three" data-animation="fadeInUp" data-delay=".8s">Get started</a>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="slider-shape-wrap">
+                        <img src="<?php echo $domain ?>assets/img/slider/slider_shape01.svg" alt="shape">
+                        <img src="<?php echo $domain ?>assets/img/slider/slider_shape02.svg" alt="shape">
+                        <img src="<?php echo $domain ?>assets/img/slider/slider_shape03.svg" alt="shape">
+                    </div>
+                </div>
+                <div class="single-slider slider-bg-two" data-background="<?php echo $domain ?>assets/img/slider/slider_bg02.jpg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-7">
+                                <div class="slider-content-two">
+                                    <span class="sub-title" data-animation="fadeInUp" data-delay=".2s">Maximize Your Profits</span>
+                                    <h2 class="title" data-animation="fadeInUp" data-delay=".4s">Automate & Grow Your Investments</h2>
+                                    <p data-animation="fadeInUp" data-delay=".6s">Leverage cutting-edge AI-driven copy trading and expert strategies to optimize your forex and crypto trading success.</p>
+                                    <a href="<?php echo $domain ?>app/login.php" class="btn btn-three" data-animation="fadeInUp" data-delay=".8s">Explore Our Services</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-shape-wrap">
+                        <img src="<?php echo $domain ?>assets/img/slider/slider_shape01.svg" alt="shape">
+                        <img src="<?php echo $domain ?>assets/img/slider/slider_shape02.svg" alt="shape">
+                        <img src="<?php echo $domain ?>assets/img/slider/slider_shape03.svg" alt="shape">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        <div class="card custom-card" style="width:300px !important">
-                            <div class="card-header justify-content-between">
-                                <div class="card-title">USDT Earning</div>
+        <!-- slider-area-end -->
 
-                                <div class="card custom-card" style="width:300px !important">
-                                    <div class="card-header justify-content-between">
-                                        <div class="card-title">GOLD Earning</div>
+        <!-- features-area -->
+        <section class="features-area-eight">
+            <div class="container custom-container-five">
+                <div class="features-inner-wrap">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="features-item-five">
+                                <div class="features-icon-five">
+                                    <i class="fas fa-coins"></i>
+                                </div>
+                                <div class="features-content-five">
+                                    <h2 class="title">Crypto Trading</h2>
+                                    <p>Trade digital assets with real-time analytics, secure transactions, and expert-backed strategies for maximum gains.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="features-item-five">
+                                <div class="features-icon-five">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <div class="features-content-five">
+                                    <h2 class="title">Forex Trading</h2>
+                                    <p>Access a global forex market with automated trading tools, risk management, and AI-driven insights for profitable trading.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="features-item-five">
+                                <div class="features-icon-five">
+                                    <i class="fas fa-user-cog"></i>
+                                </div>
+                                <div class="features-content-five">
+                                    <h2 class="title">Account Management</h2>
+                                    <p>Let our experts handle your investments with professional account management, ensuring efficiency and high returns.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="features-item-five">
+                                <div class="features-icon-five">
+                                    <i class="fas fa-user-alt"></i>
+                                </div>
+                                <div class="features-content-five">
+                                    <h2 class="title">Copy Trading</h2>
+                                    <p>Replicate the success of expert traders with automated copy trading, leveraging real-time market data and proven strategies to enhance your profitability.</p>
+                                </div>
 
-                                        <img src="https://cryptologos.cc/logos/tether-usdt-newlogo.png" alt="USDT" style="width:70px;height:70px;margin-bottom:5px;" />
-                                        <div style="font-size:20px;margin-bottom:10px;">USDT</div>
-                                        <div class="percent-circle" style="border-top-color:#26a17b;border-right-color:#26a17b;border-left-color:#e0e0e0;border-bottom-color:#e0e0e0;">
-                                            <span>95%</span>
-                                        </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="features-item-five">
+                                <div class="features-icon-five">
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                                <div class="features-content-five">
+                                    <h2 class="title">Mining Trading</h2>
+                                    <p>Earn consistent rewards by mining digital assets with automated mining technology designed for stable and continuous profit generation.</p>
 
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <script src="https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js"></script>
+        <gecko-coin-price-marquee-widget locale="en" outlined="true" coin-ids="" initial-currency="usd"></gecko-coin-price-marquee-widget>
+
+
+
+
+        <!-- features-area-end -->
+
+        <!-- about-area -->
+        <section class="about-area-thirteen p-relative section-py-120">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-6 col-md-10">
+                        <div class="about-img-thirteen">
+                            <img src="<?php echo $domain ?>assets/img/images/hu_about_01.jpg" alt="img" data-aos="fade-right" data-aos-delay="400">
+                            <img src="<?php echo $domain ?>assets/img/images/hu_about_02.jpg" alt="img" data-aos="fade-left" data-aos-delay="400">
+                            <img src="<?php echo $domain ?>assets/img/images/hu_about_shape01.png" alt="img" data-aos="zoom-in" data-aos-delay="800">
+                            <div class="experience-wrap-two" data-aos="fade-up" data-aos-delay="800">
+                                <h2 class="title">25</h2>
+                                <span>Years Of <br> Expertise</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-content-thirteen">
+                            <div class="section-title-two mb-20 tg-heading-subheading animation-style3">
+                                <span class="sub-title">What We Offer</span>
+                                <h2 class="title tg-element-title">Pioneering the Future of Crypto Trading</h2>
+                            </div>
+                            <p>We specialize in providing top-tier crypto solutions, enabling users to optimize their investments with advanced tools and expert strategies.</p>
+                            <div class="about-inner-content mb-40">
+                                <div class="about-success-wrap">
+                                    <ul class="list-wrap">
+                                        <li>
+                                            <div class="icon">
+                                                <i class="fas fa-wallet"></i>
+                                            </div>
+                                            <div class="content">
+                                                <h2 class="count"><span class="odometer" data-count="63"></span>%</h2>
+                                                <p>Secure Wallet Integration</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="icon">
+                                                <i class="fas fa-thumbs-up"></i>
+                                            </div>
+                                            <div class="content">
+                                                <h2 class="count"><span class="odometer" data-count="95"></span>%</h2>
+                                                <p>Client Satisfaction</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="about-list-two">
+                                    <ul class="list-wrap">
+                                        <li><i class="fas fa-arrow-right"></i>Real-time trading signals</li>
+                                        <li><i class="fas fa-arrow-right"></i>High-level security features</li>
+                                        <li><i class="fas fa-arrow-right"></i>Comprehensive market risk analysis</li>
+                                        <li><i class="fas fa-arrow-right"></i>24/7 support for all traders</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="services.html" class="btn btn-three">Discover Our Services</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-shape-wrap-six">
+                <img src="<?php echo $domain ?>assets/img/images/request_shape.png" alt="shape" class="animationFramesOne">
+                <img src="<?php echo $domain ?>assets/img/images/h6_about_shape.png" alt="shape" data-aos="fade-left" data-aos-delay="400">
+            </div>
+        </section>
+
+
+        <!-- about-area-end -->
+
+
+
+        <!-- services-area -->
+        <section class="services-area-eight fix section-py-120">
+            <div class="container custom-container-six">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="section-title-two text-center white-title mb-40 tg-heading-subheading animation-style3">
+                            <span class="sub-title">Our Expert Services</span>
+                            <h2 class="title tg-element-title">Tailored Solutions for Your Crypto Investment Journey</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row services-active-two">
+                    <div class="col-xl-3">
+                        <div class="services-item-five shine-animate-item">
+                            <div class="services-thumb-five">
+                                <a href="services-details.html" class="shine-animate">
+                                    <img src="<?php echo $domain ?>assets/img/services/hu_services_img01.jpg" alt="Market Analysis">
+                                </a>
+                            </div>
+                            <div class="services-content-five">
+                                <div class="services-content-five-top">
+                                    <div class="icon">
+                                        <i class="fas fa-chart-line"></i>
                                     </div>
-
-
-
+                                    <h2 class="title"><a href="services-details.html">Cryptocurrency Market Trends</a></h2>
                                 </div>
-
-
+                                <p>Stay informed with comprehensive analysis and insights into the ever-evolving crypto market.</p>
 
                             </div>
-
-                            <!--End::row-1 -->
-
-
                         </div>
                     </div>
+                    <div class="col-xl-3">
+                        <div class="services-item-five shine-animate-item">
+                            <div class="services-thumb-five">
+                                <a href="services-details.html" class="shine-animate">
+                                    <img src="<?php echo $domain ?>assets/img/services/hu_services_img02.jpg" alt="Blockchain Growth">
+                                </a>
+                            </div>
+                            <div class="services-content-five">
+                                <div class="services-content-five-top">
+                                    <div class="icon">
+                                        <i class="fas fa-bullhorn"></i>
+                                    </div>
+                                    <h2 class="title"><a href="services-details.html">Blockchain Project Promotion</a></h2>
+                                </div>
+                                <p>Elevate your blockchain projects with customized marketing strategies to ensure greater reach and impact.</p>
 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="services-item-five shine-animate-item">
+                            <div class="services-thumb-five">
+                                <a href="services-details.html" class="shine-animate">
+                                    <img src="<?php echo $domain ?>assets/img/services/hu_services_img03.jpg" alt="Project Execution">
+                                </a>
+                            </div>
+                            <div class="services-content-five">
+                                <div class="services-content-five-top">
+                                    <div class="icon">
+                                        <i class="fas fa-project-diagram"></i>
+                                    </div>
+                                    <h2 class="title"><a href="services-details.html">Token Launch & Growth</a></h2>
+                                </div>
+                                <p>Strategize and successfully launch your tokens with expert guidance and a step-by-step approach.</p>
 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="services-item-five shine-animate-item">
+                            <div class="services-thumb-five">
+                                <a href="services-details.html" class="shine-animate">
+                                    <img src="<?php echo $domain ?>assets/img/services/hu_services_img04.jpg" alt="Financial Growth">
+                                </a>
+                            </div>
+                            <div class="services-content-five">
+                                <div class="services-content-five-top">
+                                    <div class="icon">
+                                        <i class="fas fa-piggy-bank"></i>
+                                    </div>
+                                    <h2 class="title"><a href="services-details.html">Crypto Investment Guidance</a></h2>
+                                </div>
+                                <p>Get expert advice on how to optimize your crypto portfolio and manage risks effectively.</p>
 
-
-
-
-
-
-
-
-
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="services-shape-wrap">
+                <img src="<?php echo $domain ?>assets/img/services/h6_services_shape01.png" alt="shape" data-aos="fade-down-left" data-aos-delay="400">
+                <img src="<?php echo $domain ?>assets/img/services/h6_services_shape02.png" alt="shape" data-aos="fade-up-right" data-aos-delay="400">
+            </div>
+        </section>
 
 
-                <form method="POST" class="col-12 col-md-4" id="tradeForm">
-                    <div class="card p-3">
-                        <h5 class="text-center">Place Market Order</h5>
+        <!-- services-area-end -->
 
-                        <!-- Select Trading Pair -->
-                        <div class="mb-2">
-                            <label for="tradingPair" class="form-label">Mining Coin</label>
-                            <select name="tradingPair" class="form-select" id="tradingPair">
-                                <option value="BTC-USDT">Gold</option>
-                                <option value="ETH-USDT">BitCoin</option>
-                            </select>
-                        </div>
-                        <div class="mb-2">
-                            <label for="entryPrice" class="form-label">Amount</label>
-                            <input type="number" name="entryPrice" class="form-control" id="entryPrice" placeholder="Enter Entry Price" required>
-                        </div>
-
-                        <div class="mb-2">
-                            <label for="amount" class="form-label">Profit in minute</label>
-                            <input type="number" name="amount" class="form-control" id="amount" placeholder="1minute => 0.004 btc => 0.012 gold" required>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <button type="button" class="btn btn-success w-100 me-1" onclick="setOrderType('Buy')">Mining</button>
+        <!-- counter-area -->
+        <div class="counter-area-five">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="counter-item-five">
+                            <div class="counter-icon-five">
+                                <i class="fas fa-project-diagram"></i> <!-- Changed to FontAwesome project icon -->
+                            </div>
+                            <div class="counter-content-five">
+                                <p>Total clients</p>
+                                <span class="count odometer" data-count="11985"></span>
+                            </div>
                         </div>
                     </div>
-                </form>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="counter-item-five">
+                            <div class="counter-icon-five">
+                                <i class="fas fa-users"></i> <!-- Changed to FontAwesome users icon -->
+                            </div>
+                            <div class="counter-content-five">
+                                <p>Paid clients</p>
+                                <span class="count odometer" data-count="9525"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="counter-item-five">
+                            <div class="counter-icon-five">
+                                <i class="fas fa-trophy"></i> <!-- Changed to FontAwesome trophy icon -->
+                            </div>
+                            <div class="counter-content-five">
+                                <p>Awards in Crypto Excellence</p>
+                                <span class="count odometer" data-count="4722"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="counter-item-five">
+                            <div class="counter-icon-five">
+                                <i class="fas fa-exchange-alt"></i> <!-- Changed to FontAwesome exchange icon -->
+                            </div>
+                            <div class="counter-content-five">
+                                <p>International Crypto Trades</p>
+                                <span class="count odometer" data-count="9522"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-                <?php
-                include('./includes/hoverfooter.php')
-                ?>
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text"></span></a></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js" async>
+                {
+                    "width": "100%",
+                    "height": "550",
+                    "currencies": [
+                        "EUR",
+                        "USD",
+                        "JPY",
+                        "GBP",
+                        "CHF",
+                        "AUD",
+                        "CAD",
+                        "NZD",
+                        "THB",
+                        "INR"
+                    ],
+                    "isTransparent": false,
+                    "colorTheme": "light",
+                    "locale": "en",
+                    "backgroundColor": "#ffffff"
+                }
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
+
+        <!-- counter-area-end -->
+
+        <!-- project-area -->
+        <section class="project-area-five project-bg-three" data-background="<?php echo $domain ?>assets/img/bg/h6_project_bg.jpg">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-8">
+                        <div class="section-title-two mb-40 tg-heading-subheading animation-style3">
+                            <span class="sub-title">Our Latest Crypto Achievements</span>
+                            <h2 class="title tg-element-title">Explore Our Most Recent <br> Crypto Projects</h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-4">
+                        <div class="view-all-btn text-start text-md-end mb-40">
+                            <a href="project-details.html" class="btn btn-three">View All Projects</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container custom-container-three">
+                <div class="row justify-content-center">
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="project-item-five">
+                            <div class="project-thumb-five">
+                                <a href="project-details.html"><img src="<?php echo $domain ?>assets/img/project/h6_project_img01.jpg" alt="img"></a>
+                            </div>
+                            <div class="project-content-five">
+                                <h2 class="title"><a href="project-details.html">Crypto Financial Advisory</a></h2>
+                                <span>Consulting</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="project-item-five">
+                            <div class="project-thumb-five">
+                                <a href="project-details.html"><img src="<?php echo $domain ?>assets/img/project/h6_project_img02.jpg" alt="img"></a>
+                            </div>
+                            <div class="project-content-five">
+                                <h2 class="title"><a href="project-details.html">Crypto Brand Design</a></h2>
+                                <span>Design</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="project-item-five">
+                            <div class="project-thumb-five">
+                                <a href="project-details.html"><img src="<?php echo $domain ?>assets/img/project/h6_project_img03.jpg" alt="img"></a>
+                            </div>
+                            <div class="project-content-five">
+                                <h2 class="title"><a href="project-details.html">Cryptocurrency Investment Guide</a></h2>
+                                <span>Investment</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="project-item-five">
+                            <div class="project-thumb-five">
+                                <a href="project-details.html"><img src="<?php echo $domain ?>assets/img/project/h6_project_img04.jpg" alt="img"></a>
+                            </div>
+                            <div class="project-content-five">
+                                <h2 class="title"><a href="project-details.html">Decentralized Pricing Solutions</a></h2>
+                                <span>Blockchain</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- project-area-two -->
+
+        <!-- team-area -->
+        <section class="team-area-seven">
+
+            <!-- cta-area -->
+            <section class="cta-area-two pt-120">
+                <div class="container">
+                    <div class="cta-inner-wrap-two" data-background="<?php echo $domain ?>assets/img/bg/cta_bg02.jpg">
+                        <div class="row align-items-center">
+                            <div class="col-lg-9">
+                                <div class="cta-content">
+                                    <div class="cta-info-wrap">
+                                        <div class="icon">
+                                            <i class="flaticon-phone-call"></i>
+                                        </div>
+                                        <div class="content">
+                                            <span>Get in Touch for More Information</span>
+                                            <a href="tel:<?php echo $sitephone ?>"><?php echo $sitephone ?></a>
+                                        </div>
+                                    </div>
+                                    <h2 class="title">Request a Free Consultation Schedule Today</h2>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="cta-btn text-end">
+                                    <a href="contact.html" class="btn btn-three">Contact Us</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- cta-area-end -->
+
+            <div class="team-area-inner">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="section-title-two text-center mb-40 tg-heading-subheading animation-style3">
+                                <span class="sub-title">Meet Our Experts</span>
+                                <h2 class="title tg-element-title">Meet Our Committed Team</h2>
+                                <p>Our team of professionals is always here to help you. We work hard to provide the best solutions tailored to your needs.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <div class="team-item-six">
+                                <div class="team-thumb-six">
+                                    <img src="<?php echo $domain ?>assets/img/team/1.PNG" alt="img">
+                                </div>
+                                <div class="team-content-six">
+                                    <h2 class="title"><a href="team-details.html">Elder Robert</a></h2>
+                                    <span>Lead Consultant</span>
+                                    <p>Bringing years of expertise, Bakker provides top-tier business strategies for crypto ventures.</p>
+                                    <p style="text-transform: capitalize;" class="capitalize">mrrobertelder99@gmail.com</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="team-item-six">
+                                <div class="team-thumb-six">
+                                    <img src="<?php echo $domain ?>assets/img/team/2.PNG" alt="img">
+                                </div>
+                                <div class="team-content-six">
+                                    <h2 class="title"><a href="team-details.html">Emily Lisa</a></h2>
+                                    <span>Investment Advisor</span>
+                                    <p>Specializing in cryptocurrency investments, Emily offers expert advice to guide your financial decisions.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-lg-6">
+                            <div class="team-item-six">
+                                <div class="team-thumb-six">
+                                    <img src="<?php echo $domain ?>assets/img/team/h6_team_img03.jpg" alt="img">
+                                </div>
+                                <div class="team-content-six">
+                                    <h2 class="title"><a href="team-details.html">Kristin Watson</a></h2>
+                                    <span>Marketing Director</span>
+                                    <p>Kristin leads our marketing team to bring innovative crypto solutions to the world stage.</p>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="team-item-six">
+                                <div class="team-thumb-six">
+                                    <img src="<?php echo $domain ?>assets/img/team/h6_team_img04.jpg" alt="img">
+                                </div>
+                                <div class="team-content-six">
+                                    <h2 class="title"><a href="team-details.html">Brooklyn Simmons</a></h2>
+                                    <span>Business Strategy Consultant</span>
+                                    <p>Brooklyn works closely with clients to develop innovative business strategies tailored for success.</p>
+                                    
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="team-shape-wrap">
+                <img src="<?php echo $domain ?>assets/img/team/h6_team_shape01.png" alt="shape" data-aos="fade-down-right" data-aos-delay="400">
+                <img src="<?php echo $domain ?>assets/img/team/h6_team_shape02.png" alt="shape" class="animationFramesOne">
+                <img src="<?php echo $domain ?>assets/img/team/h6_team_shape03.png" alt="shape" data-aos="fade-up-left" data-aos-delay="400">
+                <img src="<?php echo $domain ?>assets/img/team/h6_team_shape04.png" alt="shape" class="animationFramesOne">
+            </div>
+        </section>
+
+        <!-- team-area-end -->
+
+        <!-- contact-area -->
+        <section class="contact-area-three fix">
+            <div class="container-fulid">
+                <div class="contact-inner-wrap">
+                    <div class="contact-img-two" data-background="https://i.pinimg.com/736x/78/2a/b6/782ab68283a2bcd195b0814b4360abef.jpg"></div>
+                    <div class="row g-0 justify-content-end">
+                        <div class="col-54">
+                            <div class="contact-content-two">
+                                <div class="section-title-two white-title mb-10 tg-heading-subheading animation-style3">
+                                    <span class="sub-title">Contact With Us</span>
+                                    <h2 class="title tg-element-title">Let’s Talk About Crypto Investment</h2>
+                                </div>
+                                <p>Interested in making crypto investments? Reach out to our experienced consultants for guidance.</p>
+                                <div class="contact-form contact-form-two">
+                                    <form action="#">
+                                        <div class="row gutter-15">
+                                            <div class="col-md-6">
+                                                <div class="form-grp">
+                                                    <input type="text" placeholder="Name *">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-grp">
+                                                    <input type="email" placeholder="E-mail *">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-grp">
+                                                    <input type="number" placeholder="Phone *">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-grp">
+                                                    <input type="text" placeholder="Subject *">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-grp">
+                                                    <textarea placeholder="Comments *"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit">Submit Now</button>
+                                    </form>
+                                </div>
+                                <div class="contact-shape-wrap">
+                                    <img src="<?php echo $domain ?>assets/img/images/h6_contact_shape01.png" alt="shape" data-aos="fade-down-left" data-aos-delay="400">
+                                    <img src="<?php echo $domain ?>assets/img/images/h6_contact_shape02.png" alt="shape" data-aos="fade-up-right" data-aos-delay="400">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- contact-area-end -->
+
+        <!-- testimonial-area -->
+        <section class="testimonial-area-seven testimonial-bg-five" data-background="<?php echo $domain ?>assets/img/bg/h6_testimonial_bg.jpg">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="section-title-two text-center mb-40 tg-heading-subheading animation-style3">
+                            <span class="sub-title">Our Clients' Success Stories</span>
+                            <h2 class="title tg-element-title">What Our Clients Say About Crypto Investments</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="testimonial-item-five">
+                            <div class="testimonial-item-five-top">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="testimonial-quote">
+                                    <img src="<?php echo $domain ?>assets/img/icons/quote03.svg" alt="">
+                                </div>
+                            </div>
+                            <p>“Thanks to the crypto consultancy team, my investments have seen tremendous growth in a short period. Highly recommended!”</p>
+                            <div class="testimonial-avatar">
+
+                                <div class="avatar-info">
+                                    <h2 class="title">Mr. John Doe</h2>
+                                    <span>Crypto Investor</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="testimonial-item-five">
+                            <div class="testimonial-item-five-top">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="testimonial-quote">
+                                    <img src="<?php echo $domain ?>assets/img/icons/quote03.svg" alt="">
+                                </div>
+                            </div>
+                            <p>“The personalized advice I received about investing in crypto has been invaluable. My portfolio has never been better!”</p>
+                            <div class="testimonial-avatar">
+
+                                <div class="avatar-info">
+                                    <h2 class="title">Ms. Jane Smith</h2>
+                                    <span>Crypto Enthusiast</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="testimonial-item-five">
+                            <div class="testimonial-item-five-top">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="testimonial-quote">
+                                    <img src="<?php echo $domain ?>assets/img/icons/quote03.svg" alt="">
+                                </div>
+                            </div>
+                            <p>“I’ve been able to diversify my investments with the help of their crypto experts. Great service and support.”</p>
+                            <div class="testimonial-avatar">
+
+                                <div class="avatar-info">
+                                    <h2 class="title">Mr. Robey Alexa</h2>
+                                    <span>CEO, Gerow Agency</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-shape-two">
+                <img src="<?php echo $domain ?>assets/img/images/h6_testimonial_shape01.png" alt="img">
+                <img src="<?php echo $domain ?>assets/img/images/h6_testimonial_shape02.png" alt="img" data-parallax='{"x" : -100 }'>
+            </div>
+        </section>
 
 
 
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text"></span></a></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+                {
+                    "width": "100%",
+                    "height": "550",
+                    "defaultColumn": "moving_averages",
+                    "screener_type": "crypto_mkt",
+                    "displayCurrency": "USD",
+                    "colorTheme": "light",
+                    "locale": "en"
+                }
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
 
-                <?php include('./includes/popin_with.php') ?>
-                <!-- <div class="scrollToTop">
-            <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>
-        </div> -->
-                <div id="responsive-overlay"></div>
-                <!-- Popper JS -->
-                <script src="./assets/libs/@popperjs/core/umd/popper.min.js"></script>
-                <!-- Bootstrap JS -->
-                <script src="./assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-                <!-- Defaultmenu JS -->
-                <script src="./assets/js/defaultmenu.min.js"></script>
-                <!-- Node Waves JS-->
-                <script src="./assets/libs/node-waves/waves.min.js"></script>
-                <!-- Sticky JS -->
-                <script src="./assets/js/sticky.js"></script>
-                <!-- Simplebar JS -->
-                <script src="./assets/libs/simplebar/simplebar.min.js"></script>
-                <script src="./assets/js/simplebar.js"></script>
-                <!-- Color Picker JS -->
-                <script src="./assets/libs/@simonwep/pickr/pickr.es5.min.js"></script>
-                <!-- Apex Charts JS -->
-                <script src="./assets/libs/apexcharts/apexcharts.min.js"></script>
-                <!-- Crypto-Dashboard JS -->
-                <script src="./assets/js/crypto-dashboard.js"></script>
-                <!-- Custom-Switcher JS -->
-                <script src="./assets/js/custom-switcher.min.js"></script>
-                <!-- Custom JS -->
-                <script src="./assets/js/custom.js"></script>
+        <!-- testimonial-area-end -->
+
+        <!-- blog-area -->
+        <section class="blog-area-two blog-bg-two" data-background="<?php echo $domain ?>assets/img/bg/h6_blog_bg.jpg">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="section-title-two text-center mb-50 tg-heading-subheading animation-style3">
+                            <span class="sub-title">News & Blogs</span>
+                            <h2 class="title tg-element-title">Read Our Latest Updates</h2>
+                            <p>Ever find yourself staring at your computer screen a good consulting slogan to come to mind? Oftentimes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 col-sm-10">
+                        <div class="blog-post-item-two">
+                            <div class="blog-post-thumb-two">
+                                <a href="blog-details.html"><img src="<?php echo $domain ?>assets/img/blog/h2_blog_img01.jpg" alt=""></a>
+                                <a href="blog.html" class="tag">Development</a>
+                            </div>
+                            <div class="blog-post-content-two">
+                                <h2 class="title"><a href="blog-details.html">Meet AutoManage, the best AI management tools</a></h2>
+                                <p>Everything you need to start building area atching presence for your business.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-10">
+                        <div class="blog-post-item-two">
+                            <div class="blog-post-thumb-two">
+                                <a href="blog-details.html"><img src="<?php echo $domain ?>assets/img/blog/h2_blog_img02.jpg" alt=""></a>
+                                <a href="blog.html" class="tag">Business</a>
+                            </div>
+                            <div class="blog-post-content-two">
+                                <h2 class="title"><a href="blog-details.html">Meet AutoManage, the best AI management tools</a></h2>
+                                <p>Everything you need to start building area atching presence for your business.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-10">
+                        <div class="blog-post-item-two">
+                            <div class="blog-post-thumb-two">
+                                <a href="blog-details.html"><img src="<?php echo $domain ?>assets/img/blog/h2_blog_img03.jpg" alt=""></a>
+                                <a href="blog.html" class="tag">Tax Advisory</a>
+                            </div>
+                            <div class="blog-post-content-two">
+                                <h2 class="title"><a href="blog-details.html">Meet AutoManage, the best AI management tools</a></h2>
+                                <p>Everything you need to start building area atching presence for your business.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- blog-area-end -->
+
+
+        <!-- request-area -->
+        <section class="request-area request-bg" data-background="<?php echo $domain ?>assets/img/bg/request_bg.jpg">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-5">
+                        <div class="request-content tg-heading-subheading animation-style3">
+                            <h2 class="title tg-element-title">Let’s Request a Schedule For <br> Free Consultation</h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="request-content-right">
+                            <div class="request-contact">
+                                <div class="icon">
+                                    <i class="flaticon-phone-call"></i>
+                                </div>
+                                <div class="content">
+                                    <span>Hotline 24/7</span>
+                                    <a href="tel:0123456789"><?php echo $sitephone ?></a>
+                                </div>
+                            </div>
+                            <div class="request-btn request-btn-two">
+                                <a href="contact.html" class="btn btn-three">Request a Schedule</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="request-shape">
+                <img src="<?php echo $domain ?>assets/img/images/request_shape.png" alt="">
+            </div>
+        </section>
+        <!-- request-area-end -->
+
+    </main>
+    <!-- main-area-end -->
+
+    <?php include('./includes/footer.php') ?>
+    <!-- footer-area -->
+
+    <!-- footer-area-end -->
+
+
+    <!-- JS here -->
+    <script src="<?php echo $domain ?>assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="<?php echo $domain ?>assets/js/bootstrap.min.js"></script>
+    <script src="<?php echo $domain ?>assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="<?php echo $domain ?>assets/js/jquery.odometer.min.js"></script>
+    <script src="<?php echo $domain ?>assets/js/jquery.appear.js"></script>
+    <script src="<?php echo $domain ?>assets/js/gsap.js"></script>
+    <script src="<?php echo $domain ?>assets/js/ScrollTrigger.js"></script>
+    <script src="<?php echo $domain ?>assets/js/SplitText.js"></script>
+    <script src="<?php echo $domain ?>assets/js/gsap-animation.js"></script>
+    <script src="<?php echo $domain ?>assets/js/jarallax.min.js"></script>
+    <script src="<?php echo $domain ?>assets/js/jquery.parallaxScroll.min.js"></script>
+    <script src="<?php echo $domain ?>assets/js/particles.min.js"></script>
+    <script src="<?php echo $domain ?>assets/js/jquery.easypiechart.min.js"></script>
+    <script src="<?php echo $domain ?>assets/js/jquery.inview.min.js"></script>
+    <script src="<?php echo $domain ?>assets/js/swiper-bundle.min.js"></script>
+    <script src="<?php echo $domain ?>assets/js/slick.min.js"></script>
+    <script src="<?php echo $domain ?>assets/js/ajax-form.js"></script>
+    <script src="<?php echo $domain ?>assets/js/aos.js"></script>
+    <script src="<?php echo $domain ?>assets/js/wow.min.js"></script>
+    <script src="<?php echo $domain ?>assets/js/main.js"></script>
+    <script src="//code.jivosite.com/widget/rbZ8FspaA4" async></script>
+
 </body>
 
 </html>

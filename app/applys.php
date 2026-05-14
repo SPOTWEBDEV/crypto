@@ -1,21 +1,19 @@
 <?php
-;
 include('../server/connection.php');
 include('controllers/authFy.php');
-// PREPARE USERS DETAILS;
 include('controllers/userDetails.php');
-//  FOR INVESTMENT MATURITY
-include('controllers/invMTR_CTR.php');
+
 // Log out the mother force;
 include('controllers/logOut.php');
 
 
-function formatNumber($number, $decimals = 2) {
+function formatNumber($number, $decimals = 2)
+{
     // Check if the input is empty or not numeric
     if (empty($number) || !is_numeric($number)) {
         $number = 0;
     }
-    
+
     // Use number_format to format the number
     return number_format((float)$number, $decimals, '.', ',');
 }
@@ -76,7 +74,7 @@ function formatNumber($number, $decimals = 2) {
             <div class="container-fluid">
                 <!-- Page Header -->
                 <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-                    <h1 class="page-title fw-semibold fs-18 mb-0">DEPOSITS</h1>
+                    <h1 class="page-title fw-semibold fs-18 mb-0">Loans History</h1>
                     <div class="ms-md-1 ms-0">
                         <nav>
                             <ol class="breadcrumb mb-0">
@@ -97,52 +95,92 @@ function formatNumber($number, $decimals = 2) {
                                 <tr>
                                     <th scope="col">S/N</th>
                                     <th scope="col">ACCOUNT HOLDER</th>
-                                    <th scope="col">DEPOSITED</th>
-                                    <th scope="col">METHOD USED</th> 
-                                    <th scope="col">DEPOSITED ON</th>
+                                    <th scope="col">LOAN AMOUNT</th>
+                                    <th scope="col">REASON</th>
+                                    <th scope="col">DURATION</th>
+                                    <th scope="col">PAYBACK AMOUNT</th>
+                                    <th scope="col">CREATED ON</th>
                                     <th scope="col">STATUS</th>
                                 </tr>
                             </thead>
+
                             <tbody>
                                 <?php
-                                $sql = mysqli_query($connection, "SELECT * FROM `deposits` WHERE `user_id` = '$id'");
-                                if (mysqli_num_rows($sql)) {
+                                $sql = mysqli_query($connection, "SELECT * FROM `loans` WHERE `user_id` = '$id'");
+
+                                if (mysqli_num_rows($sql) > 0) {
+
                                     $count = 1;
+
                                     while ($details = mysqli_fetch_assoc($sql)) {
                                 ?>
+
                                         <tr>
-                                            <td><?php echo $count ?></td>
+                                            <td><?php echo $count; ?></td>
+
                                             <td>
                                                 <span class="avatar avatar-xs me-2 online avatar-rounded">
                                                     <img src="./assets/images/faces/13.jpg" alt="img">
-                                                </span><?php echo $userDetails['name'] ?>
-                                                <!-- <th scope="row">Harshrath</th> -->
+                                                </span>
+
+                                                <?php echo $userDetails['name']; ?>
                                             </td>
-                                            <td><span class="badge bg-success-transparent">$<?php echo formatNumber($details['amount']) ?></span></td>
-                                            <td><?php echo $details['method'] ?></td> 
-                                            <td><?php echo $details['date_deposited'] ?></td>
+
+                                            <td>
+                                                <span class="badge bg-success-transparent">
+                                                    $<?php echo formatNumber($details['amount']); ?>
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                <?php echo $details['reason']; ?>
+                                            </td>
+
+                                            <td>
+                                                <?php echo $details['duration']; ?>
+                                            </td>
+
+                                            <td>
+                                                <span class="badge bg-info-transparent">
+                                                    $<?php echo formatNumber($details['payback_amount']); ?>
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                <?php echo $details['created_at']; ?>
+                                            </td>
 
                                             <td>
                                                 <?php
                                                 if ($details['status'] == 1) {
+
                                                     echo '<span class="badge bg-success-transparent ms-2">APPROVED</span>';
                                                 } else if ($details['status'] == 2) {
-                                                    echo '<span class="badge bg-warning-transparent ms-2">DECLINED</span>';
+
+                                                    echo '<span class="badge bg-danger-transparent ms-2">DECLINED</span>';
                                                 } else {
-                                                    echo '<span class="badge bg-warning-transparent ms-2">PEDNING</span>';
+
+                                                    echo '<span class="badge bg-warning-transparent ms-2">PENDING</span>';
                                                 }
                                                 ?>
                                             </td>
+
                                         </tr>
+
                                 <?php
                                         $count++;
                                     }
                                 } else {
-                                    echo "<tr> 
-                                    <td colspan='7'> 
-                                    <span class='badge bg-danger-transparent'> NO DATA </span>
-                                    </td>
-                                    </tr>";
+
+                                    echo "
+                <tr>
+                    <td colspan='8'>
+                        <span class='badge bg-danger-transparent'>
+                            NO LOAN HISTORY
+                        </span>
+                    </td>
+                </tr>
+            ";
                                 }
                                 ?>
                             </tbody>

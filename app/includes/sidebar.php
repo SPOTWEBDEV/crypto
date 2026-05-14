@@ -36,12 +36,12 @@
     </li>
 
     <!-- Mining -->
-    <li class="slide mt-2">
+    <!-- <li class="slide mt-2">
         <a href="mining.php" class="side-menu__item">
             <i class="bx bx-chip side-menu__icon"></i>
             Mining
         </a>
-    </li>
+    </li> -->
 
     <!-- Requests -->
     <li class="slide has-sub mt-2">
@@ -72,7 +72,7 @@
             </li>
 
             <li class="slide">
-                <a href="loan.php" class="side-menu__item">
+                <a href="apply.php" class="side-menu__item">
                     Loan Application
                 </a>
             </li>
@@ -138,6 +138,11 @@
             <li class="slide">
                 <a href="withdrawals.php" class="side-menu__item">
                     Withdrawals
+                </a>
+            </li>
+            <li class="slide">
+                <a href="applys.php" class="side-menu__item">
+                    Loans
                 </a>
             </li>
 

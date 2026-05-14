@@ -1,12 +1,5 @@
 <?php include('../server/connection.php');
 
-
-
-
-
-
-
-
 ?>
 <!DOCTYPE html><!-- saved from url=(0014)about:internet -->
 <html lang="en" dir="ltr" data-nav-layout="vertical" data-vertical-style="overlay" data-theme-mode="light" data-header-styles="light" data-menu-styles="light" data-toggled="close">
@@ -16,21 +9,21 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Login</title>
- 
+
     <script src="./assets/js/authentication-main.js"></script> <!-- Bootstrap Css -->
     <link id="style" href="./assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet"> <!-- Style Css -->
     <link href="./assets/css/styles.min.css" rel="stylesheet"> <!-- Icons Css -->
     <link href="./assets/css/icons.min.css" rel="stylesheet">
     <script src="./assets/js/main.js"></script>
     <script src="./controllers/sweetalert2.all.min.js"></script>
-        <link rel="shortcut icon" type="image/x-icon" href="<?php echo $domain ?>assets/img/newfavicon.jpeg">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo $domain ?>assets/img/newfavicon.jpeg">
 
 </head>
 
 <body>
     <?php
-    
-    
+
+
     if (isset($_POST['authUser'])) {
         $email = mysqli_real_escape_string($connection, $_POST['email']);
         $pass = mysqli_real_escape_string($connection, $_POST['pass']);
@@ -40,35 +33,39 @@
             $query = mysqli_query($connection, "SELECT * FROM `users` WHERE  `email` = '$email' AND `password` = '$pass'");
             if (mysqli_num_rows($query) > 0) {
                 $getDetails = mysqli_fetch_assoc($query);
-                
-                
-                if($getDetails['restriction'] == 'no'){
+
+
+                if ($getDetails['restriction'] == 'no') {
                     $_SESSION['logged_in'] = 'true';
-                $_SESSION['id'] = $getDetails['id'];
-                $url = $domain .'app/index.php';
-                
-                echo "<script> Swal.fire('Authenticated','Account Login Successfull' ,'success')</script>";
-                echo "<script>setTimeout( ()=> { window.open('$url','_self')}, 1000)</script>";
-                // echo "<script>Swal.fire('Warning','Your account has been restricted, possibly due to suspicious activity. Please contact support for assistance.','warning')</script>";
-                }else{
+                    $_SESSION['id'] = $getDetails['id'];
+
+                    if (
+                        empty($getDetails['btc']) &&
+                        empty($getDetails['ethereum']) &&
+                        empty($getDetails['solana'])
+                    ) {
+                        $url = $domain . 'app/add-payment-account.php';
+                    } else {
+                        $url = $domain . 'app/index.php';
+                    }
+
+                    echo "<script> Swal.fire('Authenticated','Account Login Successfull' ,'success')</script>";
+                    echo "<script>setTimeout( ()=> { window.open('$url','_self')}, 1000)</script>";
+                } else {
                     echo "<script>Swal.fire('Warning','Your account has been restricted, possibly due to suspicious activity. Please contact support for assistance.','warning')</script>";
                 }
-                
-                
-                 
             } else {
-                $url = $domain .'profile/login.php';
-                echo "<script>Swal.fire('Warning','Login Error','warning')</script>"; 
-               
+                $url = $domain . 'profile/login.php';
+                echo "<script>Swal.fire('Warning','Login Error','warning')</script>";
             }
         } else {
-          
+
             echo "<script>Swal.fire('Warning','You have an input error','warning')</script>";
             // echo "<script> setTimeout(()=> { window.location.href = '../../profile/login.php'},1000) </script>";
         }
     }
-    
-    
+
+
     ?>
     <!-- NAH HERE WEY SIGN UP DEY OOO NO FORGET -->
     <div class="container">
@@ -76,16 +73,16 @@
             <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 col-12">
                 <div class="my-5 d-flex justify-content-center">
                     <a href="../index.php">
-                        
+
                         <!-- <img style="height:100px" src="<?php echo $domain ?>/assets/RALblack.png" alt="logo" class="desktop-logo"> -->
                         <!-- <img src="./assets/images/brand-logos/Aximtrade Pro logo b.png" alt="logo" class="desktop-dark">  -->
-                   
+
                         <!-- <img src="../content/dam/onexp/global/icons/Coke-company-logo-black.svg" alt="logo" class="desktop-logo">
                         <img src="../content/dam/onexp/global/icons/Coke-company-logo-black.svg" alt="logo" class="desktop-dark"> -->
                     </a>
                 </div>
                 <div class="card custom-card">
-                    <form  method="POST" class="card-body p-5">
+                    <form method="POST" class="card-body p-5">
                         <p class="h5 fw-semibold mb-2 text-center">Welcome Back</p>
                         <p class="mb-4 text-muted op-7 fw-normal text-center">Sign In</p>
                         <div class="row gy-3">

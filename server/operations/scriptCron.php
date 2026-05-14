@@ -1,9 +1,9 @@
 <?php
 
 define("HOST", "localhost");
-define("USER", "proteusc_cry");
-define("PASSWORD", "proteusc_cry");
-define("DATABASE", "proteusc_cry");
+define("USER", "barhjktd_db");
+define("PASSWORD", "barhjktd_db");
+define("DATABASE", "barhjktd_db");
 
 $connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 

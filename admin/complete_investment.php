@@ -9,7 +9,7 @@ include('../server/connection.php');
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-  <title>Delay Propaganda</title>
+  <title>Complete Investment</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
@@ -185,7 +185,7 @@ include('../server/connection.php');
 
             <!-- Basic Bootstrap Table -->
             <div class="card">
-              <h5 class="card-header">Active Investments </h5>
+              <h5 class="card-header">Complete Investments </h5>
               <div class="table-responsive text-nowrap">
                 <table class="table">
                   <thead>
@@ -202,43 +202,11 @@ include('../server/connection.php');
                   <tbody class="table-border-bottom-0">
                     <?php
                     
-                    if (isset($_GET['add'])) {
-                      $id = $_GET['user_id'];
-                      $add = $_GET['add'];
-                      
-                      $suspend = mysqli_query($connection, "SELECT * FROM `investments` WHERE `id` = '$id'");
-                      $details = mysqli_fetch_assoc($suspend);
-
-                      // modifying the investment date
-                      $invested_on = new DateTime($details['date_invested']);
-                      $invest_delay = $invested_on->modify('+'.$add);
-                      $mod_invested = $invest_delay->format('Y-m-d H:i:s');
-
-                      // modifying the investment maturity
-                      $matured_on = new DateTime($details['date_to_mature']);
-                      $matured_delay = $matured_on->modify('+'.$add);
-                      $mod_matured = $matured_delay->format('Y-m-d H:i:s');
-
-                      $modify_invest = mysqli_query($connection, "UPDATE `investments` SET `date_invested` = '$mod_invested', `date_to_mature` = '$mod_matured' WHERE `id` = '$id'");
-
-                      if ($modify_invest) {
-                        echo "<script>
-                                Swal.fire('Modified','You have successfully added {$add} to this investment','success')
-                              </script>";
-                        echo "<script>
-                                  setTimeout( ()=> {
-                                    window.open('delayinvest.php','_self')
-                                  }, 2000)
-                              </script>";
-                      } else {
-                        echo "<script>
-                              Swal.fire('Failed','Error adding {$add} to this investment','error')
-                          </script>";
-                      }
-                    }
+                    
+                    
 
 
-                    $sql = mysqli_query($connection, "SELECT * FROM `investments` WHERE `status` = '0'");
+                    $sql = mysqli_query($connection, "SELECT * FROM `investments` WHERE `status` = '1'");
                     if (mysqli_num_rows($sql)) {
                       $count = 1;
                       while ($details = mysqli_fetch_assoc($sql)) {
@@ -262,7 +230,7 @@ include('../server/connection.php');
                                 if ($details['status'] == 0) {
                                   echo "<span class=\"badge bg-label-primary me-1\">Pending</span>";
                                 } else if ($details['status'] == 1) {
-                                  echo "<span class=\"badge bg-label-warning me-1\">Complete</span>";
+                                  echo "<span class=\"badge bg-label-success me-1\">Complete</span>";
                                 } else {
                                   echo "<span class=\"badge bg-label-danger me-1\">UNDEFINED</span>";
                                 }
@@ -273,7 +241,6 @@ include('../server/connection.php');
                               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                               <div class="dropdown-menu">
                                 <a class="dropdown-item"  href="./add_investment.php?update=<?php echo $details['id'] ?>"><i class="bx bx-cog me-1"></i>Edit</a>
-                               
                               </div>
                             </div>
                           </td>

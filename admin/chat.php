@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_message'])) {
 
   $name    = mysqli_real_escape_string($connection, $_POST['name']);
   $email   = mysqli_real_escape_string($connection, $_POST['email']);
-  $subject = mysqli_real_escape_string($connection, $_POST['subject'] ?? '');
+  $subject = mysqli_real_escape_string($connection, $_POST['email_subject_custom'] ?? '');
   $message = mysqli_real_escape_string($connection, $_POST['message']);
 
 
@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_message'])) {
               <table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td>
-                    <img src="https://proteuschain.com/assets/img/logo/blacklogo.jpeg" alt="Logo" width="80" height="60" style="display:block;" />
+                    <img src="https://proteuschain.com/assets/img/logo/logo.png" alt="Logo" width="80" height="60" style="display:block;" />
                   </td>
                   <td align="right" style="color:#facc15; font-size:18px; font-weight:600;">
                     ' . $sitename . '
@@ -370,7 +370,15 @@ if (isset($_GET['conversation'])) {
         placeholder="Type your custom description here..."></textarea>
 
 
-      <input id="subjectInput" name="subject" autocomplete="false" type="text" class="w-full border rounded px-4 py-2 mb-2 text-sm " placeholder="Email Subject">
+     
+      
+      <input
+  id="subjectInput"
+  name="email_subject_custom"
+  type="text"
+  autocomplete="off"
+  class="w-full border rounded px-4 py-2 mb-2 text-sm"
+  placeholder="Email Subject">
 
       <textarea name="message" class="w-full border rounded px-4 py-2 text-sm" rows="4" placeholder="Message" required></textarea>
 

@@ -126,7 +126,7 @@ include('controllers/logOut.php');
 
 
                                 const error = amount.nextElementSibling;
-                                if (amount.value >= 50 && amount.value <= 500) {
+                                if (amount.value >= 50) {
                                     btnchild.removeAttribute("disabled");
                                     error.innerHTML = '';
                                 } else {
@@ -185,7 +185,7 @@ include('controllers/logOut.php');
 
 
                                 const error = amount.nextElementSibling;
-                                if (amount.value >= 200 && amount.value <= 1000) {
+                                if (amount.value >= 200) {
                                     btnStandard.removeAttribute("disabled");
                                     error.innerHTML = '';
                                 } else {
@@ -219,13 +219,13 @@ include('controllers/logOut.php');
                                 <div class="d-flex align-items-center mb-0">
                                     <p class="mb-0 fs-20 fw-semibold">$1,500</p>
                                     <span class="text-muted ms-2">
-                                        <i class="ti ti-arrow-up align-middle text-success me-1 d-inline-block"></i>$5000
+                                        <i class="ti ti-arrow-up align-middle text-success me-1 d-inline-block"></i>$4200
                                     </span>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="flex-fill">
                                         <div class="progress progress-xs">
-                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 8.3%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 40%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="ms-3"> <span class="fs-12 text-muted">40%</span> </div>
@@ -242,7 +242,7 @@ include('controllers/logOut.php');
 
                             function Advance(amount) {
                                 const error = amount.nextElementSibling;
-                                if (amount.value >= 1500 && amount.value <= 5000) {
+                                if (amount.value >= 1500) {
                                     btnSecondary.removeAttribute("disabled");
                                     error.innerHTML = '';
                                 } else {

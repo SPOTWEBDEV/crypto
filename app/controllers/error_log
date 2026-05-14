@@ -374,3 +374,23 @@ proper dns entries.
 
 [15-Sep-2024 07:19:17 UTC] Email sending failed: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
 [15-Sep-2024 16:31:55 UTC] Email sending failed: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+[27-Nov-2025 15:25:36 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'gift_card_code' in 'INSERT INTO' in /home/proteusc/public_html/app/controllers/depoCTR.php:70
+Stack trace:
+#0 /home/proteusc/public_html/app/controllers/depoCTR.php(70): mysqli_query()
+#1 {main}
+  thrown in /home/proteusc/public_html/app/controllers/depoCTR.php on line 70
+[17-Feb-2026 03:46:04 UTC] PHP Warning:  Undefined array key "id" in /home/proteusc/public_html/app/controllers/userDetails.php on line 2
+[17-Feb-2026 03:46:04 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/proteusc/public_html/app/controllers/withCTR.php on line 6
+[17-Feb-2026 03:46:04 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/proteusc/public_html/app/controllers/withCTR.php on line 24
+[17-Feb-2026 03:46:04 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/proteusc/public_html/app/controllers/withCTR.php on line 40
+[17-Feb-2026 03:46:04 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/proteusc/public_html/app/controllers/withCTR.php on line 50
+[10-Mar-2026 21:47:03 UTC] PHP Warning:  Undefined array key "id" in /home/proteusc/public_html/app/controllers/userDetails.php on line 2
+[10-Mar-2026 21:47:03 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/proteusc/public_html/app/controllers/withCTR.php on line 6
+[10-Mar-2026 21:47:03 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/proteusc/public_html/app/controllers/withCTR.php on line 24
+[10-Mar-2026 21:47:03 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/proteusc/public_html/app/controllers/withCTR.php on line 40
+[10-Mar-2026 21:47:03 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/proteusc/public_html/app/controllers/withCTR.php on line 50
+[22-Apr-2026 11:45:48 UTC] PHP Warning:  Undefined array key "id" in /home/proteusc/public_html/app/controllers/userDetails.php on line 2
+[22-Apr-2026 11:45:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/proteusc/public_html/app/controllers/withCTR.php on line 6
+[22-Apr-2026 11:45:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/proteusc/public_html/app/controllers/withCTR.php on line 24
+[22-Apr-2026 11:45:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/proteusc/public_html/app/controllers/withCTR.php on line 40
+[22-Apr-2026 11:45:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/proteusc/public_html/app/controllers/withCTR.php on line 50

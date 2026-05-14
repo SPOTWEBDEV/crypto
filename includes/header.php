@@ -45,7 +45,7 @@
                             </style>
 
                             <div class="logo t">
-                                <a href="#"><img  src="assets/img/logo/blacklogo.jpeg" alt="Logo"></a>
+                                <a href="#"><img  src="assets/img/logo/logo.png" alt="Logo"></a>
                             </div>
                             <h1 style="color:white;"> </h1>
                             <div class="logo d-none b">

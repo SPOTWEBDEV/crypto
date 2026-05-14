@@ -65,6 +65,7 @@
             <li class="menu-item"><a href="deposits.php" class="menu-link">💰 Deposits</a></li>
             <li class="menu-item"><a href="withdrawals.php" class="menu-link">💸 Withdrawals</a></li>
             <li class="menu-item"><a href="kyc.php" class="menu-link">🛂 KYC</a></li>
+            <li class="menu-item"><a href="chat.php" class="menu-link">📜 Chat </a></li>
         </ul>
     </li>
 
@@ -80,12 +81,15 @@
     </li>
 
     <!-- Signal -->
-    <li class="menu-item">
-        <a href="chat.php" class="menu-link menu-toggle">
-            <div data-i18n="Layouts">📡 Send Email </div>
+    <!-- <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <div data-i18n="Layouts">📡 Signal</div>
         </a>
-
-    </li>
+        <ul class="menu-sub">
+            <li class="menu-item"><a href="add-signal.php" class="menu-link">➕ Add Signal</a></li>
+            <li class="menu-item"><a href="view-signal.php" class="menu-link">👀 View Signal</a></li>
+        </ul>
+    </li> -->
 
     <!-- Expert -->
     <li class="menu-item">
@@ -144,8 +148,9 @@
             <div data-i18n="Authentications">📈 Investment</div>
         </a>
         <ul class="menu-sub">
+            <li class="menu-item"><a href="add_investment.php" class="menu-link">⏳ ➕ Add  Investment</a></li>
             <li class="menu-item"><a href="delayinvest.php" class="menu-link">⏳ Pending Investment</a></li>
-            <li class="menu-item"><a href="running_investment.php" class="menu-link">🏃‍♂️ Running Investment</a></li>
+            <li class="menu-item"><a href="complete_investment.php" class="menu-link">🏃‍♂️ Complete  Investment</a></li>
         </ul>
     </li>
 

@@ -23,10 +23,10 @@ $isLocalhost = ($_SERVER['HTTP_HOST'] === 'localhost');
 
 // Set configurations based on protocol
 if (!$isLocalhost) {
-    $domain = "https://proteuschain.com/";
-    define("USER", "proteusc_cry");
-    define("PASSWORD", "proteusc_cry");
-    define("DATABASE", "proteusc_cry");
+    $domain = "https://fvestix.top/";
+    define("USER", "barhjktd_db");
+    define("PASSWORD", "barhjktd_db");
+    define("DATABASE", "barhjktd_db");
     $connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
     if (!$connection) {
         die("Connection failed: " . mysqli_connect_error());
@@ -47,15 +47,15 @@ if (!$isLocalhost) {
 
 
 // // Site configurations
-$sitename = "Proteus Chain";
+$sitename = "Finovestix";
 
 
 // email config 
-$siteemail = "support@proteuschain.com";
-$emailpassword  = "support@proteuschain.com";
-$host = 'mail.proteuschain.com';
+$siteemail = "support@fvestix.top";
+$emailpassword  = "support@fvestix.top";
+$host = 'mail.fvestix.top';
 $sitephone  = "+44 744 0466 217";
-$siteaddress  = "weston newyork";
+$siteaddress  = "145 Bedford Ave, Brooklyn, NY 11211, USA";
 
 
 

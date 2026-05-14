@@ -64,12 +64,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reply_message'])) {
 <body class="bg-[#F5F8FF] min-h-screen flex flex-col">
 
     <!-- TOP BAR -->
-    <div class="bg-white p-4 flex items-center gap-4 shadow border-b border-blue-100 shrink-0">
+    <div class="bg-white p-4 flex flex-wrap  items-center gap-4 shadow border-b border-blue-100 shrink-0">
         <button onclick="history.back()"
             class="px-4 py-2 bg-[#0055FF] hover:bg-[#0046D5] text-white rounded text-sm transition">
             ← Go Back
         </button>
-        <h3 class="font-semibold text-lg text-[#0F172A]">Mail inbox</h3>
+        <h3 class="font-semibold text-sm sm:text-lg text-[#0F172A]"> <?php echo $sitename . ' '  ?>Inbox</h3>
     </div>
 
     <!-- MAIN CHAT AREA -->

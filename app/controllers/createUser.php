@@ -118,16 +118,16 @@ $sitename Team</p>
                     if ($result) {
                         echo "<script>Swal.fire('Account Created', 'Your account has been created successfully', 'success')</script>";
                         $url = $domain . 'app/login.php';
-                        // echo "<script>setTimeout(() => { 
-                        //     window.open('$url', '_self');
-                        // }, 1000)</script>";
+                        echo "<script>setTimeout(() => { 
+                            window.open('$url', '_self');
+                        }, 1000)</script>";
                     } else {
 
                         $url = $domain . 'app/register.php';
                         echo "<script>Swal.fire('Mail Error', 'Failed to send confirmation email. You can still proceed to login.', 'error');</script>";
-                        // echo "<script>setTimeout(() => { 
-                        //     window.open('$url', '_self');
-                        // }, 1000)</script>";
+                        echo "<script>setTimeout(() => { 
+                            window.open('$url', '_self');
+                        }, 1000)</script>";
                     }
                 } else {
                     echo "<script>Swal.fire('Account Error', 'Error creating account', 'error')</script>";

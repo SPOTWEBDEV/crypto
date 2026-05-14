@@ -26,8 +26,8 @@ function smtpmailer($to, $from, $formName, $subject, $body)
          $mail->AddAddress($to);
 
          // Enable SMTP debugging
-         $mail->SMTPDebug = 2; // 0 = off, 1 = client messages, 2 = client and server messages
-         $mail->Debugoutput = 'html'; // Output format for debugging
+        //  $mail->SMTPDebug = 2; // 0 = off, 1 = client messages, 2 = client and server messages
+        //  $mail->Debugoutput = 'html'; // Output format for debugging
 
          if (!$mail->Send()) {
                   // Log error or handle failure

@@ -48,7 +48,7 @@ include('controllers/logOut.php');
     <!-- Choices Css -->
     <link rel="stylesheet" href="./assets/libs/choices.js/public/assets/styles/choices.min.css" />
     <script src="<?php echo $domain ?>app/assets/js/jquery-3.6.0.min.js"></script>
-   <script src="<?php echo $domain ?>app/assets/js/sweetalert2.all.min.js"></script>
+    <script src="<?php echo $domain ?>app/assets/js/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -64,27 +64,27 @@ include('controllers/logOut.php');
 
         <?php
 
-if (isset($_POST['upd_hash'])) {
-    $old = $_POST['old'];
-    $new = $_POST['new'];
-    $new_rep = $_POST['new_rep'];
+        if (isset($_POST['upd_hash'])) {
+            $old = $_POST['old'];
+            $new = $_POST['new'];
+            $new_rep = $_POST['new_rep'];
 
-    if ($old == $userDetails['password']) {
-        if (!empty($old) && !empty($new) && !empty($new_rep) && $new == $new_rep) {
-            $update_current_user = mysqli_query($connection, "UPDATE `users` SET `password`='$new' WHERE `id` =  $id");
-            if ($update_current_user) {
-                echo "<script> window.location.href = './profile.php' </script>";
+            if ($old == $userDetails['password']) {
+                if (!empty($old) && !empty($new) && !empty($new_rep) && $new == $new_rep) {
+                    $update_current_user = mysqli_query($connection, "UPDATE `users` SET `password`='$new' WHERE `id` =  $id");
+                    if ($update_current_user) {
+                        echo "<script> window.location.href = './profile.php' </script>";
+                    } else {
+                        echo "<script>Swal.fire('Edit Password Error','Smething went wrong on the server','error')</script>";
+                        echo "<script>setTimeout( ()=> { window.location.href = './update_hash.php' }, 4000)</script>";
+                    }
+                }
             } else {
-                echo "<script>Swal.fire('Edit Password Error','Smething went wrong on the server','error')</script>";
+
+                echo "<script>Swal.fire('Edit Password Error','Password Mismatch','error')</script>";
                 echo "<script>setTimeout( ()=> { window.location.href = './update_hash.php' }, 4000)</script>";
             }
         }
-    } else {
-        
-        echo "<script>Swal.fire('Edit Password Error','Password Mismatch','error')</script>";
-                echo "<script>setTimeout( ()=> { window.location.href = './update_hash.php' }, 4000)</script>";
-    }
-}
 
 
 

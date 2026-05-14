@@ -36,7 +36,7 @@ if (!$isLocalhost) {
 
     define("USER", "root");
     define("PASSWORD", "");
-    define("DATABASE", "jay");
+    define("DATABASE", "jay2");
 
     // Database connection
     $connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);

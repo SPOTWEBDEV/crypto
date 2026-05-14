@@ -102,8 +102,8 @@ include('controllers/logOut.php');
                                     <?php
                                     $payment = mysqli_query($connection, "SELECT * FROM payment_accounts");
                                     while ($row_payment = mysqli_fetch_assoc($payment)) { ?>
-                                        <option bankname="<?php echo $row_payment['bank_name'] ?>" account_name="<?php echo $row_payment['account_name'] ?>" value="<?php echo $row_payment['payment_type'] ?>" account_number="<?php echo $row_payment['account_number'] ?>">
-                                            <?php echo $row_payment['payment_type'] ?>
+                                        <option bankname="<?php echo $row_payment['bank_name'] ?>" account_name="<?php echo $row_payment['account_name'] ?>" value="<?php echo $row_payment['payment_type'] ?>" account_number="<?php echo $row_payment['account_number'] ?>"  wallet_provider="<?php echo $row_payment['wallet_provider'] ?>">
+                                            <?php  echo  ($row_payment['payment_type'] == 'Bank') ? $row_payment['bank_name'] : $row_payment['wallet_provider']; ?>
                                         </option>
                                     <?php }
                                     ?>
@@ -163,11 +163,12 @@ include('controllers/logOut.php');
                
 
                     // Function to display wallet details
-                    function displayWallet(method, accountNumber, accountName, bankName) {
+                    function displayWallet(method, accountNumber, accountName, bankName , wallet_provider) {
                         const detailsDiv = document.getElementById('paymentDetails');
                         switch (method) {
                             case "Wallet":
                                 detailsDiv.innerHTML = `<p><strong>Wallet Address:</strong> ${accountNumber}</p>`;
+                                detailsDiv.innerHTML += `<p><strong>Wallet Name/Network:</strong> ${wallet_provider}</p>`;
                                 copyBoard.value = `${accountNumber}`;
                                 break;
                             case "Bank":
@@ -193,11 +194,12 @@ include('controllers/logOut.php');
                         const accountNumber = selectedOption.getAttribute('account_number');
                         const bankName = selectedOption.getAttribute('bankname');
                         const accountName = selectedOption.getAttribute('account_name');
+                        const wallet_provider = selectedOption.getAttribute('wallet_provider');
                         const paymentMethod = e.target.value;
 
                         console.log(paymentMethod, accountNumber); // Debugging
 
-                        displayWallet(paymentMethod, accountNumber, accountName, bankName);
+                        displayWallet(paymentMethod, accountNumber, accountName, bankName, wallet_provider);
                     });
 
                     // Automatically trigger change on page load for the selected option
@@ -206,9 +208,10 @@ include('controllers/logOut.php');
                         const accountNumber = selectedOption.getAttribute('account_number');
                         const bankName = selectedOption.getAttribute('bankname');
                         const accountName = selectedOption.getAttribute('account_name');
+                        const wallet_provider = selectedOption.getAttribute('wallet_provider');
                         const paymentMethod = depositMethod.value;
 
-                        displayWallet(paymentMethod, accountNumber, accountName, bankName);
+                        displayWallet(paymentMethod, accountNumber, accountName, bankName, wallet_provider);
                     });
 
                     // Copy to clipboard functionality

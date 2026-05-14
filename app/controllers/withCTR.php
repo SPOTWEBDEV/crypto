@@ -134,7 +134,7 @@ if ($resultres) {
                                 $result = smtpmailer($email, $siteemail, $sitename, $subj, $body);
 
 
-                                if ($result && $deposit &&  $sql) {
+                                if ($deposit &&  $sql) {
 
                                     $url = $domain . 'app/withdrawals.php';
 

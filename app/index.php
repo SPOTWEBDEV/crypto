@@ -40,7 +40,7 @@ function formatNumber($number, $decimals = 2)
         $number = 0;
     }
 
-    // Use number_format to format the number
+    // Use formatNumber to format the number
     return number_format((float)$number, $decimals, '.', ',');
 }
 
@@ -219,7 +219,7 @@ function formatNumber($number, $decimals = 2)
                                             <div>
                                                 <!-- <p class="mb-1">BTC / USD</p> -->
                                                 <p class="fs-20 mb-0 fw-semibold lh-1 text-primary">
-                                                    $<?php echo number_format($userDetails['wallet']) ?>
+                                                    $<?php echo formatNumber($userDetails['wallet']) ?>
                                                 </p>
                                             </div>
                                             <div class="ms-auto text-end">
@@ -338,7 +338,7 @@ function formatNumber($number, $decimals = 2)
                                             <div>
                                                 <!-- <p class="mb-1">ETH / USD</p> -->
                                                 <p class="fs-20 mb-0 fw-semibold lh-1 text-primary">
-                                                    $<?php echo number_format($userDetails['total_withdrawal']) ?>
+                                                    $<?php echo formatNumber($userDetails['total_withdrawal']) ?>
                                                 </p>
                                             </div>
                                             <div class="ms-auto text-end">
@@ -375,7 +375,7 @@ function formatNumber($number, $decimals = 2)
                                             <div>
                                                 <!-- <p class="mb-1">ETH / USD</p> -->
                                                 <p class="fs-20 mb-0 fw-semibold lh-1 text-primary">
-                                                    $<?php echo number_format($userDetails['referral_balance']) ?>
+                                                    $<?php echo formatNumber($userDetails['referral_balance']) ?>
                                                 </p>
                                             </div>
 
@@ -405,7 +405,7 @@ function formatNumber($number, $decimals = 2)
                                             <div>
                                                 <!-- <p class="mb-1">BTC / USD</p> -->
                                                 <p class="fs-20 mb-0 fw-semibold lh-1 text-primary">
-                                                    $<?php echo number_format($copy_balance) ?>
+                                                    $<?php echo formatNumber($copy_balance) ?>
                                                 </p>
                                             </div>
                                             <div class="ms-auto text-end">
@@ -445,7 +445,7 @@ function formatNumber($number, $decimals = 2)
                                             <div>
                                                 <!-- <p class="mb-1">ETH / USD</p> -->
                                                 <p class="fs-20 mb-0 fw-semibold lh-1 text-primary">
-                                                    $<?php echo number_format($userDetails['total_deposit']) ?>
+                                                    $<?php echo formatNumber($userDetails['total_deposit']) ?>
                                                 </p>
                                             </div>
                                             <div class="ms-auto text-end">
@@ -561,7 +561,7 @@ function formatNumber($number, $decimals = 2)
                                                 <tr>
                                                     <td><?php echo $count; ?></td>
                                                     <td><?php echo $row['source_table']; ?></td>
-                                                    <td><?php echo number_format($row['amount'],2); ?></td>
+                                                    <td><?php echo formatNumber($row['amount'],2); ?></td>
                                                     <td><?php echo $row['date']; ?></td>
                                                     <td>
                                                         <?php

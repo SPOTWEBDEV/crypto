@@ -20,7 +20,7 @@ $user_identity = $userDetails['id'];
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>KYC</title>
+    <title>Copy Trading</title>
     <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template" />
     <meta name="Author" content="Spruko Technologies Private Limited" />
     <meta name="keywords" content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit." />
@@ -128,7 +128,7 @@ if ($user['copy_expert'] > 0) {
                     <div class="card-body">
                         <label class="form-label">Copy Rise</label>
                         <input type="text" name="copy_rise" class="form-control form-control-sm"
-                            value="<?= $user['copy_rise'] ?>" readonly>
+                            value="" readonly>
                     </div>
 
                     <div class="card-body">
